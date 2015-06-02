@@ -1,0 +1,7 @@
+<?php
+// create a form inputs to collect the user's configuration text
+echo '<div id="configure_this_config_form">';
+echo '<label for="configure_this_configuration">Your Configuration Text:</label>';             
+echo text(array('name'=>'configuration_this_configuration'), get_option('configuration_this_configuration'), null);
+echo '</div>';
+?>
