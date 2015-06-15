@@ -137,8 +137,17 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
             exit;
         }
 
-        // Zend_Debug::dump(self::shibbolethUserHasOmekaAccount('coucou@coucou.fr'));
-        Zend_Debug::dump(self::getShibbolethUserInfos());
+        if ( $userInfos = self::getShibbolethUserInfos()) {
+            if (self::shibbolethUserHasOmekaAccount($userInfos['mail'])) {
+                Zend_Debug::dump("The user has an account");
+            } else {
+                Zend_Debug::dump("The user hasn't an account");
+            }
+
+        } else {
+            Zend_Debug::dump("// Error : pas assez d'informations sur l'utilisateur");
+            
+        }
     }
 
 
@@ -182,10 +191,10 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 
         foreach($infos as $info) 
         {
-            if(!$_SERVER[$info]) {
-                return false;
-            } else {
+            if(isset($_SERVER[$info])) {
                 $userInfos[$info] = $_SERVER[$info];
+            } else {
+                return false;
             }
         }
         return $userInfos;
