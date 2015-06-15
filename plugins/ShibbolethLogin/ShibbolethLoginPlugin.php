@@ -136,8 +136,27 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 
                 // If the user already has an OMEKA account
                 if (self::shibbolethUserHasOmekaAccount($userInfos['mail'])) {
-                    Zend_Debug::dump("The user has an account");
-                    // Logger l'utilisateur
+                    
+                    $user = new User();
+
+                    // Login the user & redirect to homepage
+                    $authAdapter = new Omeka_Auth_Adapter_UserTable($this->_helper->db->getDb());
+
+                    $options = unserialize(get_option('shibboleth_login_settings'));
+Zend_Debug::dump($options['username-prefix'] . $_SERVER['givenName']);
+                    $authAdapter->setIdentity($options['username-prefix'] . $_SERVER['givenName'])->setCredential(self::SHIBBOLETH_USERS_PASSWORD);
+                    $authResult = $this->_auth->authenticate($authAdapter);
+                    if (!$authResult->isValid()) {
+                        if ($log = $this->_getLog()) {
+                            $ip = $this->getRequest()->getClientIp();
+                            $log->info(__("Failed login attempt from %s", $ip));
+                        }
+                        $this->_helper->flashMessenger($this->getLoginErrorMessages($authResult), 'error');
+                        return;
+                    }
+                    $this->_helper->redirector->gotoUrl('/');
+                    return;
+
 
                 } else { // The user hasn't an OMEKA account
                     
