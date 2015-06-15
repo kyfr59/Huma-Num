@@ -136,7 +136,7 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
             'description' => __('Role from your Shibboleth session'),
             'size' => '30',
             'required' => true,
-            'value' => Inflector::humanize('contributor'),
+            'value' => 'contributor',
             'validators' => array(
                 array('validator' => 'NotEmpty', 'breakChainOnFailure' => true, 'options' => array(
                     'messages' => array(
