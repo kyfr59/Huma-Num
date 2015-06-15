@@ -116,9 +116,9 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         ));
 
         // Retrive values of Shibboleth session
-        $form->name->setValue("coucou");
-        $form->username->setValue($this->_options['username-prefix'] . "coucou");
-        $form->email->setValue("coucou@coucou.fr");
+        $form->name->setValue($_SERVER['displayName']);
+        $form->username->setValue($this->_options['username-prefix'] . $_SERVER['givenName']);
+        $form->email->setValue($_SERVER['mail']);
         
         // Disable field modification
         $form->name->setAttrib('readonly', 'readonly');

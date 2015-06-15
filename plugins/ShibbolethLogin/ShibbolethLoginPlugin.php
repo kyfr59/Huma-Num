@@ -128,25 +128,30 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
     {
         queue_css_file('shibboleth-login');
 
-        // if a SB session is active & the user isn't connected
-        if (self::isShibbolethSessionActive() 
-            && ltrim($_SERVER['REQUEST_URI'],'/') != 'shibboleth-login' 
-            && !current_user() ) 
+        // If a SB session is active & the user isn't connected
+        if (self::isShibbolethSessionActive() && ltrim($_SERVER['REQUEST_URI'],'/') != 'shibboleth-login' && !current_user() ) 
         {
-            header("location: /shibboleth-login");
-            exit;
-        }
+            // If we've all informations about the user
+            if ( $userInfos = self::checkShibbolethUserInfos()) {
 
-        if ( $userInfos = self::getShibbolethUserInfos()) {
-            if (self::shibbolethUserHasOmekaAccount($userInfos['mail'])) {
-                Zend_Debug::dump("The user has an account");
-            } else {
-                Zend_Debug::dump("The user hasn't an account");
+                // If the user already has an OMEKA account
+                if (self::shibbolethUserHasOmekaAccount($userInfos['mail'])) {
+                    Zend_Debug::dump("The user has an account");
+                    // Logger l'utilisateur
+
+                } else { // The user hasn't an OMEKA account
+                    
+                    header("location: /shibboleth-login");
+                    exit;
+                    
+                }
+
+            } else { // We don't have all informations about the user
+
+                Zend_Debug::dump("// Error : pas assez d'informations sur l'utilisateur");
+                // Afficher un message d'erreur
+                
             }
-
-        } else {
-            Zend_Debug::dump("// Error : pas assez d'informations sur l'utilisateur");
-            
         }
     }
 
@@ -180,11 +185,12 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     /**
-     * Returns the information about the user provided by the Shibboleth session
+     * Returns the information about the user (provided by the Shibboleth session)
+     * If an info is missing, returns false
      *
      * @return array|false Returns an array containing the user info, otherwhise 'false'.
      */
-    private static function getShibbolethUserInfos()
+    private static function checkShibbolethUserInfos()
     {
         $infos = array('mail', 'displayName', 'givenName');
         $userInfos = array();
@@ -199,6 +205,10 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         }
         return $userInfos;
     }
+
+    
+
+
 
 
 
