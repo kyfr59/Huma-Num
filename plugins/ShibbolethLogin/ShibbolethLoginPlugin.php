@@ -187,8 +187,8 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
             } else {
                 $userInfos[$info] = $_SERVER[$info];
             }
-            return $userInfos;
         }
+        return $userInfos;
     }
 
 
