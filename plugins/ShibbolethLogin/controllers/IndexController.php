@@ -11,23 +11,56 @@
  *
  * @package Shibboleth Login
  */
+
+
 class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionController
 {    
     private $_options;
 
+    private $_auth;
+
+    const SHIBBOLETH_USERS_PASSWORD = 'shibboleth';
+
     public function init()
     {
+        // If the user is already connected, redirect to homepage
+        if (current_user()) $this->_helper->redirector->gotoUrl('/');
+
+        // Retrieve plugin options
         $this->_options = unserialize(get_option('shibboleth_login_settings'));
 
         // Set the model class so this controller can perform some functions, 
-        // such as $this->findById()
         $this->_helper->db->setDefaultModelName('User');
+
         $this->_auth = $this->getInvokeArg('bootstrap')->getResource('Auth');
    
     }
     
     public function indexAction()
     {
+
+        /*
+         * Authentification de l'utilisateur (si session Shibboleth existante)
+         */
+        /*
+        $user = new User();
+
+        // Login the user & redirect to homepage
+        $authAdapter = new Omeka_Auth_Adapter_UserTable($this->_helper->db->getDb());
+        $authAdapter->setIdentity('sb_coucou')->setCredential(self::SHIBBOLETH_USERS_PASSWORD);
+        $authResult = $this->_auth->authenticate($authAdapter);
+        if (!$authResult->isValid()) {
+            if ($log = $this->_getLog()) {
+                $ip = $this->getRequest()->getClientIp();
+                $log->info(__("Failed login attempt from %s", $ip));
+            }
+            $this->_helper->flashMessenger($this->getLoginErrorMessages($authResult), 'error');
+            return;
+        }
+        $this->_helper->redirector->gotoUrl('/');
+        return;
+        */
+
         $user = new User();
         
         $form = $this->_getShibbolethUserForm($user);
@@ -45,9 +78,7 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         
         $user->setPostData($_POST);
 
-        // Generate random password for Shibboleth user
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
-        $password = substr( str_shuffle( $chars ), 0, 10);
+        $password = self::SHIBBOLETH_USERS_PASSWORD;
         $user->setPassword($password);
 
         if ($user->save(false)) {
@@ -70,6 +101,7 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         } else {
             $this->_helper->flashMessenger($user->getErrors());
         }
+        
     }
 
 

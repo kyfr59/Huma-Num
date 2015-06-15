@@ -7,10 +7,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
-//define('USERS_STATS_PLUGIN_DIR', PLUGIN_DIR . '/ShibbolethLogin');
-
-//require_once USERS_STATS_PLUGIN_DIR . '/helpers/UsersStatsFunctions.php';
-
+define('SHIBBOLETH_USERS_PREFIX', 'sb_');
 
 /**
  * The Shibboleth Login plugin.
@@ -19,31 +16,45 @@
  */
 class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 {
-
-
- 
-// show plugin configuration page
-function configure_this_config_form() {
-    
-}
- 
-// save plugin configurations in the database
-function configure_this_config() {
-    set_option('configure_this_configuration', trim($_POST['configure_this_configuration']));
-}
-
     protected $_hooks = array(
         'define_acl',
         'install',
         'config',
         'config_form',
-        'public_head'
+        'public_head',
+        'initialize'
     );
 
     protected $_filters = array(
-        'login_form'
+        'login_form',
+        'login_adapter',
+        
     );
 
+    public function hookInitialize()
+    {
+        //header('location:http://free.fr');
+    }
+
+    public function filterLoginAdapter($authAdapter, $options) 
+    {
+        
+        $settings = unserialize(get_option('shibboleth_login_settings'));
+
+        $form = $options['login_form'];
+
+        $username = $form->getValue('username');
+
+        $user = new User();
+
+        if (substr($username, 0, strlen(SHIBBOLETH_USERS_PREFIX)) == SHIBBOLETH_USERS_PREFIX) {
+            header("location:".$settings['idp-url']);
+        } else {
+            return $authAdapter
+                ->setIdentity($form->getValue('username'))
+                ->setCredential($form->getValue('password'));
+        }
+    }
 
     public function filterLoginForm($html)
     {
@@ -53,8 +64,7 @@ function configure_this_config() {
     public function hookInstall() 
     {
         $defaults = array(
-            'idp-url' => 'https://idp.testshib.org/idp/Authn/UserPassword',
-            'username-prefix' => 'sb_'
+            'idp-url' => 'https://idp.testshib.org/idp/Authn/UserPassword'
         );
         set_option('shibboleth_login_settings', serialize($defaults));
     }
@@ -67,7 +77,7 @@ function configure_this_config() {
         $audio = $settings['audio'];
         $audio['types'] = implode(',', $audio['types']);
         $audio['extensions'] = implode(',', $audio['extensions']);
-        */
+        
         
         $options['idp-url'] = (string) $settings['idp-url'];
         $options['username-prefix'] = (string) $settings['username-prefix'];
@@ -84,9 +94,7 @@ function configure_this_config() {
     {
         $settings = unserialize(get_option('shibboleth_login_settings'));
         
-
         $settings['idp-url'] = (string) $_POST['idp-url'];
-        $settings['username-prefix'] = (string) $_POST['username-prefix'];
         
         set_option('shibboleth_login_settings', serialize($settings));
     }
@@ -110,14 +118,66 @@ function configure_this_config() {
 
 
     /**
-     * Hooks into public_head to add a css file for the plugin
+     * Hooks into public_head :
+     *  - Add a css file for the plugin
+     *  - Redirect to Shibboleth's login form is a SB session is active
      *
      * @param array $args
      */
-    public function hookPublicHead($args)
+    public function hookPublicHead($view)
     {
-      queue_css_file('shibboleth-login');
+        queue_css_file('shibboleth-login');
+
+        // if a SB session is active & the user isn't connected
+        if (self::isShibbolethSessionActive() 
+            && ltrim($_SERVER['REQUEST_URI'],'/') != 'shibboleth-login' 
+            && !current_user() ) 
+        {
+            header("location: /shibboleth-login");
+            exit;
+        }
+
+        // Zend_Debug::dump(self::shibbolethUserHasOmekaAccount('coucou@coucou.fr'));
     }
+
+
+    /**
+     * Returns TRUE if a Shibboleth session is active for the app,
+     *
+     * @return bool 'true' if a SB session is active otherwhise 'false'.
+     */
+    private static function isShibbolethSessionActive() 
+    {
+        $session_headers = array('Shib-Session-ID', 'Shib_Session_ID', 'HTTP_SHIB_IDENTITY_PROVIDER');
+        foreach ($session_headers as $header) {
+                if ( array_key_exists($header, $_SERVER) && !empty($_SERVER[$header]) ) {
+                        return true;
+                        break;
+                }
+        }
+        return false;
+    }
+
+
+    /**
+     * Returns TRUE if the current Shibboleth user has an Omeka account (based on the e-mail address)
+     *
+     * @return User|false Returns the user object if the user has an account, otherwhise 'false'.
+     */
+    private static function shibbolethUserHasOmekaAccount($email) 
+    {
+        return get_db()->getTable('User')->findByEmail($email);
+    }
+
+
+
+/*
+Vérifier si le nom d'utilisateur existe déjà dans la base
+Si l'utilisateur n'est pas déjà connecté !
+ 
+
+*/
+
 
 
     

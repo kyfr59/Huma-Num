@@ -1,8 +1,9 @@
 <?php
 /**
- * Simple Pages
+ * ShibbolethLogin plugi
  *
- * @copyright Copyright 2008-2012 Roy Rosenzweig Center for History and New Media
+ * @copyright Copyright 2015-2020 Limonade & Co (Paris)
+ * @author Franck Dupont <kyfr59@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
@@ -18,7 +19,7 @@
  * @param Collection $collectionObj
  * @return string
  */
-function link_to_items_of_user($text = null, $props = array(), $action = 'browse', $user = null) 
+function isShibbolethSessionActive() 
 {
     if ($user) {
         
