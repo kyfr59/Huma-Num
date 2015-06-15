@@ -138,6 +138,7 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         }
 
         // Zend_Debug::dump(self::shibbolethUserHasOmekaAccount('coucou@coucou.fr'));
+        Zend_Debug::dump(self::getShibbolethUserInfos());
     }
 
 
@@ -167,6 +168,27 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
     private static function shibbolethUserHasOmekaAccount($email) 
     {
         return get_db()->getTable('User')->findByEmail($email);
+    }
+
+    /**
+     * Returns the information about the user provided by the Shibboleth session
+     *
+     * @return array|false Returns an array containing the user info, otherwhise 'false'.
+     */
+    private static function getShibbolethUserInfos()
+    {
+        $infos = array('mail', 'displayName', 'givenName');
+        $userInfos = array();
+
+        foreach($infos as $info) 
+        {
+            if(!$_SERVER[$info]) {
+                return false;
+            } else {
+                $userInfos[$info] = $_SERVER[$info];
+            }
+            return $userInfos;
+        }
     }
 
 
