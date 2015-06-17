@@ -96,11 +96,11 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         $form->name->setValue($_SERVER['displayName']);
         $form->username->setValue(SHIBBOLETH_USERS_PREFIX . $_SERVER['givenName']);
         $form->email->setValue($_SERVER['mail']);
-
+/*
         $form->name->setValue("test");
         $form->username->setValue("test");
         $form->email->setValue("test@red.de");
-
+*/
         
         // Disable field modification
         $form->name->setAttrib('readonly', 'readonly');
