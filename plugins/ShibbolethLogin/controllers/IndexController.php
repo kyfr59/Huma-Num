@@ -118,9 +118,7 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         $form->email->setDescription(__('The email from your Shibboleth session (cannot be changed)'));
 
         // Add 'role' element
-        $form->addElement('text', 'role', array(
-            'label' => __('Role'),
-            'description' => __('Role from your Shibboleth session'),
+        $form->addElement('hidden', 'role', array(
             'size' => '30',
             'required' => true,
             'value' => 'contributor',
@@ -134,7 +132,7 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         ));
 
         // Add 'active' element
-        $form->addElement('text', 'active', array(
+        $form->addElement('hidden', 'active', array(
             'value' => true,
         ));
        
