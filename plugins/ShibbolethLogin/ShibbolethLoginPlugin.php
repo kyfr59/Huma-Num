@@ -107,14 +107,14 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
                 } else { // The user hasn't an OMEKA account
                     
                     header("location: /shibboleth-login");
-                    return;
+                    exit;
                     
                 }
 
             } else { // We don't have all informations about the user
 
                 header("location: /shibboleth-login/error/error=not_enouth_params");
-                return;
+                exit;
                 
             }
         }
