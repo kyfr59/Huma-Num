@@ -9,6 +9,8 @@
 
 define('SHIBBOLETH_USERS_PREFIX', 'sb_');
 
+require_once dirname(__FILE__) . '/models/ShibbolethUserTable.php';
+
 /**
  * The Shibboleth Login plugin.
  * 
@@ -27,7 +29,7 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array(
         'login_form',
-        'login_adapter',
+        
         
     );
 
@@ -46,14 +48,16 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         $username = $form->getValue('username');
 
         $user = new User();
-
+/*
         if (substr($username, 0, strlen(SHIBBOLETH_USERS_PREFIX)) == SHIBBOLETH_USERS_PREFIX) {
-            header("location:".$settings['idp-url']);
+            //header("location:".$settings['idp-url']);
         } else {
             return $authAdapter
                 ->setIdentity($form->getValue('username'))
                 ->setCredential($form->getValue('password'));
         }
+        */
+
     }
 
     public function filterLoginForm($html)
@@ -137,15 +141,14 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
                 // If the user already has an OMEKA account
                 if (self::shibbolethUserHasOmekaAccount($userInfos['mail'])) {
                     
-                    // Login the user
+                    // Login the user (without password)
                     $user = new User();
-                    $authAdapter = new Omeka_Auth_Adapter_UserTable(get_db());
-                    $options = unserialize(get_option('shibboleth_login_settings'));
-                    require_once dirname(__FILE__) . '/controllers/IndexController.php';
-                    $authAdapter->setIdentity($options['username-prefix'] . $_SERVER['givenName'])->setCredential(ShibbolethLogin_IndexController::SHIBBOLETH_USERS_PASSWORD);
+                    $authAdapter = new Shibboleth_Auth_Adapter_UserTable(get_db());
+                    $authAdapter->setIdentity('sb_coucou')->setCredential("oioioio");
                     $auth = Zend_Registry::get('bootstrap')->getResource('Auth');
                     $authResult = $auth->authenticate($authAdapter);
                     return;
+
 
                 } else { // The user hasn't an OMEKA account
                     
@@ -157,10 +160,11 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
             } else { // We don't have all informations about the user
 
                 Zend_Debug::dump("// Error : pas assez d'informations sur l'utilisateur");
-                // Afficher un message d'erreur
+                // TODO : Afficher un message d'erreur
                 
             }
         }
+        
     }
 
 

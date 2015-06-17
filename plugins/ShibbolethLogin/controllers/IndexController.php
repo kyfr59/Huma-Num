@@ -19,8 +19,6 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
 
     private $_auth;
 
-    const SHIBBOLETH_USERS_PASSWORD = 'shibboleth';
-
     public function init()
     {
         // If the user is already connected, redirect to homepage
@@ -78,7 +76,9 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         
         $user->setPostData($_POST);
 
-        $password = self::SHIBBOLETH_USERS_PASSWORD;
+        // Generate random password
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+        $password = substr( str_shuffle( $chars ), 0, 15);
         $user->setPassword($password);
 
         if ($user->save(false)) {
@@ -150,8 +150,6 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         $form->addElement('text', 'active', array(
             'value' => true,
         ));
-
-        
 
         $form->removeDecorator('Form');
         fire_plugin_hook('shibboleth_login_users_form', array('form' => $form, 'user' => $user));
