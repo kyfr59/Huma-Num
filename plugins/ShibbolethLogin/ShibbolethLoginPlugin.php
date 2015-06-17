@@ -133,10 +133,10 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         queue_css_file('shibboleth-login');
 
         // If a SB session is active & the user isn't connected
-        if (self::isShibbolethSessionActive() && ltrim($_SERVER['REQUEST_URI'],'/') != 'shibboleth-login' && !current_user() ) 
+        if (!self::isShibbolethSessionActive() && ltrim($_SERVER['REQUEST_URI'],'/') != 'shibboleth-login' && !current_user() ) 
         {
             // If we've all informations about the user
-            if ( $userInfos = self::checkShibbolethUserInfos()) {
+            if ( !$userInfos = self::checkShibbolethUserInfos()) {
 
                 // If the user already has an OMEKA account
                 if (self::shibbolethUserHasOmekaAccount($userInfos['mail'])) {
