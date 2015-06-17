@@ -109,6 +109,7 @@ class User extends Omeka_Record_AbstractRecord
                 if ($post['role'] == 'super' && !$acl->isAllowed($currentUser, 'Users', 'makeSuperUser')) {
                     $this->addError('role', __('User may not change permissions to super-user'));
                 }
+                Zend_Debug::dump($this);
                 if (!$acl->isAllowed($currentUser, $this, 'change-role')) {
                     $this->addError('role', __('User may not change roles.'));
                 }

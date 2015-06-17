@@ -1,9 +1,0 @@
-<?php
-$pageTitle = __("User's Stats error");
-echo head(array('title'=>$pageTitle, 'bodyclass'=>'users'));
-echo flash();
-?>
-
-<a href="javascript:history.back();" class="add green button"><?php echo __("Back")?></a>
-
-<?php echo foot(); ?>

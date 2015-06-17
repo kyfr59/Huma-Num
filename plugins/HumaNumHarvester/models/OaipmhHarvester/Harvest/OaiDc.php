@@ -144,13 +144,14 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
 
         // Retrieve the original filename in the triple store
         $sparql = new EasyRdf_Sparql_Client(NAKALA_SPARQL_ENDPOINT);
-        //$query = "SELECT * WHERE {<" . NAKALA_RESOURCE_URL . $handle."> skos:altLabel ?label .}";
         
         $query  = "PREFIX dcterms: <http://purl.org/dc/terms/>";
+        $query .= "PREFIX ore: <http://www.openarchives.org/ore/terms/>";
         $query .= "SELECT * WHERE {";
         $query .= "<" . NAKALA_RESOURCE_URL . $handle."> skos:altLabel ?label . ";
         $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> dcterms:format ?format } . ";
         $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> dcterms:extent ?extent } . ";
+        $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> ore:isAggregatedBy ?collections } . ";
         $query .= "}";
         
 

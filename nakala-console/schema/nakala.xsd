@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:nkl="http://nakala.fr/schema#"
+           xmlns:dcterms="http://purl.org/dc/terms/"
+           targetNamespace="http://nakala.fr/schema#"
+           xmlns="http://nakala.fr/schema#"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://nakala.fr/schema#">
+
+    <xs:import namespace="http://purl.org/dc/terms/" schemaLocation="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd"/>
+
+    <xs:element name="Data">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- First, we enforce title, creator, type and created -->
+                <xs:element minOccurs="1" maxOccurs="1" ref="dcterms:title"/>
+                <xs:element minOccurs="1" maxOccurs="1" ref="dcterms:creator"/>
+                <xs:element minOccurs="1" maxOccurs="1" ref="dcterms:type"/>
+                <xs:element minOccurs="1" maxOccurs="1" ref="dcterms:created"/>
+                <!-- Then, anything in the dcterms namespace (including title, creator, type and created) -->
+                <xs:any namespace="http://purl.org/dc/terms/" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Then, application-specific tags : inCollection, relation, accessEmail, dataFormat -->
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="inCollection" type="xs:string"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="relation" type="nkl:relation"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="accessEmail" type="xs:string"/>
+                <!-- dataFormat can be present only once -->
+                <xs:element minOccurs="0" maxOccurs="1" name="dataFormat" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Collection">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- First, we enforce at least a title for Collections -->
+                <xs:element minOccurs="1" maxOccurs="1" ref="dcterms:title"/>
+                <!-- Anything from the dcterms namespace -->
+                <xs:any namespace="http://purl.org/dc/terms/" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- inCollection can be present only once for Collection -->
+                <xs:element minOccurs="0" maxOccurs="1" name="inCollection" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="relation">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+</xs:schema>

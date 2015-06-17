@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><nkl:Data xmlns:nkl="http://nakala.fr/schema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://purl.org/dc/terms/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd">
+    <dcterms:title>Test Franck</dcterms:title>
+    <dcterms:creator>Franck Dupont</dcterms:creator>
+    <dcterms:type>Image</dcterms:type>
+    <dcterms:created>1983</dcterms:created>    
+
+    <dcterms:identifier>http://medihal.archives-ouvertes.fr/medihal-00668270</dcterms:identifier>
+    <dcterms:identifier>http://medihal.archives-ouvertes.fr/docs/00/66/82/70/IMG/REGARDS_Venezuela_DC065.jpg</dcterms:identifier>
+    <dcterms:subject>[SHS:GEO] Humanities and Social Sciences/Geography</dcterms:subject>
+    <dcterms:coverage>Venezuela, Bolivarian Republic Of, Guanare</dcterms:coverage>
+    <dcterms:spatial xsi:type="dcterms:Point">east=-69.748947; north=9.04549;name=Guanare</dcterms:spatial>
+    <dcterms:rights>Michel Pouyllau</dcterms:rights>
+    <dcterms:licence xsi:type="dcterms:URI">http://creativecommons.org/licenses/by-nc-sa/2.0/fr/</dcterms:licence>
+    <dcterms:source>Centre de Documentation REGARDS</dcterms:source>
+    <nkl:inCollection>11280/10472066</nkl:inCollection>
+    <nkl:relation type="http://purl.org/dc/terms/isVersionOf">11280/9213349d</nkl:relation>
+    <nkl:relation type="http://purl.org/dc/terms/isrequiredby">11280/9213349d</nkl:relation>
+<nkl:identifier>11280/afcc3590</nkl:identifier><nkl:checksum>5202925bb509d52f543939f26466977b7066f317</nkl:checksum><nkl:fileName>1.docx</nkl:fileName></nkl:Data>

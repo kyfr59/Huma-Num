@@ -1,8 +1,9 @@
 <?php
 /**
- * Omeka
+ * Shibboleth Login
  * 
- * @copyright Copyright 2007-2012 Roy Rosenzweig Center for History and New Media
+ * @copyright Copyright 2015-2020 Limonade & Co (Paris)
+ * @author Franck Dupont <kyfr59@gmail.com>
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
@@ -25,6 +26,7 @@ class ShibbolethLogin_Auth_Adapter_UserTable extends Zend_Auth_Adapter_DbTable
                             'SHA1(CONCAT(salt, ?)) OR 1 = 1'); // 'OR 1 = 1' allows the user login whitout password
     }
     
+
     /**
      * Validate the identity returned from the database.
      *

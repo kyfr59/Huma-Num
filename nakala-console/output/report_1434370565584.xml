@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report_data>
+    <date_started>2015-06-15T14:15:57.471+02:00</date_started>
+    <date_ended>2015-06-15T14:16:05.532+02:00</date_ended>
+    <nb_files_total>1</nb_files_total>
+    <nb_files_valid>0</nb_files_valid>
+    <nb_files_invalid>1</nb_files_invalid>
+    <batch_status>DONE</batch_status>
+    <files_treated>
+        <file>
+            <file_name>1</file_name>
+            <file_status>FAILED</file_status>
+            <date_started>2015-06-15T14:15:57.474+02:00</date_started>
+            <date_ended>2015-06-15T14:16:05.524+02:00</date_ended>
+            <file_status_desc>Invalid xml input :: Referenced data node [11280/bf86bec2] does not exist for relation [http://purl.org/dc/terms/isVersionOf]</file_status_desc>
+        </file>
+    </files_treated>
+</report_data>

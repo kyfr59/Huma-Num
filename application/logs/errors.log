@@ -1,0 +1,1142 @@
+2015-06-01T16:24:30+02:00 ERR (3): exception 'Zend_Loader_PluginLoader_Exception' with message 'Plugin by name 'SetRequired' was not found in the registry; used paths:
+ExhibitBuilder_View_Helper_: /home/franck/sites/omeka/plugins/ExhibitBuilder/views/helpers/
+Omeka_View_Helper_: /home/franck/sites/omeka/application/views/helpers/
+Zend_View_Helper_Navigation_: Zend/View/Helper/Navigation/
+Zend_View_Helper_: Zend/View/Helper/' in /home/franck/sites/omeka/application/libraries/Zend/Loader/PluginLoader.php:424
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(1182): Zend_Loader_PluginLoader->load('SetRequired')
+#1 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'setRequired')
+#2 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(344): Zend_View_Abstract->getHelper('setRequired')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/forms/config-form.php(11): Zend_View_Abstract->__call('setRequired', Array)
+#4 /home/franck/sites/omeka/plugins/ShibbolethLogin/forms/config-form.php(11): Omeka_View->setRequired(true)
+#5 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(114): include('/home/franck/si...')
+#6 [internal function]: ShibbolethLoginPlugin->hookConfigForm(Array)
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(145): call_user_func(Array, Array)
+#8 /home/franck/sites/omeka/admin/themes/default/plugins/config.php(8): Omeka_Plugin_Broker->callHook('config_form', Array, Object(Plugin))
+#9 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#11 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('plugins/config....')
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('plugins/config....', NULL)
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#15 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('configAction')
+#17 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#18 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#19 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#20 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#21 /home/franck/sites/omeka/admin/index.php(28): Omeka_Application->run()
+#22 {main}
+2015-06-01T16:36:28+02:00 ERR (3): exception 'Zend_Loader_PluginLoader_Exception' with message 'Plugin by name 'Add' was not found in the registry; used paths:
+ExhibitBuilder_View_Helper_: /home/franck/sites/omeka/plugins/ExhibitBuilder/views/helpers/
+Omeka_View_Helper_: /home/franck/sites/omeka/application/views/helpers/
+Zend_View_Helper_Navigation_: Zend/View/Helper/Navigation/
+Zend_View_Helper_: Zend/View/Helper/' in /home/franck/sites/omeka/application/libraries/Zend/Loader/PluginLoader.php:424
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(1182): Zend_Loader_PluginLoader->load('Add')
+#1 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(618): Zend_View_Abstract->_getPlugin('helper', 'add')
+#2 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(344): Zend_View_Abstract->getHelper('add')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/forms/config-form.php(16): Zend_View_Abstract->__call('add', Array)
+#4 /home/franck/sites/omeka/plugins/ShibbolethLogin/forms/config-form.php(16): Omeka_View->add(Object(Zend_Form_Element_Text))
+#5 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(114): include('/home/franck/si...')
+#6 [internal function]: ShibbolethLoginPlugin->hookConfigForm(Array)
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(145): call_user_func(Array, Array)
+#8 /home/franck/sites/omeka/admin/themes/default/plugins/config.php(8): Omeka_Plugin_Broker->callHook('config_form', Array, Object(Plugin))
+#9 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#11 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('plugins/config....')
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('plugins/config....', NULL)
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#15 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('configAction')
+#17 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#18 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#19 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#20 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#21 /home/franck/sites/omeka/admin/index.php(28): Omeka_Application->run()
+#22 {main}
+2015-06-01T17:42:53+02:00 ERR (3): exception 'BadMethodCallException' with message 'No default table has been set.' in /home/franck/sites/omeka/application/controllers/helpers/Db.php:54
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Omeka/Controller/AbstractActionController.php(128): Omeka_Controller_Action_Helper_Db->__call('findBy', Array)
+#1 /home/franck/sites/omeka/application/libraries/Omeka/Controller/AbstractActionController.php(128): Omeka_Controller_Action_Helper_Db->findBy(Array, NULL, 1)
+#2 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): Omeka_Controller_AbstractActionController->browseAction()
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('browseAction')
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#5 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#8 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#9 {main}
+2015-06-01T17:51:43+02:00 ERR (3): exception 'Zend_Controller_Action_Exception' with message 'Method "_getUserForm" does not exist and was not trapped in __call()' in /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php:488
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): Zend_Controller_Action->__call('_getUserForm', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): ShibbolethLogin_IndexController->_getUserForm(Object(User))
+#2 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#5 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#8 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#9 {main}
+2015-06-01T17:52:01+02:00 ERR (3): exception 'Zend_Controller_Action_Exception' with message 'Method "_getUserForm" does not exist and was not trapped in __call()' in /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php:488
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): Zend_Controller_Action->__call('_getUserForm', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): ShibbolethLogin_IndexController->_getUserForm(Object(User))
+#2 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#5 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#8 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#9 {main}
+2015-06-01T17:53:03+02:00 ERR (3): exception 'Zend_Controller_Action_Exception' with message 'Method "sendActivationEmail" does not exist and was not trapped in __call()' in /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php:488
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(43): Zend_Controller_Action->__call('sendActivationE...', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(43): ShibbolethLogin_IndexController->sendActivationEmail(Object(User))
+#2 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#5 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#8 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#9 {main}
+2015-06-02T11:51:12+02:00 ERR (3): exception 'Zend_Controller_Action_Exception' with message 'Method "addElement" does not exist and was not trapped in __call()' in /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php:488
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(84): Zend_Controller_Action->__call('addElement', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(84): ShibbolethLogin_IndexController->addElement('text', 'name', Array)
+#2 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): ShibbolethLogin_IndexController->_getUserForm(Object(User))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-02T11:59:34+02:00 ERR (3): exception 'Zend_Form_Element_Exception' with message 'Method setOption does not exist' in /home/franck/sites/omeka/application/libraries/Zend/Form/Element.php:1011
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(71): Zend_Form_Element->__call('setOption', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(71): Zend_Form_Element_Text->setOption('readonly')
+#2 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): ShibbolethLogin_IndexController->_getUserForm(Object(User))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-02T12:04:48+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:05:17+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:05:44+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:05:46+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:06:11+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:06:13+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:06:36+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:06:45+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:06:47+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:06:56+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:07:09+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:08:05+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1256
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1215): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1163): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1628): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1628): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1642): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:08:43+02:00 ERR (3): exception 'InvalidArgumentException' with message 'Could not find file css/shibboleth-login.css!' in /home/franck/sites/omeka/application/libraries/globals.php:1255
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/globals.php(1214): web_path_to('css/shibboleth-...')
+#1 /home/franck/sites/omeka/application/libraries/globals.php(1162): src('shibboleth-logi...', 'css', 'css')
+#2 /home/franck/sites/omeka/application/libraries/globals.php(1063): css_src('shibboleth-logi...', 'css')
+#3 /home/franck/sites/omeka/plugins/ShibbolethLogin/ShibbolethLoginPlugin.php(138): queue_css_file('shibboleth-logi...')
+#4 [internal function]: ShibbolethLoginPlugin->hookPublicHead(Array)
+#5 /home/franck/sites/omeka/application/libraries/Omeka/Plugin/Broker.php(157): call_user_func(Array, Array)
+#6 /home/franck/sites/omeka/application/libraries/globals.php(188): Omeka_Plugin_Broker->callHook('public_head', Array)
+#7 /home/franck/sites/omeka/themes/default/common/header.php(21): fire_plugin_hook('public_head', Array)
+#8 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#9 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#10 /home/franck/sites/omeka/application/libraries/Zend/View/Helper/Partial.php(109): Zend_View_Abstract->render('common/header.p...')
+#11 [internal function]: Zend_View_Helper_Partial->partial('common/header.p...', Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(350): call_user_func_array(Array, Array)
+#13 /home/franck/sites/omeka/application/libraries/globals.php(1627): Zend_View_Abstract->__call('partial', Array)
+#14 /home/franck/sites/omeka/application/libraries/globals.php(1627): Omeka_View->partial('common/header.p...', Array)
+#15 /home/franck/sites/omeka/application/libraries/globals.php(1641): common('header', Array)
+#16 /home/franck/sites/omeka/plugins/ShibbolethLogin/views/scripts/index/index.php(2): head(Array)
+#17 /home/franck/sites/omeka/application/libraries/Omeka/View.php(117): include('/home/franck/si...')
+#18 /home/franck/sites/omeka/application/libraries/Zend/View/Abstract.php(888): Omeka_View->_run('/home/franck/si...')
+#19 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(905): Zend_View_Abstract->render('index/index.php')
+#20 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(926): Zend_Controller_Action_Helper_ViewRenderer->renderScript('index/index.php', NULL)
+#21 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/Helper/ViewRenderer.php(965): Zend_Controller_Action_Helper_ViewRenderer->render()
+#22 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action/HelperBroker.php(277): Zend_Controller_Action_Helper_ViewRenderer->postDispatch()
+#23 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(527): Zend_Controller_Action_HelperBroker->notifyPostDispatch()
+#24 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#25 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#26 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#27 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#28 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#29 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#30 {main}
+2015-06-02T12:24:17+02:00 ERR (3): exception 'Zend_Form_Element_Exception' with message 'Method setDescritpion does not exist' in /home/franck/sites/omeka/application/libraries/Zend/Form/Element.php:1011
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(76): Zend_Form_Element->__call('setDescritpion', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(76): Zend_Form_Element_Text->setDescritpion('coucou')
+#2 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(28): ShibbolethLogin_IndexController->_getUserForm(Object(User))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-02T12:47:48+02:00 ERR (3): exception 'Zend_Controller_Action_Exception' with message 'Method "sendActivationEmail" does not exist and was not trapped in __call()' in /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php:488
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(43): Zend_Controller_Action->__call('sendActivationE...', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(43): ShibbolethLogin_IndexController->sendActivationEmail(Object(User))
+#2 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#5 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#8 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#9 {main}
+2015-06-04T10:48:50+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "InstructionalMethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'InstructionalMe...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'InstructionalMe...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'InstructionalMe...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:49:03+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "InstructionalMethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'InstructionalMe...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'InstructionalMe...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'InstructionalMe...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:49:21+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "Instructionalmethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'Instructionalme...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'Instructionalme...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'Instructionalme...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:49:27+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "Instructionalmethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'Instructionalme...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'Instructionalme...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'Instructionalme...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:49:43+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "InstructionalMethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'InstructionalMe...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'InstructionalMe...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'InstructionalMe...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:49:44+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "InstructionalMethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'InstructionalMe...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'InstructionalMe...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'InstructionalMe...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:49:47+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "InstructionalMethod"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'InstructionalMe...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'InstructionalMe...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'InstructionalMe...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:50:46+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "Bibliography"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'Bibliography')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'Bibliography')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'Bibliography')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:50:55+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "Bibliography"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'Bibliography')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'Bibliography')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'Bibliography')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:51:33+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "Bibliography"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'Bibliography')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'Bibliography')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'Bibliography')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:51:37+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "Bibliography"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'Bibliography')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'Bibliography')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'Bibliography')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:56:05+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "BibliographicCitation"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'BibliographicCi...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'BibliographicCi...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'BibliographicCi...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T10:56:30+02:00 ERR (3): exception 'Omeka_Record_Exception' with message 'There is no element "Dublin Core", "BibliographicCitation"!' in /home/franck/sites/omeka/application/models/Mixin/ElementText.php:293
+Stack trace:
+#0 /home/franck/sites/omeka/application/models/Mixin/ElementText.php(214): Mixin_ElementText->getElement('Dublin Core', 'BibliographicCi...')
+#1 [internal function]: Mixin_ElementText->getElementTexts('Dublin Core', 'BibliographicCi...')
+#2 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(251): call_user_func_array(Array, Array)
+#3 /home/franck/sites/omeka/application/libraries/Omeka/Record/AbstractRecord.php(210): Omeka_Record_AbstractRecord->delegateToMixins('getElementTexts', Array)
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Omeka_Record_AbstractRecord->__call('getElementTexts', Array)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(70): Item->getElementTexts('Dublin Core', 'BibliographicCi...')
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#8 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#9 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#10 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#11 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#12 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#13 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#14 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#15 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#16 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#17 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#18 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#19 {main}
+2015-06-04T11:24:48+02:00 ERR (3): exception 'BadMethodCallException' with message 'Method named 'setDefaultModelName' does not exist or is not callable.' in /home/franck/sites/omeka/application/libraries/Omeka/Db.php:68
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(69): Omeka_Db->__call('setDefaultModel...', Array)
+#1 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(69): Omeka_Db->setDefaultModelName('ElementSet')
+#2 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#3 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#8 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#9 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#10 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#11 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#12 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#13 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#14 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#15 {main}
+2015-06-04T11:26:20+02:00 ERR (3): exception 'BadMethodCallException' with message 'Method named 'findById' does not exist or is not callable.' in /home/franck/sites/omeka/application/libraries/Omeka/Db/Table.php:83
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(69): Omeka_Db_Table->__call('findById', Array)
+#1 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(69): Table_ElementSet->findById(1)
+#2 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#3 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#8 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#9 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#10 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#11 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#12 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#13 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#14 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#15 {main}
+2015-06-04T11:26:26+02:00 ERR (3): exception 'BadMethodCallException' with message 'Method named 'findById' does not exist or is not callable.' in /home/franck/sites/omeka/application/libraries/Omeka/Db/Table.php:83
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(69): Omeka_Db_Table->__call('findById', Array)
+#1 /home/franck/sites/omeka/plugins/OaiPmhRepository/metadata/OaiDc.php(69): Table_ElementSet->findById(1)
+#2 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/Metadata/Abstract.php(72): OaiPmhRepository_Metadata_OaiDc->appendMetadata(Object(DOMElement))
+#3 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(457): OaiPmhRepository_Metadata_Abstract->appendRecord(Object(DOMElement))
+#4 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(380): OaiPmhRepository_ResponseGenerator->listResponse('ListRecords', 'oai_dc', 0, NULL, NULL, NULL)
+#5 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(151): OaiPmhRepository_ResponseGenerator->initListResponse()
+#6 /home/franck/sites/omeka/plugins/OaiPmhRepository/libraries/OaiPmhRepository/ResponseGenerator.php(78): OaiPmhRepository_ResponseGenerator->dispatchRequest()
+#7 /home/franck/sites/omeka/plugins/OaiPmhRepository/controllers/RequestController.php(38): OaiPmhRepository_ResponseGenerator->__construct(Array)
+#8 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): OaiPmhRepository_RequestController->indexAction()
+#9 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#10 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#11 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#12 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#13 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#14 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#15 {main}
+2015-06-09T11:57:59+02:00 ERR (3): exception 'Zend_Auth_Adapter_Exception' with message 'A credential value was not provided prior to authentication with Zend_Auth_Adapter_DbTable.' in /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php:418
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php(366): Zend_Auth_Adapter_DbTable->_authenticateSetup()
+#1 /home/franck/sites/omeka/application/libraries/Zend/Auth.php(117): Zend_Auth_Adapter_DbTable->authenticate()
+#2 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(77): Zend_Auth->authenticate(Object(Omeka_Auth_Adapter_UserTable))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-09T11:58:17+02:00 ERR (3): exception 'Zend_Auth_Adapter_Exception' with message 'A credential value was not provided prior to authentication with Zend_Auth_Adapter_DbTable.' in /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php:418
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php(366): Zend_Auth_Adapter_DbTable->_authenticateSetup()
+#1 /home/franck/sites/omeka/application/libraries/Zend/Auth.php(117): Zend_Auth_Adapter_DbTable->authenticate()
+#2 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/IndexController.php(77): Zend_Auth->authenticate(Object(Omeka_Auth_Adapter_UserTable))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_IndexController->indexAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-09T13:31:11+02:00 ERR (3): exception 'Zend_Auth_Adapter_Exception' with message 'A value for the identity was not provided prior to authentication with Zend_Auth_Adapter_DbTable.' in /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php:418
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php(366): Zend_Auth_Adapter_DbTable->_authenticateSetup()
+#1 /home/franck/sites/omeka/application/libraries/Zend/Auth.php(117): Zend_Auth_Adapter_DbTable->authenticate()
+#2 /home/franck/sites/omeka/application/controllers/UsersController.php(436): Zend_Auth->authenticate(Object(Omeka_Auth_Adapter_UserTable))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): UsersController->loginAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('loginAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-09T13:31:44+02:00 ERR (3): exception 'Zend_Auth_Adapter_Exception' with message 'A value for the identity was not provided prior to authentication with Zend_Auth_Adapter_DbTable.' in /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php:418
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php(366): Zend_Auth_Adapter_DbTable->_authenticateSetup()
+#1 /home/franck/sites/omeka/application/libraries/Zend/Auth.php(117): Zend_Auth_Adapter_DbTable->authenticate()
+#2 /home/franck/sites/omeka/application/controllers/UsersController.php(436): Zend_Auth->authenticate(Object(Omeka_Auth_Adapter_UserTable))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): UsersController->loginAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('loginAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-09T13:41:44+02:00 ERR (3): exception 'Zend_Auth_Adapter_Exception' with message 'A value for the identity was not provided prior to authentication with Zend_Auth_Adapter_DbTable.' in /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php:418
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php(366): Zend_Auth_Adapter_DbTable->_authenticateSetup()
+#1 /home/franck/sites/omeka/application/libraries/Zend/Auth.php(117): Zend_Auth_Adapter_DbTable->authenticate()
+#2 /home/franck/sites/omeka/application/controllers/UsersController.php(436): Zend_Auth->authenticate(Object(Omeka_Auth_Adapter_UserTable))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): UsersController->loginAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('loginAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-11T08:40:29+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-DquCcZ6l.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_bd442a178071a524904833e9e8e2e914.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:29+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:30+00:00 WARN (4): Error output from ImageMagick:
+convert: no decode delegate for this image format `/tmp/e4058a6c550483f7f5d3fa1d93f2aa21.ogg' @ error/constitute.c/ReadImage/544.
+convert: no images defined `/tmp/fullsize_e4058a6c550483f7f5d3fa1d93f2aa21.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:30+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:34+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-_P2eUdHj.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_388841a46805e1d5c1d202502d206a62.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:34+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:35+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-m-wFwxjj.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_373ca5d7f2716f4f4ac7601c9699f866.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:35+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:36+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-B-BeX0As.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_3962648e53b6c28ad00d26a6c2c6b468.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:36+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:37+00:00 WARN (4): Error output from ImageMagick:
+convert: no decode delegate for this image format `/tmp/8c75a4ace668beb68fd25e1f49105e3b.mp3' @ error/constitute.c/ReadImage/544.
+convert: no images defined `/tmp/fullsize_8c75a4ace668beb68fd25e1f49105e3b.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:37+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:38+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-FqKemoUo.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_c51be4788e935aebab2492e4bb4ef168.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:38+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:40+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-JwibLio4.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_240b18cc12811bd2454bb4c659818e27.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:40+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:44+00:00 WARN (4): The file 'boisset_1_2000.wrl' could not be ingested because it has a disallowed file extension (wrl).
+
+The file '/tmp/77551cfd6fb086691e038eba7b50e1bd.wrl' could not be ingested because it has a disallowed MIME type (model/vrml).
+2015-06-11T08:40:47+00:00 WARN (4): Error output from ImageMagick:
+convert: no decode delegate for this image format `/tmp/2b8bf5e0a7735672cc489742f16b7d1f.mp3' @ error/constitute.c/ReadImage/544.
+convert: no images defined `/tmp/fullsize_2b8bf5e0a7735672cc489742f16b7d1f.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:40:47+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-11T08:40:58+00:00 WARN (4): The file 'EADtest.xml' could not be ingested because it has a disallowed file extension (xml).
+
+The file '/tmp/74663cd4a6172e35aaf9c8448028382f.xml' could not be ingested because it has a disallowed MIME type (application/xml).
+2015-06-11T08:41:00+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-a4iWw8Kp.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_dcf2669746339c4ff59a7f33c3c63232.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-11T08:41:00+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:22+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-4iFI1UdW.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_fc3d94bb9987ddc3ac728a4332cad6f7.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:22+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:24+00:00 WARN (4): Error output from ImageMagick:
+convert: no decode delegate for this image format `/tmp/a0e72723ac47b183b8734e4c8a1159f3.ogg' @ error/constitute.c/ReadImage/544.
+convert: no images defined `/tmp/fullsize_a0e72723ac47b183b8734e4c8a1159f3.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:24+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:27+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-XbSjiV9o.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_3c5aa765c0dec76d4d24834deacf58f6.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:27+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:28+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-dnW2HN5m.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_b09215496a7df48797e368c2cd5228d5.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:28+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:29+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-0pDC8siB.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_51b6c1c3055560fdbc701fb98b0a7a90.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:29+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:30+00:00 WARN (4): Error output from ImageMagick:
+convert: no decode delegate for this image format `/tmp/ef92307e495d9b9affbb025ca6254c4e.mp3' @ error/constitute.c/ReadImage/544.
+convert: no images defined `/tmp/fullsize_ef92307e495d9b9affbb025ca6254c4e.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:30+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:31+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-TdcuV784.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_4b3bf20434529de79db95914ebbf2d7d.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:31+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:33+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick--DcLvRjE.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_094d3e45f6c22d14e4d4d154a7d8695d.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:33+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:38+00:00 WARN (4): The file 'boisset_1_2000.wrl' could not be ingested because it has a disallowed file extension (wrl).
+
+The file '/tmp/b7bcb771a45ee933fd3688dc3251123a.wrl' could not be ingested because it has a disallowed MIME type (model/vrml).
+2015-06-15T12:55:41+00:00 WARN (4): Error output from ImageMagick:
+convert: no decode delegate for this image format `/tmp/cbb24c6eb237e30c87ba23ec98fe0d88.mp3' @ error/constitute.c/ReadImage/544.
+convert: no images defined `/tmp/fullsize_cbb24c6eb237e30c87ba23ec98fe0d88.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:41+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-15T12:55:55+00:00 WARN (4): The file 'EADtest.xml' could not be ingested because it has a disallowed file extension (xml).
+
+The file '/tmp/e267e69e59ded34c08f6b808bf27e330.xml' could not be ingested because it has a disallowed MIME type (application/xml).
+2015-06-15T12:55:57+00:00 WARN (4): Error output from ImageMagick:
+convert: delegate failed `"ffmpeg" -v -1 -i "%i" -vframes %S -vcodec pam -an -f rawvideo -y "%u.pam" 2> "%Z"' @ error/delegate.c/InvokeDelegate/1065.
+convert: unable to open image `/tmp/magick-oVYBJfvq.pam': No such file or directory @ error/blob.c/OpenBlob/2638.
+convert: no images defined `/tmp/fullsize_f265e573c7493ebcc96baa9005e408a1.jpg' @ error/convert.c/ConvertImageCommand/3044.
+
+2015-06-15T12:55:57+00:00 ERR (3): ImageMagick failed with status code 1.
+2015-06-16T14:40:22+02:00 ERR (3): exception 'Zend_Auth_Adapter_Exception' with message 'A credential column must be supplied for the Zend_Auth_Adapter_DbTable authentication adapter.' in /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php:418
+Stack trace:
+#0 /home/franck/sites/omeka/application/libraries/Zend/Auth/Adapter/DbTable.php(366): Zend_Auth_Adapter_DbTable->_authenticateSetup()
+#1 /home/franck/sites/omeka/application/libraries/Zend/Auth.php(117): Zend_Auth_Adapter_DbTable->authenticate()
+#2 /home/franck/sites/omeka/application/controllers/UsersController.php(436): Zend_Auth->authenticate(Object(Omeka_Auth_Adapter_UserTable))
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): UsersController->loginAction()
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('loginAction')
+#5 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#7 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#8 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#9 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#10 {main}
+2015-06-17T13:49:22+02:00 ERR (3): exception 'Zend_Controller_Action_Exception' with message 'Method "getParams" does not exist and was not trapped in __call()' in /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php:488
+Stack trace:
+#0 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/ErrorController.php(22): Zend_Controller_Action->__call('getParams', Array)
+#1 /home/franck/sites/omeka/plugins/ShibbolethLogin/controllers/ErrorController.php(22): ShibbolethLogin_ErrorController->getParams()
+#2 /home/franck/sites/omeka/application/libraries/Zend/Controller/Action.php(516): ShibbolethLogin_ErrorController->indexAction()
+#3 /home/franck/sites/omeka/application/libraries/Zend/Controller/Dispatcher/Standard.php(308): Zend_Controller_Action->dispatch('indexAction')
+#4 /home/franck/sites/omeka/application/libraries/Zend/Controller/Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http))
+#5 /home/franck/sites/omeka/application/libraries/Zend/Application/Bootstrap/Bootstrap.php(105): Zend_Controller_Front->dispatch()
+#6 /home/franck/sites/omeka/application/libraries/Zend/Application.php(382): Zend_Application_Bootstrap_Bootstrap->run()
+#7 /home/franck/sites/omeka/application/libraries/Omeka/Application.php(79): Zend_Application->run()
+#8 /home/franck/sites/omeka/index.php(23): Omeka_Application->run()
+#9 {main}

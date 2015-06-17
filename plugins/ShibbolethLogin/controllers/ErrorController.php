@@ -20,6 +20,10 @@ class ShibbolethLogin_ErrorController extends Omeka_Controller_AbstractActionCon
 
     public function init()    
     {
+        // Retrieve plugin options
+        $options = unserialize(get_option('shibboleth_login_settings'));
+        $this->view->adminEmail = $options['admin-email'];
+
         $this->_errors['not_enouth_params'] = __("Not enouth params to complete the request");
         $this->_errors['other_error']       = __("An unrecognized error has occurred");
     }
@@ -28,7 +32,7 @@ class ShibbolethLogin_ErrorController extends Omeka_Controller_AbstractActionCon
     public function indexAction()
     {
         if ($this->_errors[$this->getParam('error')]) {
-            $this->view->errorMessage = $this->_errors[$errorCode];
+            $this->view->errorMessage = $this->_errors[$this->getParam('error')];
         } else {
             $this->view->errorMessage = $this->_errors['other_error'];
         }

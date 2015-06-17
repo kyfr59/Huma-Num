@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report_data>
+    <date_started>2015-06-15T14:39:04.998+02:00</date_started>
+    <date_ended>2015-06-15T14:39:12.947+02:00</date_ended>
+    <nb_files_total>1</nb_files_total>
+    <nb_files_valid>1</nb_files_valid>
+    <nb_files_invalid>0</nb_files_invalid>
+    <batch_status>DONE</batch_status>
+    <files_treated>
+        <file>
+            <file_name>1</file_name>
+            <file_status>DONE</file_status>
+            <date_started>2015-06-15T14:39:05.001+02:00</date_started>
+            <date_ended>2015-06-15T14:39:12.942+02:00</date_ended>
+        </file>
+    </files_treated>
+</report_data>

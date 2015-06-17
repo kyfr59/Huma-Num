@@ -25,13 +25,36 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
     protected $_hooks = array(
         'define_acl',
         'public_head',
+        'config_form',
+        'config',
+        'install'
     );
 
-    // Filters
-    protected $_filters = array(
-        'login_form',
-    );
+    public function hookInstall() 
+    {
+        $defaults = array(
+            'admin-email' => 'shibboleth-admin@your-company.com'
+        );
+        set_option('shibboleth_login_settings', serialize($defaults));
+    }
 
+    public function hookConfigForm() 
+    {
+        $settings = unserialize(get_option('shibboleth_login_settings'));
+                
+        $options['admin-email'] = (string) $settings['admin-email'];
+        
+        include 'forms/config-form.php';
+    }
+
+    public function hookConfig()
+    {
+        $settings = unserialize(get_option('shibboleth_login_settings'));
+        
+        $settings['admin-email'] = (string) $_POST['admin-email'];
+        
+        set_option('shibboleth_login_settings', serialize($settings));
+    }
 
     /**
      * Define the ACL.
@@ -90,19 +113,13 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 
             } else { // We don't have all informations about the user
 
-                header("location: /shibboleth-login/error/error=not_enouth_param");
+                header("location: /shibboleth-login/error/error=not_enouth_params");
                 return;
                 
             }
         }
         
     }
-
-    public function filterLoginForm($html)
-    {
-        return $html;
-    }
-
 
     /**
      * Returns TRUE if a Shibboleth session is active for the app,

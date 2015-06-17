@@ -10,6 +10,7 @@
 
 
 /** Path to plugin directory */
+
 defined('OAIPMH_HARVESTER_PLUGIN_DIRECTORY') 
     or define('OAIPMH_HARVESTER_PLUGIN_DIRECTORY', dirname(__FILE__));
 
@@ -59,7 +60,6 @@ class HumaNumHarvesterPlugin extends Omeka_Plugin_AbstractPlugin
                               'before_delete_item',
                               'admin_items_show_sidebar',
                               'items_browse_sql');
-
 
     /**
      * @var array Filters for the plugin.

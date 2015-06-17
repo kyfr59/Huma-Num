@@ -24,9 +24,6 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
         // If the user is already connected, redirect to homepage (do not access to SB login page)
         if (current_user()) $this->_helper->redirector->gotoUrl('/');
 
-        // Retrieve plugin options
-        //$this->_options = unserialize(get_option('shibboleth_login_settings'));
-
         // Set the model class so this controller can perform some functions, 
         $this->_helper->db->setDefaultModelName('User');
 
@@ -92,10 +89,18 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
             'usersActivations'  => $ua
         ));
 
+        $displayName = $_SERVER['displayName'];
+        $givenName = $_SERVER['givenName'];
+        $mail = $_SERVER['mail'];
+
+        if (!$displayName || !$givenName || !$mail) {
+            $this->_helper->redirector->gotoUrl('/shibboleth-login/error?error=not_enouth_params');
+        }
+
         // Retrive values of Shibboleth session
-        $form->name->setValue($_SERVER['displayName']);
-        $form->username->setValue(SHIBBOLETH_USERS_PREFIX . $_SERVER['givenName']);
-        $form->email->setValue($_SERVER['mail']);
+        $form->name->setValue($displayName);
+        $form->username->setValue(SHIBBOLETH_USERS_PREFIX . $givenName);
+        $form->email->setValue($mail);
 /*
         $form->name->setValue("test");
         $form->username->setValue("test");
