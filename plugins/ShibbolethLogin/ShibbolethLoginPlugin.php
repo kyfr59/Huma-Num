@@ -144,9 +144,10 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
                     // Login the user (without password)
                     $user = new User();
                     $authAdapter = new Shibboleth_Auth_Adapter_UserTable(get_db());
-                    $authAdapter->setIdentity('sb_coucou')->setCredential("oioioio");
+                    $authAdapter->setIdentity($options['username-prefix'] . $_SERVER['givenName'])->setCredential("no-password");
                     $auth = Zend_Registry::get('bootstrap')->getResource('Auth');
                     $authResult = $auth->authenticate($authAdapter);
+                    header("Refresh:0"); // Avoid cache problems
                     return;
 
 
