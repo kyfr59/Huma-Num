@@ -7,9 +7,12 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
+// Define the username prefix in database (sb_username)
 define('SHIBBOLETH_USERS_PREFIX', 'sb_');
 
-require_once dirname(__FILE__) . '/models/ShibbolethUserTable.php';
+// Include the plugin auth adapter
+require_once dirname(__FILE__) . '/models/ShibbolethLoginUserTable.php';
+
 
 /**
  * The Shibboleth Login plugin.
@@ -18,90 +21,16 @@ require_once dirname(__FILE__) . '/models/ShibbolethUserTable.php';
  */
 class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 {
+    // Hooks
     protected $_hooks = array(
         'define_acl',
-        'install',
-        'config',
-        'config_form',
         'public_head',
-        'initialize'
     );
 
+    // Filters
     protected $_filters = array(
         'login_form',
-        
-        
     );
-
-    public function hookInitialize()
-    {
-        //header('location:http://free.fr');
-    }
-
-    public function filterLoginAdapter($authAdapter, $options) 
-    {
-        
-        $settings = unserialize(get_option('shibboleth_login_settings'));
-
-        $form = $options['login_form'];
-
-        $username = $form->getValue('username');
-
-        $user = new User();
-/*
-        if (substr($username, 0, strlen(SHIBBOLETH_USERS_PREFIX)) == SHIBBOLETH_USERS_PREFIX) {
-            //header("location:".$settings['idp-url']);
-        } else {
-            return $authAdapter
-                ->setIdentity($form->getValue('username'))
-                ->setCredential($form->getValue('password'));
-        }
-        */
-
-    }
-
-    public function filterLoginForm($html)
-    {
-        return $html;
-    }
-
-    public function hookInstall() 
-    {
-        $defaults = array(
-            'idp-url' => 'https://idp.testshib.org/idp/Authn/UserPassword'
-        );
-        set_option('shibboleth_login_settings', serialize($defaults));
-    }
-
-    public function hookConfigForm() 
-    {
-        $settings = unserialize(get_option('shibboleth_login_settings'));
-
-        /*
-        $audio = $settings['audio'];
-        $audio['types'] = implode(',', $audio['types']);
-        $audio['extensions'] = implode(',', $audio['extensions']);
-        
-        
-        $options['idp-url'] = (string) $settings['idp-url'];
-        $options['username-prefix'] = (string) $settings['username-prefix'];
-        /*
-        $text = $settings['text'];
-        $text['types'] = implode(',', $text['types']);
-        $text['extensions'] = implode(',', $text['extensions']);
-        */
-        include 'forms/config-form.php';
-    }
-
-
-    public function hookConfig()
-    {
-        $settings = unserialize(get_option('shibboleth_login_settings'));
-        
-        $settings['idp-url'] = (string) $_POST['idp-url'];
-        
-        set_option('shibboleth_login_settings', serialize($settings));
-    }
 
 
     /**
@@ -123,8 +52,9 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 
     /**
      * Hooks into public_head :
-     *  - Add a css file for the plugin
-     *  - Redirect to Shibboleth's login form is a SB session is active
+     *  - Add a css file for the plugin (to customize the SB login form)
+     *  - Redirect to Shibboleth's login form if a SB session is active
+     *  - Login the user if a SB session is active & an Omeka account exists
      *
      * @param array $args
      */
@@ -143,8 +73,8 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
                     
                     // Login the user (without password)
                     $user = new User();
-                    $authAdapter = new Shibboleth_Auth_Adapter_UserTable(get_db());
-                    $authAdapter->setIdentity($options['username-prefix'] . $_SERVER['givenName'])->setCredential("no-password");
+                    $authAdapter = new ShibbolethLogin_Auth_Adapter_UserTable(get_db());
+                    $authAdapter->setIdentity(SHIBBOLETH_USERS_PREFIX . $_SERVER['givenName'])->setCredential("no-password");
                     $auth = Zend_Registry::get('bootstrap')->getResource('Auth');
                     $authResult = $auth->authenticate($authAdapter);
                     header("Refresh:0"); // Avoid cache problems
@@ -160,12 +90,17 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
 
             } else { // We don't have all informations about the user
 
-                Zend_Debug::dump("// Error : pas assez d'informations sur l'utilisateur");
-                // TODO : Afficher un message d'erreur
+                header("location: /shibboleth-login/error/error=not_enouth_param");
+                exit;
                 
             }
         }
         
+    }
+
+    public function filterLoginForm($html)
+    {
+        return $html;
     }
 
 
