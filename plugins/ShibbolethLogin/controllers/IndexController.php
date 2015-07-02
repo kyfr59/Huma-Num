@@ -89,6 +89,8 @@ class ShibbolethLogin_IndexController extends Omeka_Controller_AbstractActionCon
             'usersActivations'  => $ua
         ));
 
+        $form->removeElement('user_csrf');
+
         $displayName = $_SERVER['displayName'];
         $givenName = $_SERVER['givenName'];
         $mail = $_SERVER['mail'];
