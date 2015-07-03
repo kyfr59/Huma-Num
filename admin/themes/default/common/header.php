@@ -51,7 +51,7 @@
             <?php if ($user = current_user()): ?>
                 <?php
                     $name = html_escape($user->name);
-                    if (is_allowed($user, 'edit')) {
+                    if( $user->role == 'super') {
                         $userLink = '<a href="' . html_escape(url('users/edit/' . $user->id)) . '">' . $name . '</a>';
                     } else {
                         $userLink = $name;
