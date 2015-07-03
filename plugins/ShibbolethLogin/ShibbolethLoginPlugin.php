@@ -30,6 +30,28 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         'install'
     );
 
+    protected $_filters = array(
+        'public_navigation_admin_bar'
+    );
+
+    public function filterPublicNavigationAdminBar($links) 
+    {
+        $user = current_user();
+        if($user->role != 'Super')
+        {
+            unset($links);
+            echo '<ul class="navigation shibboleth-username"><li>'.$user->name.'</li></ul>';
+            $links = array(
+                array(
+                    'label' => __('Log Out'),
+                    'uri' => url('/users/logout')
+                )
+            );
+        }
+        return $links;
+        
+    }
+
     public function hookInstall() 
     {
         $defaults = array(
@@ -69,7 +91,8 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         $acl->add($indexResource);
 
         $acl->allow(null, 'ShibbolethLogin_Index', 'index');
-        $acl->allow(null, 'Users', 'change-role');
+        $acl->deny(array('contributor', 'admin'), 'Users', 'edit');
+
     }
 
 
