@@ -56,8 +56,6 @@
                     } else {
                         $userLink = $name;
                     }
-
-                    
                 ?>
                 <li><?php echo __('Welcome, %s', $userLink); ?></li>
                 <li><a href="<?php echo html_escape(url('users/logout'));?>" id="logout"><?php echo __('Log Out'); ?></a></li>
