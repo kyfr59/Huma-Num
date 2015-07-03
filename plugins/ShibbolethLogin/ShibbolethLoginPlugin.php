@@ -40,7 +40,7 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         if($user->role != 'Super')
         {
             unset($links);
-            echo '<ul class="navigation shibboleth-username"><li>'.$user->name.'</li></ul>';
+            //echo '<ul class="navigation shibboleth-username"><li>'.$user->name.'</li></ul>';
             $links = array(
                 array(
                     'label' => __('Log Out'),
