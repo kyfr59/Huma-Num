@@ -17,6 +17,8 @@
                 'uri' => url('/users/logout')
             )
         );
+    } else {
+        $links = array();
     }
 
 } else {
