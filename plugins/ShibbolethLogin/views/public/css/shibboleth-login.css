@@ -4,3 +4,8 @@ input[readonly="readonly"] {
 	-webkit-box-shadow:none !important;
 	-moz-box-shadow:none !important;
 }
+
+
+.shibboleth-username {
+	padding-right:10px;
+}
