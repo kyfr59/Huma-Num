@@ -37,7 +37,7 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterPublicNavigationAdminBar($links) 
     {
         $user = current_user();
-        if($user->role != 'Super')
+        if($user && self::isShibbolethSessionActive() && $user->role != 'Super')
         {
             unset($links);
             echo '<ul class="navigation shibboleth-username"><li>'.$user->name.'</li></ul>';
