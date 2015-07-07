@@ -82,7 +82,7 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
      protected function _beforeHarvest()
     {
         $harvest = $this->_getHarvest();
-   
+    /*
         $collectionMetadata = array(
             'metadata' => array(
                 'public' => $this->getOption('public'),
@@ -92,7 +92,7 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
             = array('text' => (string) $harvest->set_name, 'html' => false); 
         $collectionMetadata['elementTexts']['Dublin Core']['Description'][]
             = array('text' => (string) $harvest->set_Description, 'html' => false); 
-        
+        */
         //$this->_collection = $this->_insertCollection($collectionMetadata);
     }
     
@@ -151,11 +151,30 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
         $query .= "<" . NAKALA_RESOURCE_URL . $handle."> skos:altLabel ?label . ";
         $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> dcterms:format ?format } . ";
         $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> dcterms:extent ?extent } . ";
-        $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> ore:isAggregatedBy ?collections } . ";
+        $query .= "OPTIONAL {<" . NAKALA_RESOURCE_URL . $handle."> ore:isAggregatedBy ?collection } . ";
         $query .= "}";
         
-
         $result = $sparql->query($query);
+
+        // Manage Collection informations
+
+        $collectionUrl = (string)$result[0]->collection;
+        $query  = "PREFIX dcterms: <http://purl.org/dc/terms/>";
+        $query .= "PREFIX ore: <http://www.openarchives.org/ore/terms/>";
+        $query .= "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>";
+        $query .= "SELECT * WHERE {";
+        $query .= "<".$collectionUrl."> skos:prefLabel ?name";
+        $query .= "}";
+
+        $collectionResult = $sparql->query($query);
+        
+        $collectionName = (string)$collectionResult[0]->name;
+
+        $collectionMetadata['elementTexts']['Dublin Core']['Title'][]
+            = array('text' => $collectionName, 'html' => false); 
+        $collectionMetadata['elementTexts']['Dublin Core']['Identifier'][]
+            = array('text' => $collectionUrl, 'html' => false); 
+
             
         if ($filename = $result[0]->label) {
 
@@ -182,7 +201,7 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
 
                 // The file isn't an audio or video file, we download it (to generate the thumbmails)
                 $cmd = "wget -O " . OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP . '/'. urlencode($filename) ." ". $handleUrl;            
-                shell_exec($cmd);
+                //shell_exec($cmd);
                 $fileMetadata['files'] = OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP . '/'. urlencode($filename);
                 $fileMetadata['delete_file_after_insert'] = true;               
             }
@@ -198,8 +217,9 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
         }
 
         
-        return array('itemMetadata' => $itemMetadata,
-                     'elementTexts' => $elementTexts,
-                     'fileMetadata' => $fileMetadata); // Huma-num
+        return array('itemMetadata'         => $itemMetadata,
+                     'elementTexts'         => $elementTexts,
+                     'fileMetadata'         => $fileMetadata,
+                     'collectionMetadata'   => $collectionMetadata); // Huma-num
     }
 }
