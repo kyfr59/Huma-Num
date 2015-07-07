@@ -201,7 +201,7 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
 
                 // The file isn't an audio or video file, we download it (to generate the thumbmails)
                 $cmd = "wget -O " . OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP . '/'. urlencode($filename) ." ". $handleUrl;            
-                //shell_exec($cmd);
+                shell_exec($cmd);
                 $fileMetadata['files'] = OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP . '/'. urlencode($filename);
                 $fileMetadata['delete_file_after_insert'] = true;               
             }
