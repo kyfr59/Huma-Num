@@ -91,8 +91,8 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         $acl->add($indexResource);
 
         $acl->allow(null, 'ShibbolethLogin_Index', 'index');
+        $acl->allow(null, 'User', 'change-role');
         $acl->deny(array('contributor', 'admin'), 'Users', 'edit');
-
     }
 
 
