@@ -116,6 +116,7 @@ class User extends Omeka_Record_AbstractRecord
         }
     }
 
+
     /**
      * Filter form POST input.
      *

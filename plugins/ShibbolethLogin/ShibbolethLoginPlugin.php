@@ -78,6 +78,7 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
         set_option('shibboleth_login_settings', serialize($settings));
     }
 
+
     /**
      * Define the ACL.
      * 
