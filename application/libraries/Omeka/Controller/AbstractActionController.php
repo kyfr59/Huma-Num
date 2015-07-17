@@ -140,6 +140,7 @@ abstract class Omeka_Controller_AbstractActionController extends Zend_Controller
         $this->view->assign(array($pluralName => $records, 'total_results' => $totalRecords));
     }
     
+    
     /**
      * Retrieve a single record and render it.
      * 
@@ -150,6 +151,24 @@ abstract class Omeka_Controller_AbstractActionController extends Zend_Controller
      */
     public function showAction()
     {
+        if ($this->_getParam('output') == 'mods')
+        {
+            $this->_helper->viewRenderer->setNoRender();
+            $item = get_record_by_id("Item", $this->_getParam('id'));
+            if (!$public = $item->public) {
+                $item->public = 1;
+                $item->save();
+            }
+            $url = WEB_ROOT."/oai-pmh-repository/request?verb=GetRecord&metadataPrefix=mods&identifier=oai:default.must.change:".$item->id;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_exec($curl);
+            if (!$public) {
+                $item->public = 0;
+                $item->save();
+            }            
+        }
+
         $singularName = $this->view->singularize($this->_helper->db->getDefaultModelName());
         $record = $this->_helper->db->findById();
         $this->view->assign(array($singularName => $record));
