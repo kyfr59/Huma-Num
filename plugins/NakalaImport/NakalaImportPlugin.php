@@ -11,19 +11,19 @@
 
 /** Path to plugin directory */
 
-defined('OAIPMH_HARVESTER_PLUGIN_DIRECTORY') 
-    or define('OAIPMH_HARVESTER_PLUGIN_DIRECTORY', dirname(__FILE__));
+defined('NAKALA_IMPORT_PLUGIN_DIRECTORY') 
+    or define('NAKALA_IMPORT_PLUGIN_DIRECTORY', dirname(__FILE__));
 
 /** Path to plugin maps directory */
 defined('OAIPMH_HARVESTER_MAPS_DIRECTORY') 
-    or define('OAIPMH_HARVESTER_MAPS_DIRECTORY', OAIPMH_HARVESTER_PLUGIN_DIRECTORY 
+    or define('OAIPMH_HARVESTER_MAPS_DIRECTORY', NAKALA_IMPORT_PLUGIN_DIRECTORY 
                                         . '/models/OaipmhHarvester/Harvest');
 
 /** Huma-num constants */
 
 /** Path to temp directory of the plugin */
 defined('OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP') 
-    or define('OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP', OAIPMH_HARVESTER_PLUGIN_DIRECTORY 
+    or define('OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP', NAKALA_IMPORT_PLUGIN_DIRECTORY 
                                         . '/temp');
 /** Nakala prefix for data */
 defined('NAKALA_DATA_PREFIX') 
@@ -38,7 +38,7 @@ defined('NAKALA_SPARQL_ENDPOINT')
     or define('NAKALA_SPARQL_ENDPOINT', "http://www.nakala.fr/sparql");                
                 
 /** Path of the EasyRDF library */
-require(OAIPMH_HARVESTER_PLUGIN_DIRECTORY . '/easyrdf/lib/EasyRdf.php');
+require(NAKALA_IMPORT_PLUGIN_DIRECTORY . '/easyrdf/lib/EasyRdf.php');
 
 
 require_once dirname(__FILE__) . '/functions.php';
