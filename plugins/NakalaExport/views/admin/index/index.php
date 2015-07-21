@@ -16,7 +16,7 @@ echo item_search_filters();
 <?php if ($total_results): ?>
     <?php echo pagination_links(); ?>
 
-    <form action="<?php echo html_escape(url('export-to-nakala/export')); ?>" method="post" accept-charset="utf-8">
+    <form action="<?php echo html_escape(url('nakala-export/export')); ?>" method="post" accept-charset="utf-8">
         <div class="table-actions batch-edit-option">
             <?php if (is_allowed('Items', 'add')): ?>
             <input type="submit" value="<?php echo __('Send to Nakala'); ?>" />
@@ -39,6 +39,7 @@ echo item_search_filters();
                 ?>
             </tr>
         </thead>
+        
         <tbody>
             <?php $key = 0; ?>
             <?php foreach (loop('Item') as $item): ?>
@@ -51,7 +52,7 @@ echo item_search_filters();
 
 
                 <?php if (is_allowed($item, 'edit') || is_allowed($item, 'tag')): ?>
-                <td class="batch-edit-check" scope="row"><input type="checkbox" name="items[]" value="<?php echo $id; ?>" /></td>
+                <td class="batch-edit-check" scope="row"><input type="checkbox" name="facile[]" value="<?php echo $id; ?>" /></td>
                 <?php endif; ?>
 
                 <?php if ($item->featured): ?>
@@ -82,9 +83,8 @@ echo item_search_filters();
                     </ul>
 
                     <?php fire_plugin_hook('admin_items_browse_simple_each', array('item' => $item, 'view' => $this)); ?>
-
-                    
                 </td>
+
                 <td><?php echo strip_formatting(metadata('item', array('Dublin Core', 'Creator'))); ?></td>
                 <td>
                     <?php
@@ -99,6 +99,31 @@ echo item_search_filters();
         </tbody>
         </table>
     </form>
+
+    <?php echo pagination_links(); ?>
+
+    <script type="text/javascript">
+    Omeka.addReadyCallback(Omeka.ItemsBrowse.setupDetails, [
+        <?php echo js_escape(__('Details')); ?>,
+        <?php echo js_escape(__('Show Details')); ?>,
+        <?php echo js_escape(__('Hide Details')); ?>
+    ]);
+    Omeka.addReadyCallback(Omeka.ItemsBrowse.setupBatchEdit);
+    </script>
+
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('input[name="items[]"]').click(function() {
+                item = jQuery(this);
+                value = item.attr("value");
+                elem = jQuery('input[name="facile[]"][value='+value+']');
+                checked = item.is(':checked');
+                elem[0].checked = checked;
+            });
+        });
+    </script>
+
+
     <?php else: ?>
         <p><?php echo __('The query searched %s items and returned no results.', total_records('Item')); ?> <?php echo __('Would you like to %s?', link_to_item_search(__('refine your search'))); ?></p>
     <?php endif; ?>

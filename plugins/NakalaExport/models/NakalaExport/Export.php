@@ -21,22 +21,30 @@ class NakalaExport_Export extends Omeka_Record_AbstractRecord
     const STATUS_DELETED     = 'deleted';
     const STATUS_KILLED      = 'killed';
     
+    
     public $id;
-    public $collection_id;
-    public $base_url;
-    public $metadata_prefix;
-    public $set_spec;
-    public $set_name;
-    public $set_description;
     public $status;
-    public $status_messages;
-    public $resumption_token;
-    public $initiated;
     public $completed;
     public $start_from;
 
-    private $_request;
 
+    public function create(){
+
+        $this->status             = self::STATUS_IN_PROGRESS;
+        $this->completed          = date('Y:m:d H:i:s');
+        $this->start_from         = date('Y:m:d H:i:s');
+        $this->save();
+
+        release_object($this);
+
+        return $this->id;
+    }
+
+        
+    
+
+
+/*
     public function setRequest(OaipmhHarvester_Request $request = null)
     {
         if ($request === null) {
@@ -138,7 +146,7 @@ class NakalaExport_Export extends Omeka_Record_AbstractRecord
      * 
      * @param int $messageCode
      * @return string
-     */
+    
     private function _getMessageCodeText($messageCode)
     {
         switch ($messageCode) {
@@ -159,7 +167,7 @@ class NakalaExport_Export extends Omeka_Record_AbstractRecord
      *
      * @param string $datestamp MySQL datetime
      * @return string OAI-PMH datestamp
-     */
+     
     private function _datetimeToOai($datestamp)
     {
         return gmdate(OaipmhHarvester_Harvest_Abstract::OAI_DATE_FORMAT, strtotime($datestamp));
@@ -169,9 +177,10 @@ class NakalaExport_Export extends Omeka_Record_AbstractRecord
      * Return the current, formatted date.
      * 
      * @return string
-     */
+     
     private function _getCurrentDateTime()
     {
         return date('Y-m-d H:i:s');
     }
+    */
 }

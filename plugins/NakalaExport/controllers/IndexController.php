@@ -69,7 +69,13 @@ class NakalaExport_IndexController extends Omeka_Controller_AbstractActionContro
         $records = $this->_helper->db
                         ->getTable('NakalaExport_Record')
                         ->getItemsToExport();
-        $params['range'] = implode($records, ',');
+
+        //$params['has_files'] = false;
+
+        if ($records)                
+            $params['range'] = implode($records, ',');
+        else
+            $params['range'] = "no-results";
         
         // Get the records filtered to Omeka_Db_Table::applySearchFilters().
         $records = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);

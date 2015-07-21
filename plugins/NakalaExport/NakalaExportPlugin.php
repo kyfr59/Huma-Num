@@ -7,13 +7,19 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
-// Define the username prefix in database (sb_username)
-//define('SHIBBOLETH_USERS_PREFIX', 'sb_');
+define('NAKALA_EXPORT_DIR', dirname(__FILE__));
+define('NAKALA_EXPORT_HELPERS_DIR', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'helpers');
 
-// Include the plugin auth adapter
-//require_once dirname(__FILE__) . '/models/ShibbolethLoginUserTable.php';
+require_once NAKALA_EXPORT_HELPERS_DIR . DIRECTORY_SEPARATOR . 'NakalaExportHelper.php';
+require_once NAKALA_EXPORT_HELPERS_DIR . DIRECTORY_SEPARATOR . 'NakalaConsoleHelper.php';
 
-require_once dirname(__FILE__) . '/functions.php';
+// Nakala Console Paths
+define('BATCH_PATH', BASE_DIR . DIRECTORY_SEPARATOR . '/nakala-console/');
+define('BATCH_INPUT_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/input/');
+define('BATCH_OUTPUT_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/output/');
+define('BATCH_ERRORS_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/errors/');
+
+// require_once dirname(__FILE__) . '/functions.php';
 
 /**
  * The Shibboleth Login plugin.
@@ -25,7 +31,8 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
     // Hooks
     protected $_hooks = array(
         'define_acl',
-        'install'
+        'install',
+        'uninstall'
     );
 
     /**
@@ -43,11 +50,9 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         $db = $this->_db;
 
         $sql = "
-        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_exports` (
+        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_export_exports` (
           `id` int unsigned NOT NULL auto_increment,
           `status` enum('queued','in progress','completed','error','deleted','killed') NOT NULL default 'queued',
-          `status_messages` text,
-          `initiated` datetime default NULL,
           `completed` datetime default NULL,
           `start_from` datetime default NULL,
           PRIMARY KEY  (`id`)
@@ -55,16 +60,33 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         $db->query($sql);
 
         $sql = "
-        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_exports_records` (
+        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_export_records` (
           `id` int unsigned NOT NULL auto_increment,
           `export_id` int unsigned NOT NULL,
           `item_id` int unsigned default NULL,
+          `status` enum('in progress','error','ok') NOT NULL default 'in progress',
+          `error_message` text NULL,
           `datestamp` tinytext NOT NULL,
-          PRIMARY KEY  (`id`),
-          UNIQUE KEY `item_id_idx` (item_id)
+          PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
     }
+
+
+    /**
+     * Uninstall the plugin.
+     */
+    public function hookUninstall()
+    {        
+        // Drop the table.
+        $db = $this->_db;
+        $sql = "DROP TABLE IF EXISTS `{$db->prefix}nakala_export_exports`";
+        $db->query($sql);
+
+        $sql = "DROP TABLE IF EXISTS `{$db->prefix}nakala_export_records`";
+        $db->query($sql);
+    }
+
     
 
     /**
