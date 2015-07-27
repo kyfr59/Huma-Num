@@ -10,7 +10,6 @@
 define('NAKALA_EXPORT_DIR', dirname(__FILE__));
 define('NAKALA_EXPORT_HELPERS_DIR', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'helpers');
 
-require_once NAKALA_EXPORT_HELPERS_DIR . DIRECTORY_SEPARATOR . 'NakalaExportHelper.php';
 require_once NAKALA_EXPORT_HELPERS_DIR . DIRECTORY_SEPARATOR . 'NakalaConsoleHelper.php';
 
 // Nakala Console Paths
