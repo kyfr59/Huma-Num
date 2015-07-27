@@ -1,20 +1,14 @@
 <?php
 
 /**
- * Returns the Nakala URI of an item
+ * Returns a handle ID from a Nakala URL
  * 
- * @param Item item An OMEKA Item object
- * @return string The correct Nakala URI for this item (for example http://nakala.fr/data/11280/279ad9eb)
+ * @param string An URL (for example : http://nakala.fr/data/11280/279ad9eb)
+ * @return string A Handle identifier (for example : 11280/279ad9eb)
  */
-function isNakala($item)
+function getHandleFormCollectionUrl($url) 
 {
-    $identifiers = $item->getElementTexts("Dublin Core", "Identifier");
-    
-    foreach ($identifiers as $identifier) {
-        if (is_integer(strpos($identifier->getText(), NAKALA_DATA_PREFIX)))
-            return $identifier->getText();
-    }
-    return false;
+    return ltrim($url, NAKALA_COLLECTION_PREFIX);
 }
   
 

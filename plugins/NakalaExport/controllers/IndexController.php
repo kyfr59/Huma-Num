@@ -70,8 +70,6 @@ class NakalaExport_IndexController extends Omeka_Controller_AbstractActionContro
                         ->getTable('NakalaExport_Record')
                         ->getItemsToExport();
 
-        //$params['has_files'] = false;
-
         if ($records)                
             $params['range'] = implode($records, ',');
         else
@@ -80,6 +78,16 @@ class NakalaExport_IndexController extends Omeka_Controller_AbstractActionContro
         // Get the records filtered to Omeka_Db_Table::applySearchFilters().
         $records = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);
         //echo $this->_helper->db->getSelectForFindBy();
+
+        // Adding informations to recordset towards export to Nakala
+        foreach($records as $key => $record)
+        {
+            // Adding log messages to results for items already tried to export
+            $a = $this->_helper->db
+                        ->getTable('NakalaExport_Record')           
+                        ->hasAlwaysBeenExported($record->id, NakalaConsole_Helper::RESPONSE_ERROR);
+            $records[$key]['status'] = $a['message'];
+        }
 
 
         $totalRecords = $this->_helper->db->count($params);

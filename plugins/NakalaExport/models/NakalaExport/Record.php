@@ -22,11 +22,13 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
     public $id;
     public $export_id;
     public $item_id;
+    public $handle;
     public $status;
-    public $error_message;
-    public $datestamp;
+    public $message;
+    public $start_from;
+    public $completed_at;
 
-	/**
+    /**
      * Insert a record into the database.
      * 
      * @param Item $item The item object corresponding to the record.
@@ -38,7 +40,7 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
         $this->export_id   	= $export_id;
         $this->item_id      = $item->id;
         $this->status      	= self::STATUS_IN_PROGRESS;
-        $this->datestamp    = date('Y:m:d H:i:s');
+        $this->start_from   = date('Y:m:d H:i:s');
         $this->save();
 
         release_object($this);
@@ -48,15 +50,36 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
 
 
 	/**
-     * Stop an export into the database.
+     * Stop a record export
      * 
-     * @param string $error The error message
+     * @param string $error The log message
      * @return void
      */
-    public function stopExport($error) {
+    public function stopRecord($error) {
 
-    	$this->error_message = $error;
-    	$this->status      	 = self::STATUS_ERROR;
+    	$this->message 			= $error;
+    	$this->status      		= self::STATUS_ERROR;
+    	$this->completed_at    	= date('Y:m:d H:i:s');
+    	$this->save();
+    }
+
+
+	/**
+     * Update the status of a record export
+     * 
+     * @param string $status The status of the record
+     * @param string $error The log message
+     * @return void
+     */
+    public function update($status, $message) {
+
+    	if ($status == self::STATUS_OK) {
+    		$message  = NakalaConsole_Helper::readOutputFile($this->item_id);
+    	}
+
+    	$this->status      	 	= $status;
+		$this->message 			= $message;
+		$this->completed_at    	= date('Y:m:d H:i:s');
     	$this->save();
     }
 

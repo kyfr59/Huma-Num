@@ -25,12 +25,14 @@ class NakalaExport_ExportsController extends Omeka_Controller_AbstractActionCont
    
     public function indexAction()
     {
-        
+     
+     /*   
         $exports = $this->_helper->_db
                    ->getTable('NakalaExport_Export')
                    ->findAll();
         
         $this->view->exports = $exports;
+        */
     }
 
 

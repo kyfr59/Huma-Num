@@ -14,7 +14,16 @@
  */
 class NakalaConsole_Helper
 {
-    const ZIP_CREATED = "zip-created";
+    // Constants about responses of Nakala
+    const PACKET_CREATED    = ':: packet created:';
+    const PACKET_WITH_ERROR = ':: packet [';
+
+    // Global constants
+    const RESPONSE_OK    = 'ok';
+    const RESPONSE_ERROR = 'error';    
+
+    private $_archive_path; // The path on the archive on the server (when created :)
+    private $_archive_id; // The ID of the item containing in the archive
 
     public function __construct()
     {
@@ -37,12 +46,12 @@ class NakalaConsole_Helper
 
             // Checking existance of the file on server
             if (!file_exists($file))
-                throw new Exception('Erreur lors de la génératio de l\'archive ZIP : le fichier n\'existe pas sur le serveur.');
+                throw new Exception('Erreur lors de la génération de l\'archive ZIP : le fichier média n\'existe pas sur le serveur.');
             
             // Creating archive on server
             header('Content-Type: text/html; charset=iso-8859-1');
             $zip = new ZipArchive();  
-            echo $archive_path = BATCH_INPUT_PATH . (int)$item->id . '.zip';
+            $archive_path = BATCH_INPUT_PATH . (int)$item->id . '.zip';
             
             if (file_exists($archive_path))
                 unlink($archive_path);
@@ -62,8 +71,74 @@ class NakalaConsole_Helper
             $zip->addFile($file, $original_filename);  
               
             $zip->close();
+
+            // Checking existance of the file on server
+            if (!file_exists($archive_path))
+                throw new Exception('Erreur lors de la génération de l\'archive ZIP : la création de l\archive sur le serveur à échouée.');
+            
+            $this->_archive_path = $archive_path;
+            $this->_archive_id = $item->id;
             
         }
+    }
+
+    /**
+     * Send an archive to Nakala
+     * 
+     * @param TODO
+     * @param TODO
+     * @return TODO
+     */
+    public function sendToNakala()
+    {
+        // Retrieving all the ZIP files of the input directory
+        $cmd = 'ls '.BATCH_INPUT_PATH .'*.zip';
+        exec($cmd." 2>&1", $output);
+
+        chdir(BATCH_PATH);
+        echo $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".BATCH_INPUT_PATH." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
+        exec($cmd." 2>&1", $output);
+
+        return $this->_getResults($output);
+    }    
+
+    private function _getResults($response)
+    {
+        $results = array();
+
+        foreach ($response as $key => $value)
+        {
+            if (0 === strpos($value, self::PACKET_CREATED)) {
+                $id = trim(ltrim($value, self::PACKET_CREATED));
+                $results[$id]['status'] = self::RESPONSE_OK;
+            }
+            elseif (0 === strpos($value, self::PACKET_WITH_ERROR)) {
+                $packetWithError = trim(ltrim($value, self::PACKET_WITH_ERROR));
+                $pos = strpos($packetWithError, ']');
+                $id = trim(substr($packetWithError, 0, $pos));
+                $results[$id]['status'] = self::RESPONSE_ERROR;
+                $results[$id]['message'] = $value;
+            }
+        }
+
+        return $results;
+        
+    }
+
+
+    /**
+     * Returns the content of an output file for a given item ID
+     * 
+     * @param integer $item_id The ID of the item (the file has the format /185.xml)
+     * @return string|bool The content of the file output, otherwise false
+     */    
+    public static function readOutputFile($item_id) 
+    {
+        if (is_file($outputFile = BATCH_OUTPUT_PATH . $item_id. '.xml')) {
+
+            return file_get_contents($outputFile);
+        }
+        return false;
     }
 
 }

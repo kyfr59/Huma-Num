@@ -46,13 +46,16 @@ class NakalaExport_ExportController extends Omeka_Controller_AbstractActionContr
 
         if ($exports)
         {
+            // Création de l'enregistrement dans la base de données (table nakala_export_exports)
             $export = new NakalaExport_Export;
             $export_id = $export->create();
 
-            foreach($exports as $key => $export)
+            // Génération des archives ZIP sur le serveur
+            foreach($exports as $key => $value)
             {
-                $item  = get_record_by_id('Item', $key);
+                $item = get_record_by_id('Item', $key);
 
+                // Génération du XML
                 foreach($dcElementNames as $elementName)
                 {   
                     $dcElements = $item->getElementTexts('Dublin Core', Inflector::camelize($elementName));
@@ -60,135 +63,60 @@ class NakalaExport_ExportController extends Omeka_Controller_AbstractActionContr
                         $elements[$elementName][] = $elementText->text;
                 }
 
+                // Récupération d'informations supplémentaires en vue de l'export (infos sur la collection par exemple)
+                $collection = $item->getCollection();
+                $identifier = metadata($collection, array("Dublin Core", "Identifier"));
+                if ($handle = getHandleFormCollectionUrl($identifier))
+                    $this->view->nakala_collection = $handle;
+
                 $this->view->elements = $elements;
+                echo $xml = $this->view->render('export/index.php');
 
-                // Génération du XML
-                $xml = $this->view->render('export/index.php');
-
+                // Création de l'enregistrement dans la base de données (table nakala_export_records)
                 $record = new NakalaExport_Record;
                 $record->create($item, $export_id);
 
-                // Création de l'archive ZIP
+                // Création effective de l'archive ZIP sur le serveur
                 try {
                     $this->_consoleHelper->generateZip($xml, $item);
                 } catch (Exception $e) {
                     $error = $e->getMessage();
-                    $record->stopExport($error);
+                    $record->stopRecord($error);
                 }
+                $recordsObjects[] = $record;
+            }
 
-                echo $error;
-                
+            // Envoi des archives vers Nakala
+            if (!isset($error)) {
 
+                $results = $this->_consoleHelper->sendToNakala();
 
+                // Mise à jour de la base de données suite a la réponse de Nakala
+                foreach($recordsObjects as $record)
+                {
+                    $item_id = $record->item_id;
+                    
+                    if (isset($results[$item_id])) { // Nakala a renvoyé une réponse
+                        
+                        $status = $results[$item_id]['status'];
+                        $message = $status == NakalaConsole_Helper::RESPONSE_ERROR ? $results[$key]['message'] : '';
+                        $record->update($status, $message);
 
+                    } else { // Nakala n'a renvoyé aucune réponse
 
-                /*
-
-                // Si l'item a un fichier joint
-                if (get_class($file = $item->getFiles()[0]) == 'File') {
-
-                    $media = FILES_DIR . '/' . $file->getStoragePath('original');
-
-                    if (file_exists($media)) {
-
-                        // Création de l'archive ZIP
-                        $zip = new ZipArchive();  
-                        echo $archive_path = BATCH_PATH . 'input/1.zip';
-                        if (file_exists($archive_path))
-                            unlink($archive_path);
-
-                        $zip->open($archive_path, ZipArchive::CREATE);  
-                        $zip->addFromString("1.xml", $xml);
-                          
-                        // Add the media file to archive
-                        $zip->addFile($media, $file->original_filename);  
-                          
-                        $zip->close();
+                        $record->update(NakalaConsole_Helper::RESPONSE_ERROR, 'Pas de réponse de Nakala suite à l\'export');
                     }
+                }   
+            }    
 
-                    chdir(BATCH_PATH);
-                    $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".BATCH_PATH."input -outputFolder ".BATCH_PATH."output -errorFolder ".BATCH_PATH."error -passwordFile ".BATCH_PATH."password_file.sha";
-                    // exec($cmd." 2>&1", $output, $return_var);
-                    //Zend_Debug::dump($output);
-                    //Zend_Debug::dump($return_var);
-
-                }
-
-                // $item  = get_record_by_id('Item', $item_id);
-                // echo $key .' : '.$export .'<br>';
-                */
-            }
-
+            // Fin de l'export
+            $export->close();
         }
 
-        
-        /*
-        
-        $itemId = $_POST['items'][0];
-        $this->_helper->viewRenderer->setNoRender();
-
-        $item = get_record_by_id('Item', $itemId);
-        
-        $title = metadata($item, array("Dublin Core","Title"));
-
-        $dcElementNames = array( 'title', 'creator', 'type', 'date',
-                                 'identifier', 'subject', 'coverage', 
-                                 'rights', 'source' );
-
-        foreach($dcElementNames as $elementName)
-        {   
-            $upperName = Inflector::camelize($elementName);
-            $dcElements = $item->getElementTexts('Dublin Core',$upperName );
-
-            foreach($dcElements as $elementText)
-            {
-                $elements[$elementName][] = $elementText->text;
-            }
-        }
-
-        $this->view->elements = $elements;
-
-        // Génération du XML
-        $xml = $this->view->render('export/index.php');
-
-        if (get_class($file = $item->getFiles()[0]) == 'File') {
-
-            $media = FILES_DIR . '/' . $file->getStoragePath('original');
-
-            $path = "/home/franck/sites/omeka-humanum/nakala-console/";
-
-            if (file_exists($media)) {
-
-                // Création de l'archive ZIP
-                $zip = new ZipArchive();  
-                echo $archive_path = $path . 'input/1.zip';
-                if (file_exists($archive_path))
-                    unlink($archive_path);
-
-                $zip->open($archive_path, ZipArchive::CREATE);  
-                $zip->addFromString("1.xml", $xml);
-                  
-                // Add the media file to archive
-                $zip->addFile($media, $file->original_filename);  
-                  
-                $zip->close();
-            }
-
-            chdir($path);
-            echo $cmd = "java -jar ".$path."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".$path."input -outputFolder ".$path."output -errorFolder ".$path."error -passwordFile ".$path."password_file.sha";
-            // exec($cmd." 2>&1", $output, $return_var);
-            Zend_Debug::dump($output);
-            Zend_Debug::dump($return_var);
-
-        }
-        */
-       
-
+        $this->_helper->redirector->gotoUrl('/nakala-export');
     }
 
-    
-
-    
+   
     
 }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report_data>
+    <date_started>2015-07-23T15:32:24.700+02:00</date_started>
+    <date_ended>2015-07-23T15:32:31.429+02:00</date_ended>
+    <nb_files_total>2</nb_files_total>
+    <nb_files_valid>2</nb_files_valid>
+    <nb_files_invalid>0</nb_files_invalid>
+    <batch_status>DONE</batch_status>
+    <files_treated>
+        <file>
+            <file_name>194</file_name>
+            <file_status>DONE</file_status>
+            <date_started>2015-07-23T15:32:24.703+02:00</date_started>
+            <date_ended>2015-07-23T15:32:28.291+02:00</date_ended>
+        </file>
+        <file>
+            <file_name>195</file_name>
+            <file_status>DONE</file_status>
+            <date_started>2015-07-23T15:32:28.292+02:00</date_started>
+            <date_ended>2015-07-23T15:32:31.429+02:00</date_ended>
+        </file>
+    </files_treated>
+</report_data>

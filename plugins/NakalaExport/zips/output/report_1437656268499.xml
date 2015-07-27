@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report_data>
+    <date_started>2015-07-23T14:57:42.184+02:00</date_started>
+    <date_ended>2015-07-23T14:57:48.442+02:00</date_ended>
+    <nb_files_total>2</nb_files_total>
+    <nb_files_valid>1</nb_files_valid>
+    <nb_files_invalid>1</nb_files_invalid>
+    <batch_status>DONE</batch_status>
+    <files_treated>
+        <file>
+            <file_name>194</file_name>
+            <file_status>DONE</file_status>
+            <date_started>2015-07-23T14:57:42.188+02:00</date_started>
+            <date_ended>2015-07-23T14:57:45.443+02:00</date_ended>
+        </file>
+        <file>
+            <file_name>195</file_name>
+            <file_status>FAILED</file_status>
+            <date_started>2015-07-23T14:57:45.443+02:00</date_started>
+            <date_ended>2015-07-23T14:57:48.437+02:00</date_ended>
+            <file_status_desc>Invalid xml input :: xml validation failed :: cvc-complex-type.2.4.a: Invalid content was found starting with element 'dcterms:title'. One of '{&quot;http://purl.org/dc/terms/&quot;:creator}' is expected.</file_status_desc>
+        </file>
+    </files_treated>
+</report_data>

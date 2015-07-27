@@ -33,8 +33,8 @@ echo item_search_filters();
                 <?php
                 $browseHeadings[__('Title')] = 'Dublin Core,Title';
                 $browseHeadings[__('Creator')] = 'Dublin Core,Creator';
-                $browseHeadings[__('Type')] = null;
                 $browseHeadings[__('Date Added')] = 'added';
+                $browseHeadings[__('Status')] = 'status';
                 echo browse_sort_links($browseHeadings, array('link_tag' => 'th scope="col"', 'list_tag' => '')); 
                 ?>
             </tr>
@@ -55,36 +55,6 @@ echo item_search_filters();
                 <td class="batch-edit-check" scope="row"><input type="checkbox" name="facile[]" value="<?php echo $id; ?>" /></td>
                 <?php endif; ?>
 
-                <?php if ($item->featured): ?>
-                <td class="item-info featured">
-                <?php else: ?>
-                <td class="item-info">
-                <?php endif; ?>
-
-                    <?php if (metadata('item', 'has files')): ?>
-                    <?php echo link_to_item(item_image('square_thumbnail', array(), 0, $item), array('class' => 'item-thumbnail'), 'show', $item); ?>
-                    <?php endif; ?>
-
-                    <span class="title">
-                    <?php echo link_to_item(); ?>
-
-                    <?php if(!$item->public): ?>
-                    <?php echo __('(Private)'); ?>
-                    <?php endif; ?>
-                    </span>
-                    <ul class="action-links group">
-                        <?php if (is_allowed($item, 'edit')): ?>
-                        <li><?php echo link_to_item(__('Edit'), array(), 'edit'); ?></li>
-                        <?php endif; ?>
-
-                        <?php if (is_allowed($item, 'delete')): ?>
-                        <li><?php echo link_to_item(__('Delete'), array('class' => 'delete-confirm'), 'delete-confirm'); ?></li>
-                        <?php endif; ?>
-                    </ul>
-
-                    <?php fire_plugin_hook('admin_items_browse_simple_each', array('item' => $item, 'view' => $this)); ?>
-                </td>
-
                 <td><?php echo strip_formatting(metadata('item', array('Dublin Core', 'Creator'))); ?></td>
                 <td>
                     <?php
@@ -94,6 +64,8 @@ echo item_search_filters();
                     ?>
                 </td>
                 <td><?php echo format_date(metadata('item', 'added')); ?></td>
+
+                <td><?php echo $item['status'] ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

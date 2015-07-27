@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><nkl:Data xmlns:nkl="http://nakala.fr/schema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://purl.org/dc/terms/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd">
+    	<dcterms:title>test franck</dcterms:title>
+	<dcterms:creator>test franck</dcterms:creator>
+	<dcterms:type/>
+	<dcterms:created/>
+	<dcterms:identifier/>
+	<dcterms:subject>test franck</dcterms:subject>
+	<dcterms:coverage/>
+	<dcterms:rights>test franck</dcterms:rights>
+	<dcterms:source>test franck</dcterms:source>
+  
+    <dcterms:source>OMEKA</dcterms:source>     
+
+    <nkl:inCollection>11280/3737afc0</nkl:inCollection>
+    <nkl:relation type="http://purl.org/dc/terms/isVersionOf">11280/9213349d</nkl:relation>
+    <nkl:relation type="http://purl.org/dc/terms/isrequiredby">11280/9213349d</nkl:relation>
+<nkl:identifier>11280/9e3b3cea</nkl:identifier><nkl:checksum>22bc5b0d4babccc600973f99077323aad796a782</nkl:checksum><nkl:fileName>index-ressources-numeriques.png</nkl:fileName></nkl:Data>

@@ -19,8 +19,10 @@
 
         }
         
-    ?>       
-    <nkl:inCollection>11280/10472066</nkl:inCollection>
+    ?>  
+    <dcterms:source>OMEKA</dcterms:source>     
+
+    <nkl:inCollection><?php echo $this->nakala_collection ?></nkl:inCollection>
     <nkl:relation type="http://purl.org/dc/terms/isVersionOf">11280/9213349d</nkl:relation>
     <nkl:relation type="http://purl.org/dc/terms/isrequiredby">11280/9213349d</nkl:relation>
 </nkl:Data>

@@ -19,7 +19,12 @@ define('BATCH_INPUT_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/input
 define('BATCH_OUTPUT_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/output/');
 define('BATCH_ERRORS_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/errors/');
 
-// require_once dirname(__FILE__) . '/functions.php';
+/** Nakala prefix for data */
+defined('NAKALA_COLLECTION_PREFIX') 
+    or define('NAKALA_COLLECTION_PREFIX', "http://www.nakala.fr/collection/");
+
+
+require_once dirname(__FILE__) . '/functions.php';
 
 /**
  * The Shibboleth Login plugin.
@@ -53,8 +58,9 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_export_exports` (
           `id` int unsigned NOT NULL auto_increment,
           `status` enum('queued','in progress','completed','error','deleted','killed') NOT NULL default 'queued',
-          `completed` datetime default NULL,
-          `start_from` datetime default NULL,
+          `message` text default NULL,
+          `start_from` datetime NOT NULL,          
+          `completed_at` datetime default NULL,
           PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
@@ -63,10 +69,12 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_export_records` (
           `id` int unsigned NOT NULL auto_increment,
           `export_id` int unsigned NOT NULL,
-          `item_id` int unsigned default NULL,
+          `item_id` int unsigned NOT NULL,
+          `handle` int unsigned default NULL,
           `status` enum('in progress','error','ok') NOT NULL default 'in progress',
-          `error_message` text NULL,
-          `datestamp` tinytext NOT NULL,
+          `message` text default NULL,
+          `start_from` datetime NOT NULL,          
+          `completed_at` datetime default NULL,
           PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
