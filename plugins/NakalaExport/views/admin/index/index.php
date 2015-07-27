@@ -55,7 +55,12 @@ echo item_search_filters();
                 <td class="batch-edit-check" scope="row"><input type="checkbox" name="facile[]" value="<?php echo $id; ?>" /></td>
                 <?php endif; ?>
 
-                <td><?php echo strip_formatting(metadata('item', array('Dublin Core', 'Creator'))); ?></td>
+                <td><?php if (metadata('item', 'has files')): ?>
+                    <?php echo link_to_item(item_image('square_thumbnail', array(), 0, $item), array('class' => 'item-thumbnail'), 'show', $item); ?>
+                    <?php endif; ?>
+                    <?php echo link_to_item(); ?>
+                </td>
+
                 <td>
                     <?php
                     echo ($typeName = metadata('item', 'Item Type Name'))

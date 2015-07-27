@@ -71,7 +71,8 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
      * @param string $error The log message
      * @return void
      */
-    public function update($status, $message) {
+    public function update($status, $message) 
+    {
 
     	if ($status == self::STATUS_OK) {
     		$message  = NakalaConsole_Helper::readOutputFile($this->item_id);
@@ -82,5 +83,17 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
 		$this->completed_at    	= date('Y:m:d H:i:s');
     	$this->save();
     }
+
+
+    /**
+     * Delete the ZIP archive from the server for this item
+     * 
+     * @return void
+     */
+    public function deleteZip()
+    {
+        NakalaConsole_Helper::deleteZip($this->item_id);
+    }
+    
 
 }

@@ -83,6 +83,22 @@ class NakalaConsole_Helper
     }
 
     /**
+     * Delete a ZIP archive from the server
+     * 
+     * @param integer $item_id The Item ID
+     * @return void
+     */
+    public static function deleteZip($item_id)
+    {
+         $archive_path = BATCH_INPUT_PATH . $item_id . '.zip';
+         if (is_file($archive_path)) {
+            $cmd = "rm -f ".$archive_path;
+            exec("$cmd");
+        }
+    }
+
+
+    /**
      * Send an archive to Nakala
      * 
      * @param TODO
@@ -96,7 +112,7 @@ class NakalaConsole_Helper
         exec($cmd." 2>&1", $output);
 
         chdir(BATCH_PATH);
-        echo $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".BATCH_INPUT_PATH." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
+        $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".BATCH_INPUT_PATH." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
         exec($cmd." 2>&1", $output);
 
         return $this->_getResults($output);

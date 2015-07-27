@@ -54,22 +54,16 @@ class NakalaExport_ExportController extends Omeka_Controller_AbstractActionContr
             foreach($exports as $key => $value)
             {
                 $item = get_record_by_id('Item', $key);
-
-                // Génération du XML
-                foreach($dcElementNames as $elementName)
-                {   
-                    $dcElements = $item->getElementTexts('Dublin Core', Inflector::camelize($elementName));
-                    foreach($dcElements as $elementText)
-                        $elements[$elementName][] = $elementText->text;
+                
+                // Récupération d'informations supplémentaires en vue de l'export (infos sur la collection par exemple)
+                if ($collection = $item->getCollection()) {
+                    $identifier = metadata($collection, array("Dublin Core", "Identifier"));
+                    if ($handle = getHandleFormCollectionUrl($identifier))
+                        $this->view->nakala_collection = $handle;
                 }
 
-                // Récupération d'informations supplémentaires en vue de l'export (infos sur la collection par exemple)
-                $collection = $item->getCollection();
-                $identifier = metadata($collection, array("Dublin Core", "Identifier"));
-                if ($handle = getHandleFormCollectionUrl($identifier))
-                    $this->view->nakala_collection = $handle;
-
-                $this->view->elements = $elements;
+                $elements = all_element_texts($item, array("return_type" => "array", "show_empty_elements" => true));
+                $this->view->elements = $elements['Dublin Core'];
                 echo $xml = $this->view->render('export/index.php');
 
                 // Création de l'enregistrement dans la base de données (table nakala_export_records)
@@ -101,11 +95,14 @@ class NakalaExport_ExportController extends Omeka_Controller_AbstractActionContr
                         $status = $results[$item_id]['status'];
                         $message = $status == NakalaConsole_Helper::RESPONSE_ERROR ? $results[$key]['message'] : '';
                         $record->update($status, $message);
+                        $record->deleteZip();
 
                     } else { // Nakala n'a renvoyé aucune réponse
 
                         $record->update(NakalaConsole_Helper::RESPONSE_ERROR, 'Pas de réponse de Nakala suite à l\'export');
+                        $record->deleteZip();
                     }
+
                 }   
             }    
 
