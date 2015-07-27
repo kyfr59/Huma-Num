@@ -64,7 +64,7 @@ class NakalaExport_ExportController extends Omeka_Controller_AbstractActionContr
 
                 $elements = all_element_texts($item, array("return_type" => "array", "show_empty_elements" => true));
                 $this->view->elements = $elements['Dublin Core'];
-                echo $xml = $this->view->render('export/index.php');
+                echo $xml = $this->view->render('export/items.php');
 
                 // Création de l'enregistrement dans la base de données (table nakala_export_records)
                 $record = new NakalaExport_Record;
