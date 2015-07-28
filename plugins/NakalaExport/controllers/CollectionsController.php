@@ -13,11 +13,11 @@
  */
 
 
-class NakalaExport_IndexController extends Omeka_Controller_AbstractActionController
+class NakalaExport_CollectionsController extends Omeka_Controller_AbstractActionController
 {    
     public function indexAction()
     {
-        $this->_helper->db->setDefaultModelName('Item');
+        $this->_helper->db->setDefaultModelName('Collection');
 
         // Respect only GET parameters when browsing.
         $this->getRequest()->setParamSources(array('_GET'));
@@ -45,8 +45,8 @@ class NakalaExport_IndexController extends Omeka_Controller_AbstractActionContro
         $currentPage = $this->getParam('page', 1);
         
         $records = $this->_helper->db
-                        ->getTable('NakalaExport_Record')
-                        ->getItemsToExport();
+                        ->getTable('NakalaExport_Collection')
+                        ->getCollectionsToExport();
 
         if ($records)                
             $params['range'] = implode($records, ',');
@@ -75,6 +75,25 @@ class NakalaExport_IndexController extends Omeka_Controller_AbstractActionContro
                 'total_results' => $totalRecords, 
             ));
         }
+
+
+        $query  = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>";
+        $query .= "PREFIX dcterms: <http://purl.org/dc/terms/>";
+        $query .= "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
+        $query .= "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>";
+        $query .= "PREFIX ore: <http://www.openarchives.org/ore/terms/>";
+        $query .= "SELECT * WHERE {";
+        $query .= "?scheme dcterms:creator";
+        $query .= "<http://www.nakala.fr/account/11280/f1401838> .";
+        $query .= "?collection skos:inScheme ?scheme .";
+        $query .= "?collection skos:prefLabel ?nomCollection .";
+        $query .= "}";
+
+        $sparql = new EasyRdf_Sparql_Client(NAKALA_SPARQL_ENDPOINT);
+            
+        $results = $sparql->query($query);
+
+        $this->view->nakala_collections = $results;
         
         $this->view->assign(array($pluralName => $records, 'total_results' => $totalRecords));
     }

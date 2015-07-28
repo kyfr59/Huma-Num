@@ -8,7 +8,9 @@
  */
 function getHandleFormCollectionUrl($url) 
 {
-    return ltrim($url, NAKALA_COLLECTION_PREFIX);
+	if (substr($url, 0, strlen(NAKALA_COLLECTION_PREFIX)) == NAKALA_COLLECTION_PREFIX)
+	    return ltrim($url, NAKALA_COLLECTION_PREFIX);
+	return false;
 }
   
 

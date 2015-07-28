@@ -7,20 +7,21 @@
  */
 
 /**
- * Model class for a export.
+ * Model class for a collection export.
  *
  * @package NakalaExport
  * @subpackage Models
  */
-class NakalaExport_Record extends Omeka_Record_AbstractRecord
+class NakalaExport_Collection extends Omeka_Record_AbstractRecord
 {
 	const STATUS_IN_PROGRESS 	= 'in progress';
     const STATUS_OK   			= 'ok';
     const STATUS_ERROR       	= 'error';
     
+
     public $id;
     public $export_id;
-    public $item_id;
+    public $collection_id;
     public $handle;
     public $status;
     public $message;
@@ -30,16 +31,16 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
     /**
      * Insert a record into the database.
      * 
-     * @param Item $item The item object corresponding to the record.
+     * @param Collection $collection The collection object corresponding to the record.
      * @param integer $export_id The ID of the corresponding export process.
      * @return integer ID of the created record
      */
-    public function create($item, $export_id) {
+    public function create($collection, $export_id) {
 
-        $this->export_id   	= $export_id;
-        $this->item_id      = $item->id;
-        $this->status      	= self::STATUS_IN_PROGRESS;
-        $this->start_from   = date('Y:m:d H:i:s');
+        $this->export_id   	    = $export_id;
+        $this->collection_id    = $collection->id;
+        $this->status      	    = self::STATUS_IN_PROGRESS;
+        $this->start_from       = date('Y:m:d H:i:s');
         $this->save();
 
         release_object($this);
@@ -91,7 +92,7 @@ class NakalaExport_Record extends Omeka_Record_AbstractRecord
      */
     public function deleteZip()
     {
-        NakalaConsole_Helper::deleteZip($this->item_id);
+        NakalaConsole_Helper::deleteZip($this->collection_id, 'collection');
     }
     
 

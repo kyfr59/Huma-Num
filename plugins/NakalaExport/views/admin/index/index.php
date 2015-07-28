@@ -11,6 +11,15 @@ echo flash();
 echo item_search_filters();
 ?>
 
+<?php $uri = $_SERVER['REQUEST_URI']; ?>
+<ul id="section-nav" class="navigation">
+    <li class="<?php if ($uri == '/omeka-humanum/admin/nakala-export') {echo 'current';} ?>">
+        <a href="<?php echo html_escape(url('nakala-export')); ?>"><?php echo __('Notices à exporter'); ?></a>
+    </li>
+    <li class="<?php if ($uri == '/omeka-humanum/admin/nakala-export/collections') {echo 'current';} ?>">
+        <a href="<?php echo html_escape(url('nakala-export/collections')); ?>"><?php echo __('Collections à exporter'); ?></a>
+    </li>
+</ul>
 <?php echo flash(); ?>
 
 <?php if ($total_results): ?>
@@ -19,7 +28,7 @@ echo item_search_filters();
     <form action="<?php echo html_escape(url('nakala-export/export')); ?>" method="post" accept-charset="utf-8">
         <div class="table-actions batch-edit-option">
             <?php if (is_allowed('Items', 'add')): ?>
-            <input type="submit" value="<?php echo __('Send to Nakala'); ?>" />
+            <input type="submit" value="<?php echo __('Envoyer vers Nakala'); ?>" />
             <?php endif; ?>
         </div>
 

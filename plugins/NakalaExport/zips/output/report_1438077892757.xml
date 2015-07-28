@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report_data>
+    <date_started>2015-07-28T12:04:46.675+02:00</date_started>
+    <date_ended>2015-07-28T12:04:52.703+02:00</date_ended>
+    <nb_files_total>1</nb_files_total>
+    <nb_files_valid>0</nb_files_valid>
+    <nb_files_invalid>1</nb_files_invalid>
+    <batch_status>DONE</batch_status>
+    <files_treated>
+        <file>
+            <file_name>test-collection</file_name>
+            <file_status>FAILED</file_status>
+            <date_started>2015-07-28T12:04:46.677+02:00</date_started>
+            <date_ended>2015-07-28T12:04:52.700+02:00</date_ended>
+            <file_status_desc>Invalid xml input :: parent collection [11280/a19a5e26] does not belong to the current user.</file_status_desc>
+        </file>
+    </files_treated>
+</report_data>

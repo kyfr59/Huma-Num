@@ -29,9 +29,10 @@ class NakalaExport_Export extends Omeka_Record_AbstractRecord
     public $completed_at;
 
 
-    public function create(){
+    public function create($type = 'item') {
 
         $this->status       = self::STATUS_IN_PROGRESS;
+        $this->message      = $type;
         $this->start_from   = date('Y:m:d H:i:s');
         $this->save();
 
@@ -44,7 +45,6 @@ class NakalaExport_Export extends Omeka_Record_AbstractRecord
     /**
      * Close the export into the database.
      * 
-     * @param string $error The error message
      * @return void
      */
     public function close() {

@@ -83,14 +83,45 @@ class NakalaConsole_Helper
     }
 
     /**
+     * Generate the ZIP archive for a collection
+     * 
+     * @param String $xml The XML content for the item
+     * @param Item $item The Item object
+     * @return void
+     */
+    public function generateZipCollection($xml, $collection)
+    {
+        // Creating archive on server
+        header('Content-Type: text/html; charset=iso-8859-1');
+        $zip = new ZipArchive();  
+        $archive_path = BATCH_INPUT_COLLECTIONS_PATH . (int)$collection->id . '.zip';
+        
+        if (file_exists($archive_path))
+            unlink($archive_path);
+
+        $zip->open($archive_path, ZipArchive::CREATE);  
+
+        $zip->addFromString((int)$collection->id.'.xml', $xml);
+                
+        $zip->close();
+
+        // Checking existance of the file on server
+        if (!file_exists($archive_path))
+            throw new Exception('Erreur lors de la génération de l\'archive ZIP : la création de l\archive sur le serveur à échouée.');
+    }
+
+
+    /**
      * Delete a ZIP archive from the server
      * 
      * @param integer $item_id The Item ID
+     * @param String $type The type of archive
      * @return void
      */
-    public static function deleteZip($item_id)
+    public static function deleteZip($item_id, $type = 'item')
     {
-         $archive_path = BATCH_INPUT_PATH . $item_id . '.zip';
+         $input_directory = $type == 'item' ? BATCH_INPUT_PATH : BATCH_INPUT_COLLECTIONS_PATH;
+         $archive_path = $input_directory . $item_id . '.zip';
          if (is_file($archive_path)) {
             $cmd = "rm -f ".$archive_path;
             exec("$cmd");
@@ -102,17 +133,18 @@ class NakalaConsole_Helper
      * Send an archive to Nakala
      * 
      * @param TODO
-     * @param TODO
+     * @param String $type Type of content : "item" or "collection"
      * @return TODO
      */
-    public function sendToNakala()
+    public function sendToNakala($type = 'item')
     {
+        $input_directory = $type == 'item' ? BATCH_INPUT_PATH : BATCH_INPUT_COLLECTIONS_PATH;
         // Retrieving all the ZIP files of the input directory
-        $cmd = 'ls '.BATCH_INPUT_PATH .'*.zip';
+        $cmd = 'ls '. $input_directory .'*.zip';
         exec($cmd." 2>&1", $output);
 
         chdir(BATCH_PATH);
-        $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".BATCH_INPUT_PATH." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
+        $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".$input_directory." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
         exec($cmd." 2>&1", $output);
 
         return $this->_getResults($output);

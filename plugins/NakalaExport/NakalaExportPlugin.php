@@ -15,6 +15,7 @@ require_once NAKALA_EXPORT_HELPERS_DIR . DIRECTORY_SEPARATOR . 'NakalaConsoleHel
 // Nakala Console Paths
 define('BATCH_PATH', BASE_DIR . DIRECTORY_SEPARATOR . '/nakala-console/');
 define('BATCH_INPUT_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/input/');
+define('BATCH_INPUT_COLLECTIONS_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/input-collections/');
 define('BATCH_OUTPUT_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/output/');
 define('BATCH_ERRORS_PATH', NAKALA_EXPORT_DIR . DIRECTORY_SEPARATOR . 'zips/errors/');
 
@@ -36,7 +37,8 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
     protected $_hooks = array(
         'define_acl',
         'install',
-        'uninstall'
+        'uninstall',
+        'admin_collections_form'
     );
 
     /**
@@ -77,6 +79,20 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
           PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
+
+        $sql = "
+        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_export_collections` (
+          `id` int unsigned NOT NULL auto_increment,
+          `export_id` int unsigned NOT NULL,
+          `collection_id` int unsigned NOT NULL,
+          `handle` int unsigned default NULL,
+          `status` enum('in progress','error','ok') NOT NULL default 'in progress',
+          `message` text default NULL,
+          `start_from` datetime NOT NULL,          
+          `completed_at` datetime default NULL,
+          PRIMARY KEY  (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+        $db->query($sql);        
     }
 
 
@@ -139,8 +155,6 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function filterActionContexts($contexts, $controller)
     {
-        // $request = Zend_Controller_Front::getInstance()->getRequest();
-        
         if ($controller['controller'] instanceof ItemsController) {
             $contexts['show'][] = 'rssm';
             $contexts['browse'][] = 'rssm';
@@ -150,17 +164,25 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function hookAdminItemsShow($args) 
     {
-
         $request = Zend_Controller_Front::getInstance()->getRequest();
-
-
         Zend_Debug::dump($request);
-        //ob_end_clean();
-        //header ("Content-Type:text/xml");
-        //$url = "http://trippi.fr/oai-pmh-repository/request?verb=GetRecord&metadataPrefix=mods&identifier=oai:default.must.change:103";
-        //$curl = curl_init();
-        //curl_setopt($curl, CURLOPT_URL, $url);
-        //curl_exec($curl);
     }
+
+
+    public function hookAdminCollectionsForm($args) 
+    {
+      $collection = $args['collection'];
+
+      if (get_class($collection) == 'Collection') 
+        if ($identifier = metadata($collection, array("Dublin Core", "Identifier")))
+          if (getHandleFormCollectionUrl($identifier))
+          {
+             echo getHandleFormCollectionUrl($identifier);
+          }
+
+          
+       
+    }
+
 
 }
