@@ -24,6 +24,7 @@ endif; ?>
 <?php if ($userRole == 'super' || $userRole == 'admin'): ?>
 <?php $latestVersion = latest_omeka_version(); ?>
       <?php if ($latestVersion and version_compare(OMEKA_VERSION, $latestVersion, '<')): ?>
+        <!--
             <div id="flash">
                 <ul>
                     <li class="success"><?php echo __('A new version of Omeka is available for download.'); ?>
@@ -31,6 +32,7 @@ endif; ?>
                     </li>
                 </ul>
             </div>
+        -->    
       <?php endif; ?>
 <?php endif; ?>
 
