@@ -40,8 +40,13 @@ input#base_url {
 <img src="<?php echo WEB_ROOT ?>/plugins/NakalaImport/images/logo-huma-num.png"/ style="margin-bottom:30px;">
 <?php echo flash(); ?>
     <h2>Source des données</h2>
+    <?php
+        $options = unserialize(get_option('nakala_import_settings'));
+        echo $url = $options['nakala-oai-url'];
+    ?>
+    <br/><br />
     <?php echo $this->harvestForm; ?> 
-    <br/>
+    
     <div id="harvests">
     <h2>Liste des imports</h2>
     <?php if (empty($this->harvests)): ?>

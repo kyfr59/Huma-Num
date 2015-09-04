@@ -59,7 +59,9 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
                               'define_acl', 
                               'before_delete_item',
                               'admin_items_show_sidebar',
-                              'items_browse_sql');
+                              'items_browse_sql',
+                              'config_form',
+                              'config');
 
     /**
      * @var array Filters for the plugin.
@@ -78,6 +80,11 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookInstall()
     {
+
+        $defaults = array(
+            'nakala-oai-url' => ''
+        );
+        set_option('nakala_import_settings', serialize($defaults));
 
         //echo "oo".plugin_is_active('OaipmhHarvester');  
         //$this->_helper->flashMessenger($message, 'success')
@@ -150,6 +157,26 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         $db->query($sql);
 
     }
+
+
+    public function hookConfigForm() 
+    {
+        $settings = unserialize(get_option('nakala_import_settings'));
+                
+        $options['nakala-oai-url']    = (string) $settings['nakala-oai-url'];
+        
+        include 'forms/config-form.php';
+    }
+
+    public function hookConfig()
+    {
+        $settings = unserialize(get_option('nakala_import_settings'));
+        
+        $settings['nakala-oai-url']   = (string) $_POST['nakala-oai-url'];
+        
+        set_option('nakala_import_settings', serialize($settings));
+    }
+
     
     /**
      * Uninstall the plugin.
