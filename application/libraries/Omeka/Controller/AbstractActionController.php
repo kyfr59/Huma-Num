@@ -279,28 +279,14 @@ abstract class Omeka_Controller_AbstractActionController extends Zend_Controller
             foreach($results as $n) {
                 $collectionsInSparql[] = (string)$n->nomCollection;
             }
-            $collectionsInDatabase = get_table_options('Collection');
-            $res[] = "Faites votre choix";
-            foreach($collectionsInDatabase as $cid)
-                if (in_array($cid, $collectionsInSparql))
-                    $res[] = $cid;
-
-            $this->view->collectionsForThisUser = $res;
+            
+            $this->view->collectionsForThisUser = $collectionsInSparql;
 
         } else {
 
             $this->view->collectionsForThisUser = get_table_options('Collection');
 
         }
-        
-        
-
-        
-        
-
-         
-         
-         
         
         $this->view->$varName = $record;
     }
