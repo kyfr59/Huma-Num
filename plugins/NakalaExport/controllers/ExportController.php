@@ -168,9 +168,25 @@ class NakalaExport_ExportController extends Omeka_Controller_AbstractActionContr
 
                     if (isset($results[$collection_id])) { // Nakala a renvoyé une réponse
                         
+                        // Mise à jour de la collection dans la base de données (ajout de l'identifier)
                         $status = $results[$collection_id]['status'];
                         $message = $status == NakalaConsole_Helper::RESPONSE_ERROR ? $results[$key]['message'] : '';
                         $record->update($status, $message);
+                        $logFile = BATCH_OUTPUT_PATH . $collection_id . '.xml';
+                        if (file_exists($logFile)) {
+                            $content = new SimpleXMLElement(file_get_contents($logFile));
+                            $identifier = NAKALA_COLLECTION_PREFIX . (string)$content->identifier;
+                            
+                            $elementTexts['Dublin Core']['Identifier'][] = array('text' => (string) $identifier, 'html' => false);
+
+                            // Update the collection
+                            update_collection(
+                                $collection_id, 
+                                array('overwriteElementTexts' => true), 
+                                $elementTexts 
+                            );
+                        }
+
                         $record->deleteZip();
 
                     } else { // Nakala n'a renvoyé aucune réponse

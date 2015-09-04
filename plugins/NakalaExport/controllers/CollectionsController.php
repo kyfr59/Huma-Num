@@ -76,7 +76,7 @@ class NakalaExport_CollectionsController extends Omeka_Controller_AbstractAction
             ));
         }
 
-
+        $options = unserialize(get_option('nakala_export_settings'));
         $query  = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>";
         $query .= "PREFIX dcterms: <http://purl.org/dc/terms/>";
         $query .= "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
@@ -84,7 +84,7 @@ class NakalaExport_CollectionsController extends Omeka_Controller_AbstractAction
         $query .= "PREFIX ore: <http://www.openarchives.org/ore/terms/>";
         $query .= "SELECT * WHERE {";
         $query .= "?scheme dcterms:creator";
-        $query .= "<http://www.nakala.fr/account/11280/f1401838> .";
+        $query .= "<http://www.nakala.fr/account/".$options['nakala-user-handle']."> .";
         $query .= "?collection skos:inScheme ?scheme .";
         $query .= "?collection skos:prefLabel ?nomCollection .";
         $query .= "}";
