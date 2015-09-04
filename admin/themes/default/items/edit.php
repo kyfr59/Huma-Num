@@ -45,9 +45,10 @@ echo flash();
                             'collection_id',
                             $item->collection_id,
                             array('id' => 'collection-id'),
-                            get_table_options('Collection')
+                            $this->collectionsForThisUser
                         );
                     ?>
+
                 </div>
                 <?php fire_plugin_hook('admin_items_form_collection', array('item' => $item, 'view' => $this)); ?>
             </div> <!-- end collection-form div -->

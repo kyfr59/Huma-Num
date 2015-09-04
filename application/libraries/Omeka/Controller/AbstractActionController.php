@@ -255,6 +255,52 @@ abstract class Omeka_Controller_AbstractActionController extends Zend_Controller
                 $this->_helper->flashMessenger($record->getErrors());
             }
         }
+
+        // Retrieve collections for this user
+        if (plugin_is_active('NakalaExport')) {
+
+            $options = unserialize(get_option('nakala_export_settings'));
+
+            $query  = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>";
+            $query .= "PREFIX dcterms: <http://purl.org/dc/terms/>";
+            $query .= "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
+            $query .= "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>";
+            $query .= "PREFIX ore: <http://www.openarchives.org/ore/terms/>";
+            $query .= "SELECT ?collection ?nomCollection WHERE {";
+            $query .= " ?scheme dcterms:creator <http://www.nakala.fr/account/".$options['nakala-user-handle']."> .";
+            $query .= " ?collection skos:inScheme ?scheme .";
+            $query .= " ?collection skos:prefLabel ?nomCollection .";
+            $query .= "}";
+
+            $sparql = new EasyRdf_Sparql_Client(NAKALA_SPARQL_ENDPOINT);
+                
+            $results = $sparql->query($query);
+
+            foreach($results as $n) {
+                $collectionsInSparql[] = (string)$n->nomCollection;
+            }
+            $collectionsInDatabase = get_table_options('Collection');
+            $res[] = "Faites votre choix";
+            foreach($collectionsInDatabase as $cid)
+                if (in_array($cid, $collectionsInSparql))
+                    $res[] = $cid;
+
+            $this->view->collectionsForThisUser = $res;
+
+        } else {
+
+            $this->view->collectionsForThisUser = get_table_options('Collection');
+
+        }
+        
+        
+
+        
+        
+
+         
+         
+         
         
         $this->view->$varName = $record;
     }

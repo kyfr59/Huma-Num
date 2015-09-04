@@ -38,7 +38,8 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         'define_acl',
         'install',
         'uninstall',
-        'admin_collections_form'
+        'config_form',
+        'config'
     );
 
     /**
@@ -53,6 +54,13 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookInstall()
     {
+        $defaults = array(
+            'nakala-user-handle' => 'test',
+            'nakala-user' => 'test',
+            'nakala-user-password' => 'test'
+        );
+        set_option('nakala_export_settings', serialize($defaults));
+
         $db = $this->_db;
 
         $sql = "
@@ -93,6 +101,28 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
           PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);        
+    }
+
+    public function hookConfigForm() 
+    {
+        $settings = unserialize(get_option('nakala_export_settings'));
+                
+        $options['nakala-user-handle']    = (string) $settings['nakala-user-handle'];
+        $options['nakala-user']           = (string) $settings['nakala-user'];
+        $options['nakala-user-password']  = (string) $settings['nakala-user-password'];
+        
+        include 'forms/config-form.php';
+    }
+
+    public function hookConfig()
+    {
+        $settings = unserialize(get_option('nakala_export_settings'));
+        
+        $settings['nakala-user-handle']   = (string) $_POST['nakala-user-handle'];
+        $settings['nakala-user']          = (string) $_POST['nakala-user'];
+        $settings['nakala-user-password'] = (string) $_POST['nakala-user-password'];
+        
+        set_option('nakala_export_settings', serialize($settings));
     }
 
 
@@ -166,22 +196,6 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
     {
         $request = Zend_Controller_Front::getInstance()->getRequest();
         Zend_Debug::dump($request);
-    }
-
-
-    public function hookAdminCollectionsForm($args) 
-    {
-      $collection = $args['collection'];
-
-      if (get_class($collection) == 'Collection') 
-        if ($identifier = metadata($collection, array("Dublin Core", "Identifier")))
-          if (getHandleFormCollectionUrl($identifier))
-          {
-             echo getHandleFormCollectionUrl($identifier);
-          }
-
-          
-       
     }
 
 
