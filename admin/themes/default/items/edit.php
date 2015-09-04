@@ -45,7 +45,7 @@ echo flash();
                             'collection_id',
                             $item->collection_id,
                             array('id' => 'collection-id'),
-                            $this->collectionsForThisUser
+                            get_table_options('Collection')
                         );
                     ?>
 

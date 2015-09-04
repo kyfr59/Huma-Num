@@ -257,6 +257,7 @@ abstract class Omeka_Controller_AbstractActionController extends Zend_Controller
         }
 
         // Retrieve collections for this user
+        /*
         if (plugin_is_active('NakalaExport')) {
 
             $options = unserialize(get_option('nakala_export_settings'));
@@ -287,6 +288,7 @@ abstract class Omeka_Controller_AbstractActionController extends Zend_Controller
             $this->view->collectionsForThisUser = get_table_options('Collection');
 
         }
+        */
         
         $this->view->$varName = $record;
     }
