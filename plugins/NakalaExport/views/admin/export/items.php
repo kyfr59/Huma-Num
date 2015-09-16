@@ -13,10 +13,13 @@
                 }
 
             }
+
+            $dublinCoreElements = array("Contributor", "Coverage", "Creator", "Date", "Description", "Format", "Identifier",  "Language", "Publisher", "Relation", "Rights", "Source", "Subject", "Title", "Type");
             foreach($this->elements as $elementName => $element)
                 {
                     foreach($element as $e)
-                        echo "\n\t<dcterms:".strtolower($elementName).">$e</dcterms:".strtolower($elementName).">";
+                        if(in_array($elementName, $dublinCoreElements))
+                            echo "\n\t<dcterms:".strtolower($elementName).">$e</dcterms:".strtolower($elementName).">";
                 }
             ?>  
         <dcterms:source>OMEKA</dcterms:source>     
