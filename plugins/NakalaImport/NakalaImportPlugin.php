@@ -326,7 +326,7 @@ SQL;
     public function filterAdminNavigationMain($nav)
     {        
         $nav[] = array(
-            'label' => __('Nakala Import'),
+            'label' => __('NAKALA Import'),
             'uri' => url('nakala-import'),
             'resource' => 'NakalaImport_Index',
             'privilege' => 'index',

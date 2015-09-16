@@ -163,7 +163,7 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterAdminNavigationMain($nav)
     {        
         $nav[] = array(
-            'label'     => __('Nakala Export'),
+            'label'     => __('NAKALA Export'),
             'uri'       => url('nakala-export'),
             'resource'  => 'NakalaExport_Index',
             'privilege' => 'index',

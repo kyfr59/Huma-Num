@@ -8,7 +8,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-$head = array('title'      => 'Nakala import',
+$head = array('title'      => 'NAKALA import',
               'body_class' => 'primary oaipmh-harvester');
 echo head($head);
 ?>
@@ -39,7 +39,7 @@ input#base_url {
 
 <img src="<?php echo WEB_ROOT ?>/plugins/NakalaImport/images/logo-huma-num.png"/ style="margin-bottom:30px;">
 <?php echo flash(); ?>
-    <h2>Source des données</h2>
+    <h2>Source des données à importer</h2>
     <?php
         $options = unserialize(get_option('nakala_import_settings'));
         echo $url = $options['nakala-oai-url'];

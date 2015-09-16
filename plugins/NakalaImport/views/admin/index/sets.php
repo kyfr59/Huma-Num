@@ -8,7 +8,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 $head = array('body_class' => 'oaipmh-harvester content', 
-              'title'      => 'Nakala import | Import');
+              'title'      => 'NAKALA import | Import');
 echo head($head);
 ?>
 <div id="primary">

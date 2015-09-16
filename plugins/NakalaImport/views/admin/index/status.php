@@ -9,7 +9,7 @@
  */
 
 $head = array('body_class' => 'oaipmh-harvester content', 
-              'title'      => 'Nakala import | Status');
+              'title'      => 'NAKALA import | Status');
 echo head($head);
 ?>
 

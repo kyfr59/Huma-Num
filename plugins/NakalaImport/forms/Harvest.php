@@ -21,7 +21,7 @@ class OaipmhHarvester_Form_Harvest extends Omeka_Form
         echo "oo";
         
         $this->addElement('submit', 'submit_view_sets', array(
-            'label' => 'Voir les sections',
+            'label' => 'Voir votre structuration NAKALA',
             'class' => 'submit submit-medium',
             'decorators' => (array(
                 'ViewHelper', 
