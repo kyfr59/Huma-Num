@@ -112,7 +112,7 @@ echo item_search_filters();
 
 
     <?php else: ?>
-        <p><?php echo __('The query searched %s items and returned no results.', total_records('Item')); ?> <?php echo __('Would you like to %s?', link_to_item_search(__('refine your search'))); ?></p>
+        <p>Aucune notice à exporter</p>
     <?php endif; ?>
 
         
