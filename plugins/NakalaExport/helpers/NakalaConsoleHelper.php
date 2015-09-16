@@ -144,7 +144,10 @@ class NakalaConsole_Helper
         exec($cmd." 2>&1", $output);
 
         chdir(BATCH_PATH);
-        $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email kyfr59@gmail.com -inputFolder ".$input_directory." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
+        $options = unserialize(get_option('nakala_export_settings'));
+
+        $cmd = "java -jar ".BATCH_PATH."nakala-console.jar -email ".$options['nakala-user']." -inputFolder ".$input_directory." -outputFolder ".BATCH_OUTPUT_PATH." -errorFolder ".BATCH_ERRORS_PATH." -passwordFile ".BATCH_PATH."password_file.sha";
+        
         exec($cmd." 2>&1", $output);
 
         return $this->_getResults($output);

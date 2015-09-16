@@ -110,7 +110,7 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         $options['nakala-user-handle']    = (string) $settings['nakala-user-handle'];
         $options['nakala-user']           = (string) $settings['nakala-user'];
         $options['nakala-user-password']  = (string) $settings['nakala-user-password'];
-        
+
         include 'forms/config-form.php';
     }
 
@@ -123,6 +123,10 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
         $settings['nakala-user-password'] = (string) $_POST['nakala-user-password'];
         
         set_option('nakala_export_settings', serialize($settings));
+
+        $cmd = "echo -n ".(string) $settings['nakala-user-password']." | sha1sum | awk '{printf $1}' > ".BASE_DIR."/nakala-console/password_file.sha";
+        exec($cmd." 2>&1", $output);
+                
     }
 
 
