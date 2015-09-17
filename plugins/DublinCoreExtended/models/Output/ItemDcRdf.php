@@ -23,7 +23,7 @@ class Output_ItemDcRdf
             $elementTexts = metadata($item, array('Dublin Core', $element['label']), array('all' => true));
             if ($elementTexts) {
                 foreach ($elementTexts as $elementText) {
-                    if (strlen($elementText) != 0) {
+                    if (strlen($elementText) != 0 && strlen($element['name']) != 0) {
                         $xml .= "\n    <dcterms:{$element['name']}><![CDATA[$elementText]]></dcterms:{$element['name']}>" ;
                     }
                 }

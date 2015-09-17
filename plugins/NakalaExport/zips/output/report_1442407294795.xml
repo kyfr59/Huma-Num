@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<report_data>
+    <date_started>2015-09-16T14:41:34.191+02:00</date_started>
+    <date_ended>2015-09-16T14:41:34.743+02:00</date_ended>
+    <nb_files_total>2</nb_files_total>
+    <nb_files_valid>0</nb_files_valid>
+    <nb_files_invalid>2</nb_files_invalid>
+    <batch_status>DONE</batch_status>
+    <files_treated>
+        <file>
+            <file_name>194</file_name>
+            <file_status>FAILED</file_status>
+            <date_started>2015-09-16T14:41:34.193+02:00</date_started>
+            <date_ended>2015-09-16T14:41:34.484+02:00</date_ended>
+            <file_status_desc>invalid credentials</file_status_desc>
+        </file>
+        <file>
+            <file_name>195</file_name>
+            <file_status>FAILED</file_status>
+            <date_started>2015-09-16T14:41:34.487+02:00</date_started>
+            <date_ended>2015-09-16T14:41:34.743+02:00</date_ended>
+            <file_status_desc>invalid credentials</file_status_desc>
+        </file>
+    </files_treated>
+</report_data>

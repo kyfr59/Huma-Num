@@ -95,7 +95,7 @@ echo item_search_filters();
             <a href="<?php echo html_escape(url('collections/add')); ?>" class="small green button"><?php echo __('Add a Collection'); ?></a>
         <?php endif; ?>
     <?php else: ?>
-        <p><?php echo __('There are no collections on this page.'); ?> <?php echo link_to('collections', null, __('View All Collections')); ?></p>
+        <p>Aucune collection à exporter.</p>
     <?php endif; ?> 
     </form>
 

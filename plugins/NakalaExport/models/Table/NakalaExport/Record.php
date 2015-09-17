@@ -30,6 +30,7 @@ class Table_NakalaExport_Record extends Omeka_Db_Table
         {
             if( $this->_isOmekaItem($item->id) && 
                 $this->hasNeverBeenExported($item->id) &&
+                $item->public == 1 &&
                 $item->getProperty('has_files')
               )
                 $res[] = $item->id;

@@ -31,9 +31,9 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     protected $_filters = array(
-        'public_navigation_admin_bar'
     );
 
+/*
     public function filterPublicNavigationAdminBar($links) 
     {
         $user = current_user();
@@ -49,8 +49,8 @@ class ShibbolethLoginPlugin extends Omeka_Plugin_AbstractPlugin
             );
         }
         return $links;
-        
     }
+*/    
 
     public function hookInstall() 
     {

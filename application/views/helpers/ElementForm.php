@@ -46,6 +46,62 @@ class Omeka_View_Helper_ElementForm extends Zend_View_Helper_Abstract
 
     public function elementForm(Element $element, Omeka_Record_AbstractRecord $record, $options = array())
     {    
+        $dcrdf["Title"] = 'title';
+        $dcrdf["Alternative Title"] = 'alternative';
+        $dcrdf["Subject"] = 'subject';
+        $dcrdf["Description"] = 'description';
+        $dcrdf["Abstract"] = 'abstract';
+        $dcrdf["Table Of Contents"] = 'tableOfContents';
+        $dcrdf["Creator"] = 'creator';
+        $dcrdf["Source"] = 'source';
+        $dcrdf["Publisher"] = 'publisher';
+        $dcrdf["Date"] = 'date';
+        $dcrdf["Date Modified"] = 'modified';
+        $dcrdf["Date Available"] = 'available';
+        $dcrdf["Date Created"] = 'created';
+        $dcrdf["Date Accepted"] = 'dateAccepted';
+        $dcrdf["Date Copyrighted"] = 'dateCopyrighted';
+        $dcrdf["Date Submitted"] = 'dateSubmitted';
+        $dcrdf["Date Issued"] = 'issued';
+        $dcrdf["Date Valid"] = 'valid';
+        $dcrdf["Contributor"] = 'contributor';
+        $dcrdf["Rights"] = 'rights';
+        $dcrdf["Access Rights"] = 'accessRights';
+        $dcrdf["License"] = 'license';
+        $dcrdf["Relation"] = 'relation';
+        $dcrdf["Conforms To"] = 'conformsTo';
+        $dcrdf["Has Format"] = 'hasFormat';
+        $dcrdf["Has Part"] = 'hasPart';
+        $dcrdf["Has Version"] = 'hasVersion';
+        $dcrdf["Is Format Of"] = 'isFormatOf';
+        $dcrdf["Is Part Of"] = 'isPartOf';
+        $dcrdf["Is Referenced By"] = 'isReferencedBy';
+        $dcrdf["Is Replaced By"] = 'isReplacedBy';
+        $dcrdf["Is Required By"] = 'isRequiredBy';
+        $dcrdf["Is Version Of"] = 'isVersionOf';
+        $dcrdf["References"] = 'references';
+        $dcrdf["Replaces"] = 'replaces';
+        $dcrdf["Requires"] = 'requires';
+        $dcrdf["Format"] = 'format';
+        $dcrdf["Extent"] = 'extent';
+        $dcrdf["Medium"] = 'medium';
+        $dcrdf["Language"] = 'language';
+        $dcrdf["Type"] = 'type';
+        $dcrdf["Identifier"] = 'identifier';
+        $dcrdf["Bibliographic Citation"] = 'bibliographicCitation';
+        $dcrdf["Coverage"] = 'coverage';
+        $dcrdf["Spatial Coverage"] = 'spatial';
+        $dcrdf["Temporal Coverage"] = 'temporal';
+        $dcrdf["Accrual Method"] = 'accrualMethod';
+        $dcrdf["Accrual Periodicity"] = 'accrualPeriodicity';
+        $dcrdf["Accrual Policy"] = 'accrualPolicy';
+        $dcrdf["Audience"] = 'audience';
+        $dcrdf["Audience Education Level"] = 'educationLevel';
+        $dcrdf["Mediator"] = 'mediator';
+        $dcrdf["Instructional Method"] = 'instructionalMethod';
+        $dcrdf["Provenance"] = 'provenance';
+        $dcrdf["Rights Holder"] = 'rightsHolder';
+
         $divWrap = isset($options['divWrap']) ? $options['divWrap'] : true;
         $extraFieldCount = isset($options['extraFieldCount']) ? $options['extraFieldCount'] : null;
 
@@ -93,6 +149,12 @@ class Omeka_View_Helper_ElementForm extends Zend_View_Helper_Abstract
         
         $html .= '<div class="two columns alpha">';
         $html .= $components['label'];
+        $dcrdfTerms  = array_keys($dcrdf);
+
+        $html .= '<span style="color:#9d5b41; font-weight:bold; float:left; margin:-10px 0 10px;">dc-rdf:';
+        $html .= in_array($this->_element['name'], $dcrdfTerms) ? $dcrdf[$this->_element['name']] : '';
+        $html .= '</span>';
+
         $html .= $components['add_input'];
         $html .= '</div>'; // Close div
 
@@ -103,6 +165,7 @@ class Omeka_View_Helper_ElementForm extends Zend_View_Helper_Abstract
         $html .= '</div>'; // Close 'inputs' div
 
         $html .= $divWrap ? '</div>' : ''; // Close 'field' div
+
 
         return $html;
     }

@@ -112,7 +112,7 @@ echo item_search_filters();
 
 
     <?php else: ?>
-        <p>Aucune notice à exporter</p>
+        <p>Aucune notice à exporter.</p>
     <?php endif; ?>
 
         

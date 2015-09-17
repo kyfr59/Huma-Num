@@ -155,7 +155,7 @@ class NakalaExportPlugin extends Omeka_Plugin_AbstractPlugin
     {
         $acl = $args['acl']; // get the Zend_Acl
         $acl->addResource('NakalaExport_Index');
-        $acl->allow(null, 'NakalaExport_Index', array('index', 'export'));
+        //$acl->allow(null, 'NakalaExport_Index', array('index', 'export'));
     }
 
     /**
