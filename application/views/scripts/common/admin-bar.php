@@ -5,7 +5,7 @@
     $links = array(
         array(
             'label' => __('Welcome, %s', $user->name),
-            'uri' => admin_url('/users/edit/'.$user->id)
+            'uri' => admin_url('/')
         ),
         array(
             'label' => __('Omeka Admin'),
