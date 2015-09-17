@@ -106,11 +106,11 @@
          {
              ob_start();
              ?>
-            <h2>OAI-PMH Repository</h2>
-            <p>Harvester can access metadata from this site 
+            <h2>Entrepôt OAI-PMH</h2>
+            <p>Vos métadonnées peuvent être moissonnées à partir de l'adresse suivante : 
                 <a href="<?php echo OAI_PMH_BASE_URL; ?>"><?php echo OAI_PMH_BASE_URL; ?></a></p>
             <?php
-             
+
              $panels[] = ob_get_clean();
              
              return $panels;

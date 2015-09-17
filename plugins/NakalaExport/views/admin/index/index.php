@@ -13,7 +13,9 @@ echo item_search_filters();
 
 <?php $uri = $_SERVER['REQUEST_URI']; ?>
 <img src="<?php echo WEB_ROOT ?>/plugins/NakalaImport/images/logo-huma-num.png"/ style="margin-bottom:30px;"><br /><br />
+
 <ul id="section-nav" class="navigation">
+    Attention : si vous désirez créer une collection depuis OMEKA, vous devez d'abord exporter la collection vers NAKALA (via "Collections à exporter"), ceci afin de créer un identifiant Handle.<br />Une fois la collection créée dans NAKALA, vous pouvez y placer vos notices dans OMEKA et exporter celles-ci.<br /><br />
     <li class="<?php if ($uri == '/omeka-humanum/admin/nakala-export') {echo 'current';} ?>">
         <a href="<?php echo html_escape(url('nakala-export')); ?>"><?php echo __('Notices à exporter'); ?></a>
     </li>
