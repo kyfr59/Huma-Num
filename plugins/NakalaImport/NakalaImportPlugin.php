@@ -1,29 +1,31 @@
 <?php
 /**
-* HumaNumHarvesterPlugin class - represents the OAI-PMH Harvester plugin for Huma-Num (Nakala)
+* NakalaImport plugin class - imports data from NAKALA platforms (Huma-Num)
 *
 * @copyright Copyright 2015-2020 Limonade & Co (Paris)
 * @author Franck Dupont <kyfr59@gmail.com>
 * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
-* @package HumaNumHarvester
+* @package NakalaImport
 */
-
 
 /** Path to plugin directory */
 
 defined('NAKALA_IMPORT_PLUGIN_DIRECTORY') 
     or define('NAKALA_IMPORT_PLUGIN_DIRECTORY', dirname(__FILE__));
 
+
 /** Path to plugin maps directory */
+/*
 defined('OAIPMH_HARVESTER_MAPS_DIRECTORY') 
     or define('OAIPMH_HARVESTER_MAPS_DIRECTORY', NAKALA_IMPORT_PLUGIN_DIRECTORY 
                                         . '/models/OaipmhHarvester/Harvest');
+*/
 
 /** Huma-num constants */
 
 /** Path to temp directory of the plugin */
-defined('OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP') 
-    or define('OAIPMH_HARVESTER_PLUGIN_DIRECTORY_TEMP', NAKALA_IMPORT_PLUGIN_DIRECTORY 
+defined('PLUGIN_DIRECTORY_TEMP') 
+    or define('PLUGIN_DIRECTORY_TEMP', NAKALA_IMPORT_PLUGIN_DIRECTORY 
                                         . '/temp');
 /** Nakala prefix for data */
 defined('NAKALA_DATA_PREFIX') 
@@ -33,6 +35,14 @@ defined('NAKALA_DATA_PREFIX')
 defined('NAKALA_RESOURCE_PREFIX') 
     or define('NAKALA_RESOURCE_URL', "http://www.nakala.fr/resource/");
                 
+/** Nakala prefix for collections */
+defined('NAKALA_COLLECTION_PREFIX') 
+    or define('NAKALA_COLLECTION_PREFIX', "http://www.nakala.fr/collection/");
+                
+/** Nakala prefix for accounts */
+defined('NAKALA_ACCOUNT_PREFIX') 
+    or define('NAKALA_ACCOUNT_PREFIX', "http://www.nakala.fr/account/");
+
 /** URL of Nakala SPARQL endpoint */
 defined('NAKALA_SPARQL_ENDPOINT') 
     or define('NAKALA_SPARQL_ENDPOINT', "http://www.nakala.fr/sparql");                
@@ -40,7 +50,14 @@ defined('NAKALA_SPARQL_ENDPOINT')
 /** Path of the EasyRDF library */
 require(NAKALA_IMPORT_PLUGIN_DIRECTORY . '/easyrdf/lib/EasyRdf.php');
 
+/** Path of the Sparql library */
+require(NAKALA_IMPORT_PLUGIN_DIRECTORY . '/libraries/NakalaImportSparql.php');
 
+
+/** Path of the database models */
+require(NAKALA_IMPORT_PLUGIN_DIRECTORY . '/models/NakalaImport.php');
+
+/** Path of the plugin globals functions */
 require_once dirname(__FILE__) . '/functions.php';
 
 /**
@@ -82,97 +99,62 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
     {
 
         $defaults = array(
-            'nakala-oai-url' => ''
+            'nakala-handle' => '11280/f1401838'
         );
         set_option('nakala_import_settings', serialize($defaults));
 
-        //echo "oo".plugin_is_active('OaipmhHarvester');  
-        //$this->_helper->flashMessenger($message, 'success')
-        //Zend_Debug::dump(get_view());
-
         $db = $this->_db;
 
-        /* Harvests/collections:
-          id: primary key
-          collection_id: the corresponding collection id in `collections`
-          base_url: the OAI-PMH base URL
-          metadata_prefix: the OAI-PMH metadata prefix used for this harvest
-          set_spec: the OAI-PMH set spec (unique identifier)
-          set_name: the OAI-PMH set name
-          set_description: the Dublin Core description of the set, if any
-          status: the current harvest status for this set: starting, in progress,
-          completed, error, deleted
-          status_messages: any messages sent from the harvester, usually during
-          an error status
-          initiated: the datetime the harvest initiated
-          completed: the datetime the harvest completed
-        */
         $sql = "
-        CREATE TABLE IF NOT EXISTS `{$db->prefix}oaipmh_harvester_harvests` (
+        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_imports` (
           `id` int unsigned NOT NULL auto_increment,
-          `collection_id` int unsigned default NULL,
-          `base_url` text NOT NULL,
-          `metadata_prefix` tinytext NOT NULL,
-          `set_spec` text,
-          `set_name` text,
-          `set_description` text,
-          `status` enum('queued','in progress','completed','error','deleted','killed') NOT NULL default 'queued',
-          `status_messages` text,
-          `resumption_token` text,
           `initiated` datetime default NULL,
           `completed` datetime default NULL,
-          `start_from` datetime default NULL,
+          `logs` text NULL,
           PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
 
-        /* Harvested records/items.
-          id: primary key
-          harvest_id: the corresponding set id in `oaipmh_harvester_harvests`
-          item_id: the corresponding item id in `items`
-          identifier: the OAI-PMH record identifier (unique identifier)
-          datestamp: the OAI-PMH record datestamp
-        */
-        $sql = "
-        CREATE TABLE IF NOT EXISTS `{$db->prefix}oaipmh_harvester_records` (
-          `id` int unsigned NOT NULL auto_increment,
-          `harvest_id` int unsigned NOT NULL,
-          `item_id` int unsigned default NULL,
-          `identifier` text NOT NULL,
-          `datestamp` tinytext NOT NULL,
-          PRIMARY KEY  (`id`),
-          KEY `identifier_idx` (identifier(255)),
-          UNIQUE KEY `item_id_idx` (item_id)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-        $db->query($sql);
 
         $sql = "
-        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_records` (
+        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_imports_records` (
           `id` int unsigned NOT NULL auto_increment,
+          `import_id` int unsigned default NULL,
+          `handle` text NOT NULL,
           `item_id` int unsigned default NULL,
-          `datestamp` tinytext NOT NULL,
-          PRIMARY KEY  (`id`),
-          UNIQUE KEY `item_id_idx` (item_id)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+          `date` datetime default NULL,
+          `logs` text NULL,
+          PRIMARY KEY  (`id`)
+        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
 
     }
 
-
     public function hookConfigForm() 
     {
+
         $settings = unserialize(get_option('nakala_import_settings'));
                 
-        $options['nakala-oai-url']    = (string) $settings['nakala-oai-url'];
+        $options['nakala-handle']    = (string) $settings['nakala-handle'];
         
         include 'forms/config-form.php';
+
+        // Checking file perms on /temp directory
+        echo "<div style=\"clear:both; margin-left:12px; margin-top:30px;\"><strong>Vérification des permissions sur le dossier /temp du plugin</strong><br />";
+
+        if (is_writable(PLUGIN_DIRECTORY_TEMP)) {
+            echo "<font color=\"#75940A\"><strong>Les droits sont corrects, le dossier est accessible en écriture.</strong></font>";
+        } else {
+            echo "<font color=\"red\"><strong>Les droits sont incorrects, veuillez vérifier les droits sur le dossier suivant :<br />".PLUGIN_DIRECTORY_TEMP."</strong></font>";
+        }
+        echo '</div>';
     }
 
     public function hookConfig()
     {
         $settings = unserialize(get_option('nakala_import_settings'));
         
-        $settings['nakala-oai-url']   = (string) $_POST['nakala-oai-url'];
+        $settings['nakala-handle']   = (string) $_POST['nakala-handle'];
         
         set_option('nakala_import_settings', serialize($settings));
     }
@@ -186,9 +168,9 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         $db = $this->_db;
         
         // drop the tables        
-        $sql = "DROP TABLE IF EXISTS `{$db->prefix}oaipmh_harvester_harvests`;";
+        $sql = "DROP TABLE IF EXISTS `{$db->prefix}nakala_imports`;";
         $db->query($sql);
-        $sql = "DROP TABLE IF EXISTS `{$db->prefix}oaipmh_harvester_records`;";
+        $sql = "DROP TABLE IF EXISTS `{$db->prefix}nakala_imports_records`;";
         $db->query($sql);
         
         $this->_uninstallOptions();
@@ -368,8 +350,10 @@ SQL;
         
         if ($item->exists()) {
 
-            if ($nakalaUri = getNakalaUriFromItem($item))
+            if ($identifier = getNakalaUriFromItem($item))
             {
+                $nakalaUri = NAKALA_DATA_PREFIX . $identifier;
+
                 // Correcting a bug on mediaelementplayer() call (remove this call from the original HTML)
                 $html = @ereg_replace("mediaelementplayer", '', $html);
                 

@@ -1,12 +1,13 @@
 <?php
 /**
- * @package OaipmhHarvester
- * @subpackage Controllers
- * @copyright Copyright (c) 2009-2011 Roy Rosenzweig Center for History and New Media
- * @license http://www.gnu.org/licenses/gpl-3.0.txt
- */
+* @copyright Copyright 2015-2020 Limonade & Co (Paris)
+* @author Franck Dupont <kyfr59@gmail.com>
+* @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
+* @package NakalaImport
+* @subpackage Controllers
+*/
 
-require_once dirname(__FILE__) . '/../forms/Harvest.php';
+//require_once dirname(__FILE__) . '/../forms/Harvest.php';
 
 /**
  * Index controller
@@ -16,9 +17,22 @@ require_once dirname(__FILE__) . '/../forms/Harvest.php';
  */
 class NakalaImport_IndexController extends Omeka_Controller_AbstractActionController
 {
+    /**
+     * Initialization controller
+     *  - Load the plugin configuration
+     *  - Load the Sparql library
+     *
+     * @return void
+     */
     public function init() 
     {
-        $this->_helper->db->setDefaultModelName('OaipmhHarvester_Harvest');
+        // Load configuration options
+        $options = unserialize(get_option('nakala_import_settings'));
+        $this->view->options = $options;
+
+        // Load Sparql library
+        $this->sparql = new NakalaImportSparql;
+
     }
     
     /**
@@ -28,214 +42,117 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
      */
     public function indexAction()
     {
-        $harvests = $this->_helper->db->getTable('OaipmhHarvester_Harvest')->findAll();
-        $this->view->harvests = $harvests;
-        $this->view->harvestForm = new OaipmhHarvester_Form_Harvest();
-        $this->view->harvestForm->setAction($this->_helper->url('sets'));
-    }
-    
-    /**
-     * Prepares the sets view.
-     * 
-     * @return void
-     */
-    public function setsAction()
-    {
-        // Get the available OAI-PMH to Omeka maps, which should correspond to 
-        // OAI-PMH metadata formats.
-        $maps = $this->_getMaps();
+        $lastImportDate = $this->_helper->db->getTable('NakalaImport')->getLastImportDateXsd();
         
-        $waitTime = huma_num_harvester_config('requestThrottleSecs', 5);
-        if ($waitTime) {
-            $request = new OaipmhHarvester_Request_Throttler(
-                new OaipmhHarvester_Request($this->_getParam('base_url')),
-                array('wait' => $waitTime)
-            );
-        } else {
-            $request = new OaipmhHarvester_Request(
-                $this->_getParam('base_url')
-            );
-        }
-        
-        // Catch errors such as "String could not be parsed as XML"
-        $extraMsg = 'Please check to be certain the URL is correctly formatted '
-                  . 'for OAI-PMH harvesting.';
-        try {
-            $metadataFormats = $request->listMetadataFormats();
-        } catch (Zend_Uri_Exception $e) {
-            $errorMsg = "Invalid URL given. $extraMsg";
-        } catch (Zend_Http_Client_Exception $e) {
-            $errorMsg = $e->getMessage() . " $extraMsg";
-        } catch (OaipmhHarvester_Request_ThrottlerException $e) {
-            $errorMsg = $e->getMessage();
-        }
-        if (isset($errorMsg)) {
-            $this->_helper->flashMessenger($errorMsg, 'error');
-            return $this->_helper->redirector->goto('index');
+        $imports = $this->sparql->retrieveUpdates($lastImportDate);
+
+        foreach ($imports as $key => $import) {
+
+            $handle = getHandleFormNakalaUrl((string)$import->dataUrl);
+            $elementTexts['Dublin Core']['Identifier'][]['text'] = $handle;
+            if (itemExists($elementTexts))
+                $imports[$key]->importType = 'mise à jour';
+            else
+                $imports[$key]->importType = 'création';
         }
 
-        /* Compare the available OAI-PMH metadataFormats with the available 
-        Omeka maps and extract only those that are common to both.         
-        The comparison is made between the metadata schemata, not the prefixes.
+        $this->view->imports = $imports;
+    }
+
+
+    /**
+     * Test the Sparql server connectivity (call via ajax)
+     *
+     * @return void
+     */
+    public function testAction()
+    {
+        // Disable the view rendering
+        $this->_helper->viewRenderer->setNoRender();
+
+        // Retrieve the account handle
+        $handle = $this->getParam('handle'); // Received from request (config-form.php)
+
+        // Check the account connectivity
+        $serverOk = $this->sparql->testServer($handle);
+
+        // Returns the result as JSON - like : {"server_ok":true}
+        $response = array("server_ok" => $serverOk);
+        $this->getResponse()->setHeader('Content-Type', 'application/json');
+        echo json_encode($response);
+    }
+
+
+    /**
+     * Test the Sparql server connectivity (call via ajax)
+     *
+     * @return JSON (Ajax)
+     */
+    public function importAction()
+    {
+        $dataUrls = $this->getParam('dataUrl');
+
+        // Adding new import in database (table omeka_imports)
+        $importItem = new NakalaImportItem;
+        $importId = $importItem->startImport();
+
+        // Version Single Page PHP
+        /*
+        foreach ($dataUrls as $dataUrl) {
+            $infos = $this->sparql->getInformations($dataUrl);
+            $importItem->import($infos, $importId);
+        }
+        $importItem->closeImport($importId);
         */
-        $availableMaps = array_intersect($maps, $metadataFormats);
-        
-        // For a data provider that uses a resumption token for sets, see: 
-        // http://www.ajol.info/oai/
-        $response = $request->listSets($this->_getParam('resumption_token'));
-        
-        // Set the variables to the view object.
-        $this->view->availableMaps   = array_combine(
-            array_keys($availableMaps),
-            array_keys($availableMaps)
+
+        // Version AJAX
+        $this->view->dataUrls = json_encode($dataUrls);        
+        $this->view->importId = json_encode($importId);        
+
+    }
+
+
+    /**
+     * Retrieve informations about an Item
+     *
+     * @return JSON (Ajax)
+     */
+    public function importViaAjaxAction()
+    {
+        // Disable the view rendering
+        $this->_helper->viewRenderer->setNoRender();
+
+        // Retrieve params provided by view script (import.php)
+        $last         = $this->getParam('last'); 
+        $dataUrl      = $this->getParam('dataUrl'); 
+        $importId     = $this->getParam('importId'); 
+        $i            = $this->getParam('i'); 
+
+        $infos = $this->sparql->getInformations($dataUrl);
+
+        $importItem = new NakalaImportItem;
+        $importItem->import($infos, $importId);
+
+        // Informations return to display import avancement
+        $title = cut_string(implode(' // ', $infos['dc_title']),80);
+
+        // Prepare response params
+        $response = array(  "last" => $last, 
+                            "i" => $i,
+                            "dataUrl" => $dataUrl,
+                            "count" => count($infos),                
+                            "title" => $title,        
         );
-        $this->view->sets            = $response['sets'];
-        $this->view->resumptionToken = 
-            array_key_exists('resumptionToken', $response)
-            ? $response['resumptionToken'] : false;
-        $this->view->baseUrl         = $this->_getParam('base_url'); // Watch out for injection!
-        $this->view->maps            = $maps;
-    }
-    
-    /**
-     * Launch the harvest process.
-     * 
-     * @return void
-     */
-    public function harvestAction()
-    {
-        // Only set on re-harvest
-        $harvest_id = $this->_getParam('harvest_id');
-        
-        // If true, this is a re-harvest, all parameters will be the same
-        if ($harvest_id) {
-            $harvest = $this->_helper->db->getTable('OaipmhHarvester_Harvest')->find($harvest_id);
-            
-            // Set vars for flash message
-            $setSpec = $harvest->set_spec;
-            $baseUrl = $harvest->base_url;
-            $metadataPrefix = $harvest->metadata_prefix;
-          
-            // Only on successfully-completed harvests: use date-selective
-            // harvesting to limit results.
-            if ($harvest->status == OaipmhHarvester_Harvest::STATUS_COMPLETED) {
-                $harvest->start_from = $harvest->initiated;
-            } else {
-                $harvest->start_from = null;
-            } 
-        } else {
-            $baseUrl        = $this->_getParam('base_url');
-            $metadataSpec   = $this->_getParam('metadata_spec');
-            $setSpec        = $this->_getParam('set_spec');
-            $setName        = $this->_getParam('set_name');
-            $setDescription = $this->_getParam('set_description');
-        
-            $metadataPrefix = $metadataSpec;
-            $harvest = $this->_helper->db->getTable('OaipmhHarvester_Harvest')->findUniqueHarvest($baseUrl, $setSpec, $metadataPrefix);
-         
-            if (!$harvest) {
-                // There is no existing identical harvest, create a new entry.
-                $harvest = new OaipmhHarvester_Harvest;
-                $harvest->base_url        = $baseUrl;
-                $harvest->set_spec        = $setSpec;
-                $harvest->set_name        = $setName;
-                $harvest->set_description = $setDescription;
-                $harvest->metadata_prefix = $metadataPrefix;
-            }
-        }
-            
-        // Insert the harvest.
-        $harvest->status          = OaipmhHarvester_Harvest::STATUS_QUEUED;
-        $harvest->initiated       = date('Y:m:d H:i:s');
-        $harvest->save();
-        
-        $jobDispatcher = Zend_Registry::get('bootstrap')->getResource('jobs');        
-        $jobDispatcher->setQueueName('imports');
 
-        try {
-            $jobDispatcher->sendLongRunning('OaipmhHarvester_Job', array('harvestId' => $harvest->id));
-        } catch (Exception $e) {
-            $harvest->status = OaipmhHarvester_Harvest::STATUS_ERROR;
-            $harvest->addStatusMessage(
-                get_class($e) . ': ' . $e->getMessage(),
-                OaipmhHarvester_Harvest_Abstract::MESSAGE_CODE_ERROR
-            );
-            throw $e;
+        // Closing import in database (table omeka_imports)
+        if ($last == "true") {
+            $importItem = new NakalaImportItem;
+            $importItem->closeImport($importId);
         }
 
-        if ($setSpec) {
-            $message = "La section \"$setSpec\" est en cours d'import avec le préfixe \"$metadataPrefix\". Cela peut prendre du temps. Merci d'actualiser cette page pour voir le statut.";
-        } else {
-            $message = "Le répertoire \"$baseUrl\" est en cours d'import avec le préfixe \"$metadataPrefix\". Cela peut prendre du temps. Merci d'actualiser cette page pour voir le statut.";
-        }
-        if ($harvest->start_from) {
-            $message = $message." Import débuté depuis $harvest->start_from.";
-        }
-        $this->_helper->flashMessenger($message, 'success');
-        return $this->_helper->redirector->goto('index');
+        // Returns the result as JSON, like : {"last":false}
+        $this->getResponse()->setHeader('Content-Type', 'application/json');
+        echo json_encode($response);
+    }
 
-    }
-    
-    /**
-     * Prepare the status view.
-     * 
-     * @return void
-     */
-    public function statusAction()
-    {
-        $harvestId = $this->_getParam('harvest_id');
-        $harvest = $this->_helper->db->getTable('OaipmhHarvester_Harvest')->find($harvestId);
-        $this->view->harvest = $harvest;
-    }
-    
-    /**
-     * Delete all items created during a harvest.
-     * 
-     * @return void
-     */
-    public function deleteAction()
-    {
-        // Throw if harvest does not exist or access is disallowed.
-        $harvestId = $this->_getParam('id');
-        $harvest = $this->_helper->db->getTable('OaipmhHarvester_Harvest')->find($harvestId);
-        $jobDispatcher = Zend_Registry::get('bootstrap')->getResource('jobs');        
-        $jobDispatcher->setQueueName('imports');
-        $jobDispatcher->sendLongRunning('OaipmhHarvester_DeleteJob',
-            array(
-                'harvestId' => $harvest->id,
-            )
-        );
-        $msg = 'Les imports ont été marqués comme "à supprimer".';
-        $this->_helper->flashMessenger($msg, 'success');
-        return $this->_helper->redirector->goto('index');
-    }
-    
-    /**
-     * Get the available OAI-PMH to Omeka maps, which should correspond to 
-     * OAI-PMH metadata formats.
-     * 
-     * @return array
-     */
-    private function _getMaps()
-    {
-        $dir = new DirectoryIterator(OAIPMH_HARVESTER_MAPS_DIRECTORY);
-        $maps = array();
-        foreach ($dir as $dirEntry) {
-            if ($dirEntry->isFile() && !$dirEntry->isDot()) {
-                $filename = $dirEntry->getFilename();
-                $pathname = $dirEntry->getPathname();
-                if (preg_match('/^(.+)\.php$/', $filename, $match) 
-                    && $match[1] != 'Abstract'
-                ) {
-                    // Get and set only the name of the file minus the extension.
-                    require_once($pathname);
-                    $class = "OaipmhHarvester_Harvest_${match[1]}";
-                    $metadataSchema = constant("$class::METADATA_SCHEMA");
-                    $metadataPrefix = constant("$class::METADATA_PREFIX");
-                    $maps[$metadataPrefix] = $metadataSchema;
-                }
-            }
-        }
-        return $maps;
-    }
 }
