@@ -22,12 +22,20 @@ class Table_NakalaImport extends Omeka_Db_Table
      */
     public function getLastImportDateXsd() {
 
-        $lastImport =  $this->findBy(array('sort_field' => 'initiated', 'sort_dir' => 'd'), 1);
+        $imports =  $this->findBy(array('sort_field' => 'initiated', 'sort_dir' => 'd'));
 
-        if (count($lastImport) == 0)
+        if (count($imports) == 0)
             return date("Y-m-d\TH:i:sP", 0);
 
-        return date("Y-m-d\TH:i:sP", strtotime($lastImport[0]->initiated));
+        foreach ($imports as $key => $import) {
+
+            if ($import->completed != NULL) {
+                $date = $import->initiated;
+                break;
+            }
+        }
+
+        return date("Y-m-d\TH:i:sP", strtotime($date));
     }
 
 
