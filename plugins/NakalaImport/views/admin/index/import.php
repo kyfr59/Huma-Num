@@ -76,8 +76,6 @@ jQuery(document).ready(function($) {
         }
 
 
-    }).fail(function( msg ) {
-      alert( "Erreur d'appel Ajax");
     });
     i++;
 

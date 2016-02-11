@@ -45,7 +45,7 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         $lastImportDate = $this->_helper->db->getTable('NakalaImport')->getLastImportDateXsd();
         
         $imports = $this->sparql->retrieveUpdates($lastImportDate);
-
+/*
         foreach ($imports as $key => $import) {
 
             $handle = getHandleFormNakalaUrl((string)$import->dataUrl);
@@ -55,7 +55,7 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
             else
                 $imports[$key]->importType = 'création';
         }
-
+*/
         $this->view->imports = $imports;
     }
 
