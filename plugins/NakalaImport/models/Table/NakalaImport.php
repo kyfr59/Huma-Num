@@ -35,6 +35,6 @@ class Table_NakalaImport extends Omeka_Db_Table
             }
         }
 
-        return date("Y-m-d\TH:i:sP", strtotime($date));
+        return @date("Y-m-d\TH:i:sP", strtotime($date));
     }
 }

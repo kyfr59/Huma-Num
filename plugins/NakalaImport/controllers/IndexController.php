@@ -42,10 +42,20 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
      */
     public function indexAction()
     {
+        
+    }
+
+
+    /**
+     * Prepare the index view.
+     * 
+     * @return void
+     */
+    public function homeAction()
+    {
         $lastImportDate = $this->_helper->db->getTable('NakalaImport')->getLastImportDateXsd();
         
         $imports = $this->sparql->retrieveUpdates($lastImportDate);
-
 
         foreach ($imports as $key => $import) {
 
