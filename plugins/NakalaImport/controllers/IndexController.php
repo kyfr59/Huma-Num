@@ -121,7 +121,6 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         $ignoreUpdates  = $this->getParam('ignore_updates');
         $dataUrls       = $this->getParam('dataUrl');
 
-
         // Removing updates from $dataUrls array
         if ($ignoreUpdates) {
             foreach($dataUrls as $key => $dataUrl) {
@@ -133,23 +132,26 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
             $dataUrls = array_values($dataUrls); // Reset keys
         }
 
-        // Adding new import in database (table omeka_imports)
-        $importItem = new NakalaImportItem;
-        $importId = $importItem->startImport();
+        if (count($dataUrls) > 0 ) {
+            // Adding new import in database (table omeka_imports)
+            $importItem = new NakalaImportItem;
+            $importId = $importItem->startImport();
 
-        // Version Single Page PHP
-        /*
-        foreach ($dataUrls as $dataUrl) {
-            $infos = $this->sparql->getInformations($dataUrl);
-            $importItem->import($infos, $importId);
+            // Version Single Page PHP
+            /*
+            foreach ($dataUrls as $dataUrl) {
+                $infos = $this->sparql->getInformations($dataUrl);
+                $importItem->import($infos, $importId);
+            }
+            $importItem->closeImport($importId);
+            */
+
+            // Version AJAX
+            $this->view->dataUrls = json_encode($dataUrls);        
+            $this->view->importId = json_encode($importId);        
+        } else {
+            $this->_forward("index");
         }
-        $importItem->closeImport($importId);
-        */
-
-        // Version AJAX
-        $this->view->dataUrls = json_encode($dataUrls);        
-        $this->view->importId = json_encode($importId);        
-
     }
 
 
