@@ -99,7 +99,8 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
     {
 
         $defaults = array(
-            'nakala-handle' => '11280/f1401838'
+            'nakala-handle' => '11280/f1401838',
+            'ignore-updates' => ''
         );
         set_option('nakala_import_settings', serialize($defaults));
 
