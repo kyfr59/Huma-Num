@@ -94,7 +94,7 @@ class NakalaImportSparql
 
         @$_SESSION['sparql_query'] .= $query ."-----------------------------\n";
 
-        // echo nl2br(htmlspecialchars($query));
+        echo nl2br(htmlspecialchars($query));
       
         $results = $this->sparql->query($query);
       

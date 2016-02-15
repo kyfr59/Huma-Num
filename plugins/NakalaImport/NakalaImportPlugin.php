@@ -115,19 +115,6 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
 
-
-        $sql = "
-        CREATE TABLE IF NOT EXISTS `{$db->prefix}nakala_imports_records` (
-          `id` int unsigned NOT NULL auto_increment,
-          `import_id` int unsigned default NULL,
-          `handle` text NOT NULL,
-          `item_id` int unsigned default NULL,
-          `date` datetime default NULL,
-          `logs` text NULL,
-          PRIMARY KEY  (`id`)
-        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-        $db->query($sql);
-
     }
 
     public function hookConfigForm() 
@@ -136,6 +123,7 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         $settings = unserialize(get_option('nakala_import_settings'));
                 
         $options['nakala-handle']    = (string) $settings['nakala-handle'];
+        $options['ignore-updates']    = (string) $settings['ignore-updates'];
         
         include 'forms/config-form.php';
 
@@ -148,13 +136,16 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
             echo "<font color=\"red\"><strong>Les droits sont incorrects, veuillez vérifier les droits sur le dossier suivant :<br />".PLUGIN_DIRECTORY_TEMP."</strong></font>";
         }
         echo '</div>';
+
+        echo '<div class="inputs seven columns omega"><br />'.$view->formCheckbox("ignore-updates", 1, array('checked' => $options['ignore-updates'])).'&nbsp;&nbsp;Ignorer les mises à jour lors de l\'import ?</div>';
     }
 
     public function hookConfig()
     {
         $settings = unserialize(get_option('nakala_import_settings'));
         
-        $settings['nakala-handle']   = (string) $_POST['nakala-handle'];
+        $settings['nakala-handle']      = (string) $_POST['nakala-handle'];
+        $settings['ignore-updates']     = (string) $_POST['ignore-updates'];
         
         set_option('nakala_import_settings', serialize($settings));
     }
@@ -170,9 +161,7 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         // drop the tables        
         $sql = "DROP TABLE IF EXISTS `{$db->prefix}nakala_imports`;";
         $db->query($sql);
-        $sql = "DROP TABLE IF EXISTS `{$db->prefix}nakala_imports_records`;";
-        $db->query($sql);
-        
+                
         $this->_uninstallOptions();
     }
 

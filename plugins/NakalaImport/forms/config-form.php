@@ -13,9 +13,7 @@
             <?php echo $view->formSubmit('test-handle', 'Tester la connectivité du compte'); ?>
         </div>
 
-        <div class="inputs seven columns omega" id="response">
-        	
-        </div>
+        <div class="inputs seven columns omega" id="response"></div>
 
     </div>
 </div>

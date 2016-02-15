@@ -38,7 +38,7 @@ echo head(array('title' => 'NAKALA import'));
                     <?php foreach ($this->imports as $import): ?>
                         <tr>
                             <td><?php echo cut_string((string)$import->title,80); ?></td>
-                            <!--<td><center><?php echo cut_string((string)$import->importType); ?></center></td>-->
+                            <td><center><?php echo cut_string((string)$import->importType); ?></center></td>
                             <td><center><a href="<?php echo (string)$import->resourceUrl ?>" target="_blank">Fiche NAKALA</a></center></td>
                             <input type="hidden" name="dataUrl[]" value="<?php echo (string)$import->dataUrl ?>" />
                         </tr>
@@ -46,7 +46,7 @@ echo head(array('title' => 'NAKALA import'));
                     </tbody>
                 </table>
                 <?php echo $this->formSubmit('import', 'Importer les notices dans OMEKA'); ?>
-                <?php echo $this->formInput('text', $this->options['nakala-handle'], array('type'=>'hidden')); ?>
+                <?php echo $this->formCheckbox('ignore_updates', 1); ?>&nbsp;Ignorer les mises à jour
             </form>
 
             <div>

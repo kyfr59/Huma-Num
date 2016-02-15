@@ -45,17 +45,27 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         $lastImportDate = $this->_helper->db->getTable('NakalaImport')->getLastImportDateXsd();
         
         $imports = $this->sparql->retrieveUpdates($lastImportDate);
-/*
+
+
         foreach ($imports as $key => $import) {
 
             $handle = getHandleFormNakalaUrl((string)$import->dataUrl);
             $elementTexts['Dublin Core']['Identifier'][]['text'] = $handle;
             if (itemExists($elementTexts))
                 $imports[$key]->importType = 'mise à jour';
-            else
+            else 
                 $imports[$key]->importType = 'création';
         }
-*/
+
+        if ($this->view->options['ignore-updates']) {
+            $onlyNewImports = array();
+            foreach ($imports as $key => $import) {
+                if ($import->importType == 'création')
+                    $onlyNewImports[] = $import;
+            }
+            $imports = $onlyNewImports;
+        }
+
         $this->view->imports = $imports;
     }
 
@@ -90,7 +100,20 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
      */
     public function importAction()
     {
-        $dataUrls = $this->getParam('dataUrl');
+        $ignoreUpdates  = $this->getParam('ignore_updates');
+        $dataUrls       = $this->getParam('dataUrl');
+
+
+        // Removing updates from $dataUrls array
+        if ($ignoreUpdates) {
+            foreach($dataUrls as $key => $dataUrl) {
+                $handle = getHandleFormNakalaUrl($dataUrl);
+                $elementTexts['Dublin Core']['Identifier'][]['text'] = $handle;
+                if (itemExists($elementTexts))
+                    unset($dataUrls[$key]);
+            }
+            $dataUrls = array_values($dataUrls); // Reset keys
+        }
 
         // Adding new import in database (table omeka_imports)
         $importItem = new NakalaImportItem;
@@ -128,8 +151,15 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         $importId     = $this->getParam('importId'); 
         $i            = $this->getParam('i'); 
 
+        // Check if the item exists
+        $handle = getHandleFormNakalaUrl($dataUrl);
+        $elementTexts['Dublin Core']['Identifier'][]['text'] = $handle;
+        $insertType = itemExists($elementTexts) ? "mise à jour" : "importée";
+
+        // Retrieve infos about item (Sparql)
         $infos = $this->sparql->getInformations($dataUrl);
 
+        // Add the item in database
         $importItem = new NakalaImportItem;
         $importItem->import($infos, $importId);
 
@@ -137,11 +167,12 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         $title = cut_string(implode(' // ', $infos['dc_title']),80);
 
         // Prepare response params
-        $response = array(  "last" => $last, 
-                            "i" => $i,
-                            "dataUrl" => $dataUrl,
-                            "count" => count($infos),                
-                            "title" => $title,        
+        $response = array(  "last"          => $last, 
+                            "i"             => $i,
+                            "dataUrl"       => $dataUrl,
+                            "count"         => count($infos),                
+                            "title"         => $title,        
+                            "insertType"    => $insertType,        
         );
 
         // Closing import in database (table omeka_imports)

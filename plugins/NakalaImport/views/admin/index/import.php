@@ -22,6 +22,10 @@ echo head(array('title' => 'NAKALA import'));
         </thead>
         <tbody id="start"><tr><td><img src="<?php echo WEB_ROOT ?>/plugins/NakalaImport/images/progress_bar.gif" style="margin-left:-8px" /></td><td style="width:130px;">Initialisation du processus d'import</td></tr></tbody>
         <tbody id="response"></tbody>
+        <form method="post" action="<?php echo url('nakala-import');?>">
+          <tbody><tr><td><?php echo $this->formSubmit('import', "Reprendre l'import ultérieuement"); ?></td></tr></tbody>
+        </form>
+
     </table>
 
     
@@ -41,7 +45,9 @@ jQuery(document).ready(function($) {
   var last            = false;
 
   call = function() {
-  
+
+    console.log(dataUrls[i]);
+    
     if (i >= (nbImports-1))
       last = true;
 
@@ -63,8 +69,8 @@ jQuery(document).ready(function($) {
         jQuery("#waiting").remove();
 
         serverResponse.append("<tr>\
-                                <td>" + response.title  +"</td>\
-                                <td style=\"width:130px\">Importée</td>\
+                                <td>" + response.title + "</td>\
+                                <td style=\"width:130px\">" + response.insertType + "</td>\
                               </tr>");
 
         if (response.last == 'false') {
@@ -74,7 +80,6 @@ jQuery(document).ready(function($) {
                                   </tr>");
             call();
         }
-
 
     });
     i++;
