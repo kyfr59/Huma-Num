@@ -91,7 +91,7 @@ class NakalaImportSparql
         $query  .= "FILTER ( ?modified >= xsd:dateTime('$lastImportDate') )  \r\n";
         $query  .= "}  \r\n";
         $query  .= "ORDER BY DESC(?modified) \r\n";
-        $query  .= "LIMIT 1000 \r\n";
+        // $query  .= "LIMIT 1000 \r\n";
 
         // @$_SESSION['sparql_query'] .= $query ."-----------------------------\n";
 

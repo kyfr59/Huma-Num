@@ -22,11 +22,11 @@ echo head(array('title' => 'NAKALA import'));
         </thead>
         <tbody id="start"><tr><td><img src="<?php echo WEB_ROOT ?>/plugins/NakalaImport/images/progress_bar.gif" style="margin-left:-8px" /></td><td style="width:130px;">Initialisation du processus d'import</td></tr></tbody>
         <tbody id="response"></tbody>
-        <!--
+        
         <form method="post" action="<?php echo url('nakala-import');?>">
-          <tbody><tr><td><?php echo $this->formSubmit('import', "Reprendre l'import ultérieuement"); ?></td></tr></tbody>
+          <tbody><tr><td><?php echo $this->formSubmit('home', "Retour à la page d'accueil"); ?></td></tr></tbody>
         </form>
-        -->
+        
     </table>
 
     
@@ -43,12 +43,13 @@ jQuery(document).ready(function($) {
   var i               = 0;
   var url             = "<?php echo html_escape(url('nakala-import/index/import-via-ajax')); ?>";
   var serverResponse  = jQuery("#response");
+  var homeButton      = jQuery("#home");
   var last            = false;
+
+  homeButton.hide();
 
   call = function() {
 
-    console.log(dataUrls[i]);
-    
     if (i >= (nbImports-1))
       last = true;
 
@@ -63,7 +64,6 @@ jQuery(document).ready(function($) {
     }).done(function( response ) {
 
         if (i == 1) {
-          console.log(jQuery("#start"));
           jQuery("#start").hide();
         }
         
@@ -80,6 +80,8 @@ jQuery(document).ready(function($) {
                                     <td style=\"width:130px\">En attente</td>\
                                   </tr>");
             call();
+        } else {
+          homeButton.show();
         }
 
     });

@@ -57,14 +57,20 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         
         $imports = $this->sparql->retrieveUpdates($lastImportDate);
 
+        $updated = $created = 0;
+
         foreach ($imports as $key => $import) {
 
             $handle = getHandleFormNakalaUrl((string)$import->dataUrl);
             $elementTexts['Dublin Core']['Identifier'][]['text'] = $handle;
-            if (itemExists($elementTexts))
+            if (itemExists($elementTexts)) {
                 $imports[$key]->importType = 'mise à jour';
-            else 
+                $updated++;
+            }
+            else {
                 $imports[$key]->importType = 'création';
+                $created++;
+            }
         }
 
         if ($this->view->options['ignore-updates']) {
@@ -76,6 +82,8 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
             $imports = $onlyNewImports;
         }
 
+        $this->view->updated = $updated;
+        $this->view->created = $created;
         $this->view->imports = $imports;
     }
 

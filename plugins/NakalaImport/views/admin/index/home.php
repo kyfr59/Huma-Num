@@ -16,6 +16,9 @@
         <?php else: ?>
 
             <form method="post" action="<?php echo url('nakala-import/index/import');?>">
+
+                <strong><?php echo $this->updated ?> notices à mettre à jour / <?php echo $this->created ?> notices à ajouter</strong>
+
                 <table>
                    <thead>
                         <tr>
