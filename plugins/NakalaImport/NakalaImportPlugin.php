@@ -128,8 +128,31 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         
         include 'forms/config-form.php';
 
+        // Checking for max_execution_time value of PHP
+        echo "<div style=\"clear:both; margin-left:12px; margin-top:30px;\"><strong>Vérification du réglage de la valeur max_execution_time de PHP</strong><br />";
+
+        $max = (int)ini_get('max_execution_time');
+        if ($max > 1000) {
+            echo "<font color=\"#75940A\"><strong>La valeur de la variable max_execution_time de PHP est de ".$max." secondes.</strong></font>";
+        } else {
+            echo "<font color=\"red\"><strong>La valeur de la variable max_execution_time de PHP est de ".$max." secondes, la valeur conseilllée est de 1000 secondes. Cela peut être un problème avec les dépôts volumineux.</strong></font>";
+        }
+        echo '</div>';
+
+        // Checking for max_input_vars value of PHP
+        echo "<div style=\"clear:both; margin-left:12px; margin-top:30px;\"><strong>Vérification du réglage de la valeur max_input_vars de PHP</strong><br />";
+
+        $max = (int)ini_get('max_input_vars');
+        if ($max > 50000) {
+            echo "<font color=\"#75940A\"><strong>La valeur de la variable max_input_vars de PHP est de ".$max." secondes.</strong></font>";
+        } else {
+            echo "<font color=\"red\"><strong>La valeur de la variable max_input_vars de PHP est de ".$max.", la valeur conseilllée est de 50000. Cela peut être un problème avec les dépôts volumineux.</strong></font>";
+        }
+        echo '</div>';
+
         // Checking file perms on /temp directory
         echo "<div style=\"clear:both; margin-left:12px; margin-top:30px;\"><strong>Vérification des permissions sur le dossier /temp du plugin</strong><br />";
+        
 
         if (is_writable(PLUGIN_DIRECTORY_TEMP)) {
             echo "<font color=\"#75940A\"><strong>Les droits sont corrects, le dossier est accessible en écriture.</strong></font>";

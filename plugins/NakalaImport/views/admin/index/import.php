@@ -50,7 +50,10 @@ jQuery(document).ready(function($) {
 
   call = function() {
 
-    if (i >= (nbImports-1))
+    console.log("i: " + i + ", nbImports: " + nbImports + ", nbImports-1 : " + (nbImports-1));
+    
+
+    if (jQuery.isNumeric(nbImports) && i >= (nbImports-1))
       last = true;
 
     jQuery.ajax({

@@ -209,7 +209,7 @@ class NakalaImportItem extends Omeka_Record_AbstractRecord
             } else { // The file isn't an audio or video file, we download it (to generate the thumbmails)
                 
                 $cmd = "wget -O " . PLUGIN_DIRECTORY_TEMP . '/'. urlencode($filename) ." ". $dataUrl;            
-                shell_exec($cmd);
+                // shell_exec($cmd);
                 $fileMetadata['file'] = PLUGIN_DIRECTORY_TEMP . '/'. urlencode($filename);
                 $fileMetadata['delete_file_after_insert'] = true;               
             }

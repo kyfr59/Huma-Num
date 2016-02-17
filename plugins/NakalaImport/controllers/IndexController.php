@@ -82,9 +82,10 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
             $imports = $onlyNewImports;
         }
 
-        $this->view->updated = $updated;
-        $this->view->created = $created;
-        $this->view->imports = $imports;
+        $this->view->lastImport = $lastImportDate;
+        $this->view->updated    = $updated;
+        $this->view->created    = $created;
+        $this->view->imports    = $imports;
     }
 
 
