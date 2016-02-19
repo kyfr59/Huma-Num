@@ -39,6 +39,7 @@ jQuery(document).ready(function($) {
 
   var dataUrls        = <?php echo ($this->dataUrls) ?>;
   var importId        = <?php echo ($this->importId) ?>;
+  var setPublic       = <?php echo ($this->setPublic) ?>;
   var nbImports       = dataUrls.length;
   var i               = 0;
   var url             = "<?php echo html_escape(url('nakala-import/index/import-via-ajax')); ?>";
@@ -62,10 +63,10 @@ jQuery(document).ready(function($) {
       data: { dataUrl:dataUrls[i], 
               i:i,
               last: last,
+              setPublic: setPublic,
               importId: importId
             }
     }).done(function( response ) {
-
         if (i == 1) {
           jQuery("#start").hide();
         }

@@ -42,6 +42,7 @@
         <?php echo $this->formSubmit('import', 'Importer les notices dans OMEKA'); ?>
         <?php if (!$this->options['ignore-updates']): ?>
             <?php echo $this->formCheckbox('ignore_updates', 1); ?>&nbsp;<strong>Ignorer les mises à jour</strong> (seules les notices à ajouter seront traitées)<br />
+            <?php echo $this->formCheckbox('set_public', 1); ?>&nbsp;<strong>Publier automatiquement les notices importées</strong><br /><br />
             Vous pouvez interrompre l'import à tout moment en quittant cette page.
         <?php endif; ?>
     </form>

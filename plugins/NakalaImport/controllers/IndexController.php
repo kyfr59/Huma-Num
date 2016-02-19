@@ -120,6 +120,7 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
     public function importAction()
     {
         $ignoreUpdates  = $this->getParam('ignore_updates');
+        $setPublic      = $this->getParam('set_public');
         $dataUrls       = $this->getParam('dataUrl');
 
         // Removing updates from $dataUrls array
@@ -148,8 +149,9 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
             */
 
             // Version AJAX
-            $this->view->dataUrls = json_encode($dataUrls);        
-            $this->view->importId = json_encode($importId);        
+            $this->view->dataUrls   = json_encode($dataUrls);        
+            $this->view->importId   = json_encode($importId);        
+            $this->view->setPublic  = json_encode($setPublic);        
         } else {
             $this->_forward("index");
         }
@@ -170,6 +172,7 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         $last         = $this->getParam('last'); 
         $dataUrl      = $this->getParam('dataUrl'); 
         $importId     = $this->getParam('importId'); 
+        $setPublic    = $this->getParam('setPublic'); 
         $i            = $this->getParam('i'); 
 
         // Check if the item exists
@@ -182,7 +185,7 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
 
         // Add the item in database
         $importItem = new NakalaImportItem;
-        $importItem->import($infos, $importId);
+        $importItem->import($infos, $importId, $setPublic);
 
         // Informations return to display import avancement
         $title = cut_string(implode(' // ', $infos['dc_title']),80);

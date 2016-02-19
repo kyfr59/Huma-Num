@@ -141,7 +141,7 @@ class NakalaImportItem extends Omeka_Record_AbstractRecord
      * @param integer $importId The ID of the target import (in nakala_imports)
      * @return true
      */
-    public function import($infos, $importId) {
+    public function import($infos, $importId, $setPublic = false) {
 
         $filename       = $infos['filename'];
         $extent         = $infos['dc_extent'];
@@ -157,9 +157,10 @@ class NakalaImportItem extends Omeka_Record_AbstractRecord
             $collection_id = $insertedCollection->id;
         }
 
+
         $itemMetadata = array(
             'collection_id' => $collection_id, 
-            'public'        => 1, 
+            'public'        => $setPublic, 
             'featured'      => 0,
         );
 
