@@ -42,9 +42,9 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
      */
     public function indexAction()
     {
-        
+        $this->view->collectionUrl  = $this->getParam('collectionUrl');
+        $this->view->collectionName = $this->getParam('collectionName');
     }
-
 
     /**
      * Prepare the index view.
@@ -53,9 +53,12 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
      */
     public function homeAction()
     {
-        $lastImportDate = $this->_helper->db->getTable('NakalaImport')->getLastImportDateXsd();
+        $collectionUrl = $this->getParam("collectionUrl");
+        $this->view->collectionUrl = $collectionUrl;
+
+        $lastImportDate = $this->_helper->db->getTable('NakalaImport')->getLastImportDateXsd($collectionUrl);
         
-        $imports = $this->sparql->retrieveUpdates($lastImportDate);
+        $imports = $this->sparql->retrieveUpdates($lastImportDate, $collectionUrl);
 
         $updated = $created = 0;
 
@@ -119,9 +122,10 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
      */
     public function importAction()
     {
-        $ignoreUpdates  = $this->getParam('ignore_updates');
-        $setPublic      = $this->getParam('set_public');
-        $dataUrls       = $this->getParam('dataUrl');
+        $ignoreUpdates      = $this->getParam('ignore_updates');
+        $setPublic          = $this->getParam('set_public');
+        $dataUrls           = $this->getParam('dataUrl');
+        $collectionUrl      = $this->getParam('collectionUrl');
 
         // Removing updates from $dataUrls array
         if ($ignoreUpdates) {
@@ -137,7 +141,7 @@ class NakalaImport_IndexController extends Omeka_Controller_AbstractActionContro
         if (count($dataUrls) > 0 ) {
             // Adding new import in database (table omeka_imports)
             $importItem = new NakalaImportItem;
-            $importId = $importItem->startImport();
+            $importId = $importItem->startImport($collectionUrl);
 
             // Version Single Page PHP
             /*

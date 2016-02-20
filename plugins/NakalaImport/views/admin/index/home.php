@@ -39,6 +39,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <?php echo $this->formHidden('collectionUrl', $this->collectionUrl); ?>
         <?php echo $this->formSubmit('import', 'Importer les notices dans OMEKA'); ?>
         <?php if (!$this->options['ignore-updates']): ?>
             <?php echo $this->formCheckbox('ignore_updates', 1); ?>&nbsp;<strong>Ignorer les mises à jour</strong> (seules les notices à ajouter seront traitées)<br />

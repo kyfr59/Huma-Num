@@ -111,7 +111,7 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
           `id` int unsigned NOT NULL auto_increment,
           `initiated` datetime default NULL,
           `completed` datetime default NULL,
-          `logs` text NULL,
+          `collection` text NULL,
           PRIMARY KEY  (`id`)
         ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
         $db->query($sql);
@@ -322,7 +322,7 @@ SQL;
     {        
         $nav[] = array(
             'label' => __('NAKALA Import'),
-            'uri' => url('nakala-import'),
+            'uri' => url('nakala-import/collections'),
             'resource' => 'NakalaImport_Index',
             'privilege' => 'index',
             'class' => 'nav-oai-pmh-harvester'

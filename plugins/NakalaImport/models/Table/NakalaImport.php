@@ -20,9 +20,9 @@ class Table_NakalaImport extends Omeka_Db_Table
      *
      * @return String the xsd:dateTime of the last import
      */
-    public function getLastImportDateXsd() {
+    public function getLastImportDateXsd($collectionUrl = null) {
 
-        $imports =  $this->findBy(array('sort_field' => 'initiated', 'sort_dir' => 'd'));
+        $imports =  $this->findBy(array('sort_field' => 'initiated', 'sort_dir' => 'd', 'collection' => $collectionUrl));
 
         if (count($imports) == 0)
             return date("Y-m-d\TH:i:sP", 0);

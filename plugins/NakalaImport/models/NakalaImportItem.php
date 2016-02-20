@@ -118,6 +118,8 @@ class NakalaImportItem extends Omeka_Record_AbstractRecord
      */
     static private $_videoExtensionNotDownloaded = array(
         'mp4',
+        '7z',
+        'm4v',
         'mp4v',
         'mpg4',
         'mpeg',
@@ -347,13 +349,13 @@ class NakalaImportItem extends Omeka_Record_AbstractRecord
      * 
      * @return The ID of the import created
      */
-    public function startImport()
+    public function startImport($collectionUrl = null)
     {
         $import = new NakalaImport;
        
         $import->initiated      = date('Y:m:d H:i:s');
         $import->completed      = null;
-        $import->logs           = "logs";
+        $import->collection     = $collectionUrl;
         $import->save();
 
         return $import->id;

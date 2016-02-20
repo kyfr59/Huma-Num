@@ -23,7 +23,7 @@ echo head(array('title' => 'NAKALA import'));
         <tbody id="start"><tr><td><img src="<?php echo WEB_ROOT ?>/plugins/NakalaImport/images/progress_bar.gif" style="margin-left:-8px" /></td><td style="width:130px;">Initialisation du processus d'import</td></tr></tbody>
         <tbody id="response"></tbody>
         
-        <form method="post" action="<?php echo url('nakala-import');?>">
+        <form method="post" action="<?php echo url('nakala-import/collections');?>">
           <tbody><tr><td><?php echo $this->formSubmit('home', "Retour à la page d'accueil"); ?></td></tr></tbody>
         </form>
         

@@ -76,9 +76,9 @@ class NakalaImportSparql
      * Query Sparql server for retrieve updates
      *
      * @param String $lastImportDate The date (xsd:dateTime) of the last import
-     * @return Boolean
+     * @return Record_Set
      */
-    public function retrieveUpdates($lastImportDate)
+    public function retrieveUpdates($lastImportDate, $collectionUrl = null)
     {
         $query = $this->_getSparlPrefixes();
         $query  .= "SELECT ?resourceUrl ?dataUrl ?fileLabel ?modified (GROUP_CONCAT(?title ; SEPARATOR = \"  // \") AS ?title) \r\n";
@@ -87,6 +87,8 @@ class NakalaImportSparql
         $query  .= "?resourceUrl skos:altLabel ?fileLabel . \r\n";
         $query  .= "?resourceUrl foaf:primaryTopic ?dataUrl . \r\n";
         $query  .= "?dataUrl dcterms:title ?title . \r\n";
+        if (null != $collectionUrl)
+            $query  .= "?resourceUrl ore:isAggregatedBy <" . $collectionUrl ."> . \r\n";
         $query  .= "?resourceUrl dcterms:modified ?modified  \r\n";
         $query  .= "FILTER ( ?modified >= xsd:dateTime('$lastImportDate') )  \r\n";
         $query  .= "}  \r\n";
@@ -101,6 +103,35 @@ class NakalaImportSparql
 
         return $results;
     }
+
+
+    /**
+     * Query Sparql server for retrieve collections 
+     *
+     * @return Record_Set
+     */
+    public function retrieveCollections()
+    {
+        $query = $this->_getSparlPrefixes();
+
+        $query  .= "SELECT ?collectionUrl ?nomCollection \r\n";
+        $query  .= "WHERE { \r\n";
+        $query  .= "?scheme \r\n";
+        $query  .= " dcterms:creator \r\n";
+        $query  .= "<" . NAKALA_ACCOUNT_PREFIX . $this->handle."> . \r\n";
+        $query  .= "?collectionUrl skos:inScheme ?scheme . \r\n";
+        $query  .= "?collectionUrl skos:prefLabel ?nomCollection . \r\n";
+        $query  .= "} \r\n";
+        $query  .= "ORDER BY DESC(?nomCollection) \r\n";
+
+        //echo nl2br(htmlspecialchars($query));
+      
+        $results = $this->sparql->query($query);
+
+        return $results;
+    }
+
+
 
     /**
      * Query Sparql server for retrieve informations about a specific ressource

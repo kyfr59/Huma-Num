@@ -19,7 +19,14 @@ echo head(array('title' => 'NAKALA import'));
 
     <?php else: ?>
 
-        <h2>Liste des notices à importer</h2>
+        <h2>
+            Liste des notices à importer 
+            <?php if (isset($this->collectionName)): ?>
+                dans la collection "<?php echo $this->collectionName ?>"
+            <?php else: ?>                
+                dans l'ensemble des collections du dépôt
+            <?php endif; ?>
+        </h2>
         <div id="waiting">
             Recherche des notices à importer<?php if (!$this->options['ignore-updates']) echo ' et à mettre à jour'; ?>.<br />
             Pour les dépôts volumineux, cette étape peut prendre du temps tant que le premier import n'est pas entièrement réalisé.<br />
@@ -30,18 +37,18 @@ echo head(array('title' => 'NAKALA import'));
     <?php endif; ?>    
 </div>
 
-
 <script>
 jQuery(document).ready(function($) {
 
-    var url = "<?php echo html_escape(url('nakala-import/index/home')); ?>";
-    var results  = jQuery("#results");
-    var waiting  = jQuery("#waiting");
+    var url             = "<?php echo html_escape(url('nakala-import/index/home')); ?>";
+    var collectionUrl   = "<?php echo $this->collectionUrl ?>";
+    var results         = jQuery("#results");
+    var waiting         = jQuery("#waiting");
     
     jQuery.ajax({
       method: "POST",
       url: url,
-      data: {}
+      data: {collectionUrl:collectionUrl}
     }).done(function( response ) {
         waiting.hide();
         results.append(response);

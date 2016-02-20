@@ -16,7 +16,7 @@ class NakalaImport extends Omeka_Record_AbstractRecord
     public $id;
     public $initiated;
     public $completed;
-    public $logs;
+    public $collection;
 
 /*    
     protected $_related = array(
