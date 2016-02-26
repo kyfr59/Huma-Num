@@ -49,6 +49,7 @@ function getHandleFormNakalaCollectionUrl($url)
  */
 function getNakalaUriFromItem($item)
 {
+
     $identifiers = $item->getElementTexts("Dublin Core", "Identifier");
 
     foreach ($identifiers as $identifier) { 

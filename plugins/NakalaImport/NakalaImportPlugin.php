@@ -71,11 +71,9 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
      */
     protected $_hooks = array('install', 
                               'uninstall',
-                              'upgrade',
                               'public_head',
                               'define_acl', 
                               'before_delete_item',
-                              'admin_items_show_sidebar',
                               'items_browse_sql',
                               'config_form',
                               'config');
@@ -85,7 +83,7 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
      */
     protected $_filters = array('admin_navigation_main', 
                                 'file_markup',
-                                'browse_plugins');
+                                );
 
     /**
      * @var array Options and their default values.
@@ -189,28 +187,6 @@ class NakalaImportPlugin extends Omeka_Plugin_AbstractPlugin
         $this->_uninstallOptions();
     }
 
-    public function hookUpgrade($args)
-    {
-        $db = $this->_db;
-        $oldVersion = $args['old_version'];
-
-        if (version_compare($oldVersion, '2.0-dev', '<')) {
-            $sql = <<<SQL
-ALTER TABLE `{$db->prefix}oaipmh_harvester_harvests`
-    DROP COLUMN `metadata_class`,
-    DROP COLUMN `pid`,
-    ADD COLUMN `resumption_token` TEXT COLLATE utf8_unicode_ci AFTER `status_messages`
-SQL;
-            $db->query($sql);
-
-            $sql = <<<SQL
-ALTER TABLE `{$db->prefix}oaipmh_harvester_records`
-    ADD INDEX `identifier_idx` (identifier(255)),
-    ADD UNIQUE INDEX `item_id_idx` (item_id)
-SQL;
-            $db->query($sql);
-        }
-    }
     /**
      * Define the ACL.
      * 
@@ -233,39 +209,7 @@ SQL;
         harvests, you will lose all harvest-specific metadata and the ability to
         re-harvest.</p>';
     }
-    
-    /**
-    * Appended to admin item show pages.
-    *
-    * @param array $args
-    */
-    public function hookAdminItemsShowSidebar($args)
-    {
-        $item = $args['item'];
-        echo $this->_expose_duplicates($item);
-    }
-    
-    /**
-     * Returns a view of any duplicate harvested records for an item
-     *
-     * @param Item $item The item.
-     */
-    protected function _expose_duplicates($item)
-    {
-        if (!$item->exists()) {
-            return;
-        }
-        $items = get_db()->getTable('Item')->findBy(
-            array(
-                'oaipmh_harvester_duplicate_items' => $item->id,
-            )
-        );
-        if (!count($items)) {
-            return '';
-        }
-        return get_view()->partial('index/_duplicates.php', array('items' => $items));
-    }
-    
+        
     /**
      * Deletes harvester record associated with a deleted item.
      *
@@ -331,23 +275,6 @@ SQL;
     }
 
 
-    /**
-     * Hide the OAI-PMH Harvester plugin in the list of plugins
-     * (This plugin replace the OAI-PHM Harvester plugin for Huma-Num, the 2
-     * plugins can't work in conjonction).
-     * 
-     * @param array List of plugins array.
-     * @return array Filtered list of plugin array.
-     */
-    public function filterBrowsePlugins($allPlugins)
-    {        
-        if ($allPlugins['OaipmhHarvester'])
-          unset($allPlugins['OaipmhHarvester']);
-        return $allPlugins;
-    }
-
-
-    
     /**
      * Replace the src of medias by a Nakala url
      * Correct display bug on Html5Media plugin
